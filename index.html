@@ -65,8 +65,13 @@
       .fade.show{opacity:1;transform:translateY(0);}  
 
       /* ---------- RESPONSIVE ---------- */
-      @media(max-width:640px){.menu{display:none;}
-        .hero h1{font-size:clamp(2.2rem,8vw+1rem,4rem);} /* adapt mobile */}
+      @media(max-width:640px){
+        .menu{display:none;}
+        /* Hero typographie mobile */
+        .hero h1{font-size:clamp(1.9rem,6vw+0.3rem,3rem);} /* plus petit */
+        .hero p{font-size:1.125rem;}
+      }
+        /* Removed duplicate .hero h1 rule */
     </style>
   </head>
   <body>
