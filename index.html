@@ -42,7 +42,8 @@
       @keyframes skyline-slide{from{background-position:0 100%;}to{background-position:-400px 100%;}}
 
       /* ---------- HERO ---------- */
-      .hero{padding-top:2rem;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;padding-bottom:3rem;background:var(--bg);}
+      .hero{position:relative;padding-top:2rem;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;padding-bottom:3rem;}
+      .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:url("assets/ville_arrosée.png") center/cover no-repeat;background-attachment:fixed;opacity:0.25;}
       .hero h1{font-size:3.3rem;font-weight:800;margin:0;letter-spacing:-1px;color:var(--text);}  
       .hero h1 span{color:var(--accent);}  
       .hero p{margin-top:1.6rem;font-size:2.15rem;max-width:48ch;margin-inline:auto;color:var(--muted);} 
@@ -102,21 +103,24 @@
           <h2 class="fade" data-animate>Dernières réalisations</h2>
           <div class="grid">
             <article class="card fade" data-animate>
-              <img src="https://source.unsplash.com/random/640x480?architecture,urban" alt="Concours ZAC Belleville" />
+              <img src="assets/esquisse_1.png" alt="Concours ZAC Belleville" />
               <div class="overlay"><h3>ZAC Belleville – Offre lauréate</h3></div>
             </article>
             <article class="card fade" data-animate>
-              <img src="https://source.unsplash.com/random/640x480?architecture,modern" alt="Plaquette Siège Groupe Alta" />
+              <img src="assets/chateau.png" alt="Plaquette Siège Groupe Alta" />
               <div class="overlay"><h3>Alta Group – Plaquette siège social</h3></div>
             </article>
             <article class="card fade" data-animate>
-              <img src="https://source.unsplash.com/random/640x480?city,night" alt="Identité Quartier Aster" />
+              <img src="assets/ville_urba.png" alt="Identité Quartier Aster" />
               <div class="overlay"><h3>Quartier Aster – Branding urbain</h3></div>
             </article>
             <article class="card fade" data-animate>
-              <img src="https://source.unsplash.com/random/640x480?building,future" alt="Concours MixCité" />
+              <img src="assets/reunion.jpg" alt="Concours MixCité" />
               <div class="overlay"><h3>MixCité 2024 – Dossier de consultation</h3></div>
             </article>
+            <article class="card fade" data-animate>
+              <img src="assets/ville_bleu.png" alt="Concours BatiHarmony" />
+              <div class="overlay"><h3>Concours BatiHarmony – Offre lauréate</h3></div>
           </div>
         </div>
       </section>
