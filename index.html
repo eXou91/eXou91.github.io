@@ -1,1 +1,305 @@
-Je suis diane breton blabla trop forte trop belle
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vous êtes ici – Démo</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg: #ffffff;
+        --text: #111111;
+        --accent: #ff5c35;
+        --muted: #6c6c6c;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Inter", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      /* ---------- LAYOUT ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background: var(--bg);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .container {
+        max-width: 1200px;
+        padding: 0 1.5rem;
+        margin: 0 auto;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+
+      .logo {
+        font-weight: 800;
+        font-size: 1.25rem;
+        text-transform: lowercase;
+        letter-spacing: -0.5px;
+      }
+
+      .menu {
+        display: flex;
+        gap: 1.25rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        position: relative;
+      }
+
+      .menu a::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        height: 2px;
+        width: 0;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+
+      .menu a:hover::after {
+        width: 100%;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        min-height: 88vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 3rem 0;
+        background: var(--bg);
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw + 1rem, 4.75rem);
+        font-weight: 800;
+        margin: 0;
+        letter-spacing: -1px;
+      }
+
+      .hero p {
+        margin-top: 1rem;
+        font-size: 1.125rem;
+        max-width: 40ch;
+        margin-inline: auto;
+        color: var(--muted);
+      }
+
+      /* ---------- PROJECTS GRID ---------- */
+      .projects {
+        padding: 5rem 0 6rem;
+        background: var(--bg);
+      }
+
+      .projects h2 {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0.75rem;
+        aspect-ratio: 4/3;
+        background: #f1f1f1;
+        cursor: pointer;
+        transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+        color: #fff;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .card:hover .overlay {
+        opacity: 1;
+      }
+
+      .card:hover {
+        transform: translateY(-6px);
+      }
+
+      /* ---------- FOOTER ---------- */
+      footer {
+        padding: 2.5rem 0;
+        text-align: center;
+        background: var(--bg);
+        font-size: 0.875rem;
+        color: var(--muted);
+      }
+
+      /* ---------- ANIMATIONS ---------- */
+      .fade {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.75s ease-out, transform 0.75s ease-out;
+      }
+
+      .fade.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 640px) {
+        .menu {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="logo">vous êtes ici</div>
+        <ul class="menu">
+          <li><a href="#projets">projets</a></li>
+          <li><a href="#apropos">à&nbsp;propos</a></li>
+          <li><a href="#savoir">savoir‑faire</a></li>
+          <li><a href="#contact">contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero fade" data-animate>
+        <div class="container">
+          <h1>Nous créons des identités et expériences pour la ville de demain.</h1>
+          <p>Une approche éditoriale et visuelle pensée pour les acteurs urbains innovants.</p>
+        </div>
+      </section>
+
+      <!-- Projects -->
+      <section id="projets" class="projects">
+        <div class="container">
+          <h2 class="fade" data-animate>Derniers projets</h2>
+          <div class="grid">
+            <!-- Card 1 -->
+            <article class="card fade" data-animate>
+              <img src="https://source.unsplash.com/random/640x480?architecture-1" alt="Projet 1" />
+              <div class="overlay">
+                <h3>La Promenade des ailes</h3>
+              </div>
+            </article>
+            <!-- Card 2 -->
+            <article class="card fade" data-animate>
+              <img src="https://source.unsplash.com/random/640x480?architecture-2" alt="Projet 2" />
+              <div class="overlay">
+                <h3>SVU — Livret d'accueil</h3>
+              </div>
+            </article>
+            <!-- Card 3 -->
+            <article class="card fade" data-animate>
+              <img src="https://source.unsplash.com/random/640x480?city" alt="Projet 3" />
+              <div class="overlay">
+                <h3>Linkcity 2023</h3>
+              </div>
+            </article>
+            <!-- Card 4 -->
+            <article class="card fade" data-animate>
+              <img src="https://source.unsplash.com/random/640x480?building" alt="Projet 4" />
+              <div class="overlay">
+                <h3>Arkize</h3>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section id="apropos" class="hero fade" data-animate style="background:#f9f9f9;">
+        <div class="container">
+          <h2>À propos</h2>
+          <p>Vous&nbsp;êtes&nbsp;ici est un collectif de créateurs, stratèges et designers dédié à façonner des récits urbains singuliers. Nous accompagnons les porteurs de projets pour donner vie à leurs ambitions à travers des identités fortes et des supports innovants.</p>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="projects" style="padding-top:3rem;">
+        <div class="container fade" data-animate>
+          <h2>Contact</h2>
+          <p>Parlons de votre&nbsp;projet&nbsp;! <a href="mailto:hello@vouseesici-demo.com" style="color:var(--accent); text-decoration:none;">hello@vouseesici-demo.com</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Vous êtes ici — Démo&nbsp;•&nbsp;Fait avec ❤️
+    </footer>
+
+    <script>
+      // Year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Intersection Observer animations
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+          }
+        );
+
+        document.querySelectorAll("[data-animate]").forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
