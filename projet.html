@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZAC Belleville – Diane Breton</title>
+    <!-- Même feuille de style que index.html -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <a class="logo" href="index.html">Diane&nbsp;Breton</a>
+        <ul class="menu">
+          <li><a href="index.html#projets">Projets</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#apropos">Studio</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- HERO du projet -->
+    <section class="hero" style="min-height:60vh; background:url('assets/esquisse_1.png') center/cover no-repeat;">
+      <div class="container" style="background:rgba(255,255,255,0.75);padding:2rem 1.5rem;border-radius:0.75rem;max-width:720px;">
+        <h1>ZAC Belleville – Offre lauréate</h1>
+        <p>Concours d'aménagement urbain · Paris&nbsp;20ᵉ · 2025</p>
+      </div>
+    </section>
+
+    <!-- Détails projet -->
+    <section class="projects" style="background:var(--accent);color:#fff;padding-top:4rem;">
+      <div class="container">
+        <h2>Le défi</h2>
+        <p style="max-width:60ch;margin-bottom:2rem;">Réinventer un quartier mixte intégrant logements, tiers‑lieu culturel et coulée verte. Notre mission : <strong>concept narratif</strong>, dossier graphique, storytelling pour la soutenance, coordination des rendus.</p>
+
+        <h2>Éléments livrés</h2>
+        <ul style="line-height:1.8;">
+          <li>Mood‑board &amp; naming</li>
+          <li>Identité visuelle de l'opération</li>
+          <li>Mise en page du mémoire (56 pages)</li>
+          <li>Illustrations de principes d'aménagement</li>
+          <li>Préparation du support de soutenance</li>
+        </ul>
+
+        <h2>Galerie</h2>
+        <div class="grid" style="margin-top:2rem;">
+          <img src="assets/ville_urba.png" alt="Vue aérienne" class="card" />
+          <img src="assets/ville_arrosée.png" alt="Perspective végétale" class="card" />
+          <img src="assets/reunion.jpg" alt="Atelier" class="card" />
+        </div>
+
+        <div style="margin-top:3rem;text-align:center;">
+          <a href="assets/ZAC_Belleville_Memoire.pdf" style="background:#fff;color:var(--accent);padding:0.75rem 1.5rem;border-radius:9999px;font-weight:600;text-decoration:none;">Télécharger le mémoire (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Diane Breton • Communication &amp; Concours &nbsp;•&nbsp; <a href="index.html" style="color:var(--text);text-decoration:none;">Retour à l'accueil</a>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
