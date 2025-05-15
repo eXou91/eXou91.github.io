@@ -14,6 +14,9 @@
     <header>
       <div class="container nav">
         <a class="logo" href="../../index.html">diane&nbsp;breton</a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
         <ul class="menu">
           <li><a href="../../index.html#projets">Projets</a></li>
           <li><a href="../../index.html#services">Services</a></li>
@@ -88,6 +91,21 @@
 
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.menu');
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+        navToggle.classList.toggle('active');
+      });
+      // Ferme le menu quand on clique sur un lien (UX++)
+      navMenu.querySelectorAll('a').forEach(link =>
+        link.addEventListener('click', ()=> {
+          navMenu.classList.remove('open');
+          navToggle.classList.remove('active');
+        })
+      );
     </script>
   </body>
 </html>
