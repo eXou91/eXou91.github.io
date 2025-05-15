@@ -135,6 +135,28 @@ header{position:sticky;top:0;width:100%;background:var(--bg);z-index:1000;border
 .eton-card p{margin:0;color:inherit;}
 
 
+.linkedin-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.3rem;
+}
+
+.linkedin-icon img {
+  width: 4.2rem;
+  height: 4.2rem;
+  transition: transform 0.2s;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 0.2em;
+}
+
+.linkedin-icon:hover img {
+  transform: scale(1.12) rotate(-6deg);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
 /***** FOOTER *****/
 footer{padding:2.5rem 0;text-align:center;background:var(--bg);font-size:.875rem;color:var(--muted);}  
 
