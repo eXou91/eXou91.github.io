@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Béton biosourcé : gadget ou révolution ? – Diane Breton</title>
+    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- HEADER commun -->
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../../index.html">Diane&nbsp;Breton</a>
+        <ul class="menu">
+          <li><a href="../../index.html#projets">Projets</a></li>
+          <li><a href="../../index.html#services">Services</a></li>
+          <li><a href="../../index.html#etonnements">Étonnements</a></li>
+          <li><a href="../../index.html#apropos">Studio</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- HERO / visuel d'accroche -->
+    <section class="hero" style="min-height:60vh;background:url('https://source.unsplash.com/1200x800?concrete,texture') center/cover no-repeat;">
+      <div class="container" style="background:rgba(255,255,255,0.82);padding:2rem 1.5rem;border-radius:0.75rem;max-width:720px;">
+        <h1>Béton biosourcé&nbsp;: gadget ou révolution&nbsp;?</h1>
+        <p><em>Publié le 15&nbsp;mai&nbsp;2025 – Étonnement #01</em></p>
+      </div>
+    </section>
+
+    <!-- CONTENU ARTICLE -->
+    <section class="projects" style="padding-top:4rem;background:var(--bg);color:var(--text);">
+      <div class="container" style="max-width:750px;">
+        <h2>Pourquoi cet étonnement&nbsp;?</h2>
+        <p>Depuis trois ans, on voit fleurir des communiqués annonçant la fin du béton classique : lin et chanvre s’invitent dans les chantiers. Mais qu’en est‑il vraiment sur le terrain&nbsp;? Nous avons visité <strong>le premier immeuble R+8 en béton de chanvre</strong> livré à Nantes début 2025. Retour d’expérience à chaud.</p>
+
+        <h2>3 enseignements</h2>
+        <ol>
+          <li><strong>Performances thermiques</strong> : un gain moyen de 18&nbsp;% sur le besoin de chauffage, selon les capteurs installés depuis 6 mois.</li>
+          <li><strong>Temps de mise en œuvre</strong> : +12&nbsp;% par rapport à un béton C25/30, essentiellement dû au séchage.</li>
+          <li><strong>Acceptation financière</strong> : un surcoût de 80 €/m² aujourd’hui, mais déjà des accords-cadres Région + bailleurs pour amortir.</li>
+        </ol>
+
+        <blockquote style="margin:2rem 0;padding:1rem 1.5rem;background:#f5f9f7;border-left:4px solid var(--accent);">
+          « On pensait expérimenter sur 500 m², on a finalement coulé la totalité des trois premiers étages avec ce béton mixte, sans aucun sinistre à ce jour. »<br>
+          <cite>— Chef de projet, Bouygues Bâtiment Grand Ouest</cite>
+        </blockquote>
+
+        <h2>Aller plus loin</h2>
+        <p>Téléchargez notre synthèse PDF (6 pages) : retour d’expérience détaillé, chiffrage, checklist de points de vigilance.</p>
+        <p style="text-align:center;margin-top:1.2rem;">
+          <a href="../../assets/etonnements/beton-biosource-rex.pdf" class="btn">Télécharger le PDF</a>
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Diane Breton • Étonnements &nbsp;•&nbsp;
+      <a href="../../index.html#etonnements" style="color:var(--text);text-decoration:none;">← Retour aux étonnements</a>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </body>
+</html>

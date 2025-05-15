@@ -102,6 +102,33 @@ header{position:sticky;top:0;width:100%;background:var(--bg);z-index:1000;border
 /* petit espace au-dessus du bouton quand il suit la liste */
 .btn-wrapper{margin-top:1.3rem;}
 
+/* SECTION ÉTONNEMENTS */
+.etonnements{background:#fff;padding:5rem 0;}
+.etonnements h2{text-align:center;font-size:2.1rem;margin-bottom:3rem;}
+
+.etonnements-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+
+.eton-card{
+  display:block;
+  background:#f5f5f5;
+  border-radius:var(--radius);
+  padding:1.5rem 1.25rem;
+  text-decoration:none;
+  color:var(--text);
+  transition:.25s;
+}
+.eton-card:hover{
+  background:var(--accent);
+  color:#fff;
+  transform:translateY(-4px);
+}
+.eton-card h3{margin:0 0 .8rem;font-size:1.15rem;}
+.eton-card p{margin:0;color:inherit;}
+
 
 /***** FOOTER *****/
 footer{padding:2.5rem 0;text-align:center;background:var(--bg);font-size:.875rem;color:var(--muted);}  
