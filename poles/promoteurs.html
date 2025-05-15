@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pôle Promoteurs – Diane Breton</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+  </head>
+  <body>
+    <!-- HEADER commun -->
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../index.html">diane&nbsp;breton</a>
+        <ul class="menu">
+          <li><a href="../index.html#projets">Projets</a></li>
+          <li><a href="../index.html#services">Services</a></li>
+          <li><a href="../index.html#apropos">Studio</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" style="min-height:60vh;background:url('assets/ville_urba.png') center/cover no-repeat;">
+      <div class="container" style="background:rgba(255,255,255,0.8);padding:2rem 1.5rem;border-radius:0.75rem;max-width:720px;">
+        <h1>Pôle Promoteurs immobiliers</h1>
+        <p>De l’appel à projets à la commercialisation : un accompagnement créatif & technique taillé pour vos opérations.</p>
+      </div>
+    </section>
+
+    <!-- CONTENU PRINCIPAL -->
+    <section class="projects" style="background:var(--accent);color:#fff;padding-top:4rem;">
+      <div class="container">
+        <h2>Nos prestations clés</h2>
+        <div class="poles" style="margin-top:2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+          <div class="pole" style="background:#fff;color:var(--text);">
+            <h3>Concours &amp; mémoires techniques</h3>
+            <ul>
+              <li>Analyse règlementaire &amp; trame argumentaire</li>
+              <li>Mise en page &amp; iconographie sur mesure</li>
+              <li>Coordination des contributeurs (architectes, BET)</li>
+            </ul>
+          </div>
+          <div class="pole" style="background:#fff;color:var(--text);">
+            <h3>Identité d’opération</h3>
+            <ul>
+              <li>Naming, logo &amp; charte chantier</li>
+              <li>Storytelling marketing et valeurs d’usage</li>
+              <li>Dossier investisseurs &amp; brochure commerciale</li>
+            </ul>
+          </div>
+          <div class="pole" style="background:#fff;color:var(--text);">
+            <h3>Supports de vente</h3>
+            <ul>
+              <li>Plans 3D &amp; perspectives illustrées</li>
+              <li>Plaquettes, fiches lots, microsite</li>
+              <li>Éléments de discours pour forces de vente</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="margin-top:3.5rem;">Études de cas</h2>
+        <div class="grid" style="margin-top:2rem;">
+          <a href="projet-belleville.html" class="card">
+            <img src="../assets/esquisse_1.png" alt="ZAC Belleville" />
+            <div class="overlay"><h3>ZAC Belleville</h3></div>
+          </a>
+          <a href="projet-batiharmony.html" class="card">
+            <img src="../assets/ville_bleu.png" alt="BatiHarmony" />
+            <div class="overlay"><h3>BatiHarmony</h3></div>
+          </a>
+        </div>
+
+        <div style="text-align:center;margin:3rem 0 1rem;">
+          <a href="mailto:contact@dianebreton.com?subject=Projet%20promoteur" class="btn" style="border-color:#fff;color:#fff;">Discutons de votre projet</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Diane Breton • Communication &amp; Concours &nbsp;•&nbsp;
+      <a href="../index.html#services" style="color:var(--text);text-decoration:none;">← Retour aux services</a>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

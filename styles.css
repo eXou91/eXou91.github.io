@@ -45,6 +45,64 @@ header{position:sticky;top:0;width:100%;background:var(--bg);z-index:1000;border
 .card:hover .overlay{opacity:1;}
 .card:hover{transform:translateY(-6px);}  
 
+/* SECTION SERVICES */
+.services{
+  background:#f5f9f7;
+  padding:5rem 0;
+}
+.services h2{
+  text-align:center;
+  font-size:2.1rem;
+  margin-bottom:3rem;
+}
+
+/* Grille de 3 colonnes qui se replie en responsive */
+.poles{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:2rem;
+}
+.pole{
+  background:#fff;
+  border-radius:var(--radius);
+  padding:1.5rem 1.25rem;
+  box-shadow:0 2px 8px rgba(0,0,0,.06);
+  transition:transform .3s ease;
+}
+.pole:hover{transform:translateY(-4px);}
+.pole h3{
+  margin:0 0 1rem;
+  font-size:1.2rem;
+  color:var(--accent);
+}
+.pole ul{
+  margin:0;
+  padding-left:1.1rem;
+  line-height:1.7;
+}
+
+/* BOUTON  « En savoir plus » */
+.btn{
+  display:inline-block;
+  background:transparent;
+  border:2px solid var(--accent);
+  color:var(--accent);
+  padding:.6rem 1.4rem;
+  border-radius:9999px;
+  font-weight:600;
+  text-decoration:none;
+  transition:.2s;
+}
+.btn:hover{
+  background:var(--accent);
+  color:#fff;
+  transform:translateY(-2px);
+}
+
+/* petit espace au-dessus du bouton quand il suit la liste */
+.btn-wrapper{margin-top:1.3rem;}
+
+
 /***** FOOTER *****/
 footer{padding:2.5rem 0;text-align:center;background:var(--bg);font-size:.875rem;color:var(--muted);}  
 
