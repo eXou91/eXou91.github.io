@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pôle Design graphique – Diane Breton</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../../index.html">diane&nbsp;breton</a>
+        <ul class="menu">
+          <li><a href="../../index.html#projets">Projets</a></li>
+          <li><a href="../../index.html#services">Services</a></li>
+          <li><a href="../../index.html#etonnements">Étonnements</a></li>
+          <li><a href="../../index.html#apropos">Studio</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <section class="hero" style="min-height:60vh;background:url('../../assets/chateau.png') center/cover no-repeat;">
+      <div class="container" style="background:rgba(255,255,255,0.8);padding:2rem 1.5rem;border-radius:0.75rem;max-width:720px;">
+        <h1>Pôle Design graphique</h1>
+        <p>Affiches, identités, éditions : donner une forme sensible à vos projets, quel que soit le support.</p>
+      </div>
+    </section>
+
+    <section class="projects" style="background:var(--accent);color:#fff;padding-top:4rem;">
+      <div class="container">
+        <h2>Nos prestations clés</h2>
+        <div class="poles" style="margin-top:2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));">
+          <div class="pole" style="background:#fff;color:var(--text);">
+            <h3>Affiches & print</h3>
+            <ul>
+              <li>Affiches événementielles</li>
+              <li>Flyers, cartes postales, invitations</li>
+              <li>Signalétique intérieure/extérieure</li>
+            </ul>
+          </div>
+          <div class="pole" style="background:#fff;color:var(--text);">
+            <h3>Édition & rapports</h3>
+            <ul>
+              <li>Livres et catalogues</li>
+              <li>Rapports annuels</li>
+              <li>Brochures de présentation</li>
+            </ul>
+          </div>
+          <div class="pole" style="background:#fff;color:var(--text);">
+            <h3>Identité visuelle</h3>
+            <ul>
+              <li>Logo, charte graphique</li>
+              <li>Refonte d’identité</li>
+              <li>Templates PowerPoint / Word</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="margin-top:3.5rem;">Études de cas</h2>
+        <div class="grid" style="margin-top:2rem;">
+          <a href="../projet-alta.html" class="card">
+            <img src="../../assets/chateau.png" alt="Plaquette Alta" />
+            <div class="overlay"><h3>Plaquette Groupe Alta</h3></div>
+          </a>
+          <a href="../projet-flyers.html" class="card">
+            <img src="../../assets/ville_bleu.png" alt="Flyers" />
+            <div class="overlay"><h3>Campagne Flyers Rennes</h3></div>
+          </a>
+        </div>
+
+        <div style="text-align:center;margin:3rem 0 1rem;">
+          <a href="mailto:contact@dianebreton.com?subject=Projet%20design" class="btn" style="border-color:#fff;color:#fff;">Discutons de votre projet</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Diane Breton • Communication &amp; Concours &nbsp;•&nbsp;
+      <a href="../../index.html#services" style="color:var(--text);text-decoration:none;">← Retour aux services</a>
+    </footer>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
