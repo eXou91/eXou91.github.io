@@ -31,7 +31,7 @@
       <!-- Hero -->
       <section class="hero fade" data-animate>
         <div class="container">
-          <h1>Communication <span>+</span> concours<br>pour bâtir la ville de demain.</h1>
+          <h1> Conseil <span>&</span> design éditorial pour les acteurs de la ville</h1>
           <p>J’accompagne les acteurs de la ville dans la conception et la mise en forme de leurs projets.
               Spécialisée en urbanisme, architecture et aménagement, je combine conseil stratégique, rédaction experte et design éditorial pour produire des documents clairs, solides et engageants.
           </p>
@@ -144,6 +144,21 @@
     <div class="btn-wrapper">
       <button class="btn" id="aboutBtn">Mon parcours</button>
     </div>
+    <div class="about-details about-details--mobile" id="aboutDetailsMobile">
+      <div class="container">
+        <h3>Mon approche & parcours</h3>
+        <p>
+          À mi-chemin entre le conseil, l’édition et le design graphique, j’accompagne les acteurs de l’aménagement dans la production de leurs documents&nbsp;: réponses à concours, dossiers, rapports, publications, expositions…<br><br>
+          Mon approche est transversale&nbsp;: une solide culture urbaine, une autonomie dans l’analyse/rédaction, une exigence graphique.<br>
+          <span class="about-study">
+            <strong>Formée</strong> à l’ENSAPLV (architecture), à Sciences Po Paris (urbanisme et sciences politiques), & prépa artistique.<br>
+            <strong>Expérience&nbsp;:</strong> 6 ans responsable développement grands projets chez des promoteurs nationaux & régionaux.<br>
+          </span>
+          Ce parcours me donne une compréhension fine des enjeux urbains, des dynamiques d’acteurs, et des contraintes de production.<br><br>
+          <em>Installée en Bretagne, j’ancre mes missions dans une attention forte aux territoires, aux usages, et à la manière dont on les raconte.</em>
+        </p>
+      </div>
+    </div>
     <div class="linkedin-center">
       <a href="https://www.linkedin.com/in/diane-breton-049884127/" target="_blank" rel="noopener" class="linkedin-icon">
         <img src="assets/linkedin-terre.svg" alt="LinkedIn" />
@@ -152,7 +167,7 @@
   </div>
 </div>
   <!-- Bloc déroulant : parcours -->
-  <div class="about-details" id="aboutDetails">
+  <div class="about-details about-details--desktop" id="aboutDetailsDesktop">
     <div class="container">
       <h3>Mon approche & parcours</h3>
       <p>
@@ -251,11 +266,13 @@
       );
     </script>
     <script>
-      const btn = document.getElementById('aboutBtn');
-      const details = document.getElementById('aboutDetails');
-      btn.addEventListener('click', () => {
-        details.classList.toggle('show');
-        btn.textContent = details.classList.contains('show') ? 'Réduire' : 'Mon parcours';
+      const aboutBtn  = document.getElementById('aboutBtn');
+      const detDesktop = document.getElementById('aboutDetailsDesktop');
+      const detMobile  = document.getElementById('aboutDetailsMobile');
+
+      aboutBtn.addEventListener('click', () => {
+        detDesktop.classList.toggle('show');
+        detMobile .classList.toggle('show');
       });
     </script>
   </body>
