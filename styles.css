@@ -157,6 +157,81 @@ header{position:sticky;top:0;width:100%;background:var(--bg);z-index:1000;border
   box-shadow: 0 4px 20px rgba(0,0,0,0.12);
 }
 
+/***** PAGES PROJETS *****/
+
+.project-content {
+  background: #fff;
+  color: var(--text);
+  padding: 5rem 0 4rem;
+}
+.accent-title {
+  color: var(--accent);
+  font-size: 2rem;
+  margin-bottom: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.project-blocks {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.project-block {
+  flex: 1 1 320px;
+  background: #f8f7f6;
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  margin-bottom: 2rem;
+}
+.project-block h3 {
+  color: var(--accent);
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.lead {
+  font-size: 1.15rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+}
+
+/* Pour organiser les blocs de contenu */
+.project-content .project-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.project-content .project-block {
+  flex: 1 1 320px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 2rem 1.6rem;
+  min-width: 300px;
+}
+
+.project-content .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 0;
+}
+
+.project-block .gallery img,
+.project-block .gallery .card {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+.gallery {
+  gap: 1.2rem;
+}
+
 /***** FOOTER *****/
 footer{padding:2.5rem 0;text-align:center;background:var(--bg);font-size:.875rem;color:var(--muted);}  
 
@@ -217,6 +292,13 @@ footer{padding:2.5rem 0;text-align:center;background:var(--bg);font-size:.875rem
   }
   .hero h1{font-size:1.9rem;}
   .hero p{font-size:1.125rem;}
+  .project-blocks {
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+  .project-content .gallery {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Optionnel : “croix” animée sur le bouton */
