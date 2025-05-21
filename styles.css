@@ -135,6 +135,74 @@ header{position:sticky;top:0;width:100%;background:var(--bg);z-index:1000;border
 .eton-card p{margin:0;color:inherit;}
 
 
+/***** SECTION CONTACT *****/
+/* Centre tout le contenu de la section Contact */
+#contact .container {
+  text-align: center;
+}
+
+/* Ajoute un fond doux en dégradé */
+.contact-section {
+  background: linear-gradient(180deg, #ffffff 0%, #f5f9f7 100%);
+  padding-bottom: 5rem;
+}
+
+/* Ajout de la photo avec effet rond + halo */
+.contact-photo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 2.2rem auto 1.8rem;
+}
+
+.contact-photo {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent);
+  box-shadow: 0 0 0 6px rgba(217, 92, 65, 0.15), 0 10px 28px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fade-bounce 1s ease-out;
+}
+
+.contact-photo:hover {
+  transform: scale(1.07) rotate(-1deg);
+  box-shadow: 0 0 0 8px rgba(217, 92, 65, 0.25), 0 16px 36px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation d'apparition "rebond doux" */
+@keyframes fade-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.03);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Accentue le style du lien email */
+#contact a[href^="mailto:"] {
+  font-weight: 600;
+  font-size: 1.1rem;
+  position: relative;
+}
+
+#contact a[href^="mailto:"]::after {
+  content: "📧";
+  margin-left: 0.4rem;
+  transition: transform 0.3s ease;
+}
+
+#contact a[href^="mailto:"]:hover::after {
+  transform: scale(1.2);
+}
+
+
 .linkedin-center {
   display: flex;
   justify-content: center;
