@@ -32,7 +32,9 @@
       <section class="hero fade" data-animate>
         <div class="container">
           <h1>Communication <span>+</span> concours<br>pour bâtir la ville de demain.</h1>
-          <p>Le studio Diane Breton accompagne promoteurs, architectes et acteurs publics dans leurs projets urbains : identité, stratégie éditoriale et réponses à concours immobiliers.</p>
+          <p>J’accompagne les acteurs de la ville dans la conception et la mise en forme de leurs projets.
+              Spécialisée en urbanisme, architecture et aménagement, je combine conseil stratégique, rédaction experte et design éditorial pour produire des documents clairs, solides et engageants.
+          </p>
         </div>
       </section>
 
@@ -119,18 +121,56 @@
         </div>
       </section>
 
-    <!-- About -->
-    <section id="apropos" class="hero fade" data-animate>
-      <div class="container">
-        <h2>Le studio</h2>
-        <p>Installé à Rennes, Diane Breton réunit des compétences hybrides – design, rédaction, architecture, urbanisme – pour offrir une lecture transversale de la ville et des usages. Notre méthode associe créativité, rigueur réglementaire et narration pour transformer les contraintes urbaines en atouts différenciants.</p>
-        <div class="linkedin-center">
-          <a href="https://www.linkedin.com/in/diane-breton-049884127/" target="_blank" rel="noopener" class="linkedin-icon">
-            <img src="assets/linkedin-terre.svg" alt="LinkedIn" />
-          </a>
-        </div>
-      </div>
-    </section>
+<!-- SECTION À PROPOS -->
+<section id="apropos" class="hero fade" data-animate>
+<div class="container about-grid">
+  <div class="about-photo-wrap">
+    <img src="assets/diane.jpeg" alt="Portrait de Diane Breton" class="about-photo" />
+  </div>
+  <div class="about-text">
+    <h2 class="about-title"><span>Le studio</span></h2>
+    <p class="about-lead">
+      Conseil, édition & design graphique pour la ville.
+    </p>
+    <div class="about-description">
+      <p>
+        Expertise hybride en design, rédaction, architecture et urbanisme.<br>
+        J’accompagne promoteurs, architectes, collectivités et urbanistes dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
+      </p>
+    </div>
+    <div class="about-photo-mobile">
+      <img src="assets/diane.jpeg" alt="Portrait de Diane Breton" class="about-photo-mobile-img" />
+    </div>
+    <div class="btn-wrapper">
+      <button class="btn" id="aboutBtn">Mon parcours</button>
+    </div>
+    <div class="linkedin-center">
+      <a href="https://www.linkedin.com/in/diane-breton-049884127/" target="_blank" rel="noopener" class="linkedin-icon">
+        <img src="assets/linkedin-terre.svg" alt="LinkedIn" />
+      </a>
+    </div>
+  </div>
+</div>
+
+  <!-- Bloc déroulant : parcours -->
+  <div class="about-details" id="aboutDetails">
+    <div class="container">
+      <h3>Mon approche & parcours</h3>
+      <p>
+        À mi-chemin entre le conseil, l’édition et le design graphique, j’accompagne les acteurs de l’aménagement dans la production de leurs documents&nbsp;: réponses à concours, dossiers, rapports, publications, expositions…<br><br>
+        Mon approche est transversale&nbsp;: une solide culture urbaine, une autonomie dans l’analyse/rédaction, une exigence graphique.<br>
+        <span class="about-study">
+          <strong>Formée</strong> à l’ENSAPLV (architecture), à Sciences Po Paris (urbanisme et sciences politiques), & prépa artistique.<br>
+          <strong>Expérience&nbsp;:</strong> 6 ans responsable développement grands projets chez des promoteurs nationaux & régionaux.<br>
+        </span>
+        Ce parcours me donne une compréhension fine des enjeux urbains, des dynamiques d’acteurs, et des contraintes de production.<br><br>
+        <em>Installée en Bretagne, j’ancre mes missions dans une attention forte aux territoires, aux usages, et à la manière dont on les raconte.</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+
 
 
     <!-- Étonnements -->
@@ -185,7 +225,7 @@
 
     </main>
 
-    <footer>© <span id="year"></span> Diane Breton • Accompagnement & Concours</footer>
+    <footer>© <span id="year"></span> Diane breton studio • Conseil & design éditorial pour les acteurs de la ville </footer>
 
     <script>
       document.getElementById("year").textContent=new Date().getFullYear();
@@ -210,6 +250,14 @@
           navToggle.classList.remove('active');
         })
       );
+    </script>
+    <script>
+      const btn = document.getElementById('aboutBtn');
+      const details = document.getElementById('aboutDetails');
+      btn.addEventListener('click', () => {
+        details.classList.toggle('show');
+        btn.textContent = details.classList.contains('show') ? 'Réduire' : 'Mon parcours';
+      });
     </script>
   </body>
 </html>
