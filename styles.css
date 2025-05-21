@@ -661,7 +661,7 @@ header {
     transition: transform 0.4s;
   }
   .btn-wrapper {
-    display: flex;
+    display: none;
     width: 140px;
     justify-content: center;
   }
