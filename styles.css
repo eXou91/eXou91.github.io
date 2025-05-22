@@ -55,7 +55,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 96px;
+  height: 69px;
 }
 
 .logo {
@@ -283,23 +283,17 @@ header {
   margin-top: 1.3rem;
 }
 
-/* SECTION À PROPOS punchy */
-#apropos.hero {
-  position: relative;   /* pour que le ::before soit positionné par rapport à ce parent */
-  overflow: hidden;     /* évite tout débordement si besoin */
-}
+
+/***** SECTION A PROPOS *****/ 
 
 #apropos.hero::before {
   content: "";
   position: absolute;
-  inset: 0;             /* top:0; right:0; bottom:0; left:0; */
-  background-image: url("assets/ville_fleur.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;  /* ← verrouille le zoom du cover */
-  opacity: 0.23;
-  z-index: -1;         /* derrière votre contenu */
+  inset: 0;
+  z-index: -1;
+  background: url("assets/ville_fleur.webp") center/cover no-repeat;
+  background-attachment: fixed;
+  opacity: .25;
 }
 .about-grid {
   display: flex;
@@ -307,53 +301,20 @@ header {
   gap: 2.5rem;
   justify-content: flex-start;
   flex-wrap: wrap;
-  margin-left: 19vw;     /* Essayez avec 2vw, 3vw, 4vw */
-  margin-right: auto;
-  max-width: 900px;
+  margin: auto;
+  max-width:1200px;
 }
-
 
 .about-photo-wrap {
-  flex: 0 0 210px; /* même taille que la photo */
+  flex: 0 0 210px;
   display: flex;
+  margin: auto;
   align-items: center;
   justify-content: center;
-  min-width: 150px; /* petite sécurité */
-  max-width: 220px; /* petite sécurité */
-}
-.about-text {
-  flex: 1 1 350px;
-  min-width: 320px;
-  max-width: 620px; /* empêche le texte de partir trop à droite sur écran large */
-  padding-top: 1rem;
+  min-width: 150px;
+  max-width: 220px;
 }
 
-.about-title span {
-  color: var(--accent);
-  font-size: 2.75rem;
-  font-weight: 900;
-  letter-spacing: -1.5px;
-}
-
-.about-lead {
-  font-size: 0.7rem;
-  color: #0d4638 !important;
-  font-weight: 700;
-  margin: 0.85rem 0 0.85rem 0;
-  line-height: 1.3;
-  letter-spacing: -0.2px;
-}
-
-.about-description p {
-   color: var(--muted);
-  font-size: 1.7rem;
-  font-weight: 400;
-  line-height: 1.4;
-  margin-bottom: 0.8rem;
-}
-.about-photo-mobile {
-  display: none;
-}
 .about-photo {
   width: 210px;
   height: 210px;
@@ -365,98 +326,165 @@ header {
   transition: transform 0.4s;
   margin-top: 0.4rem;
 }
-
 .about-photo:hover {
   transform: scale(1.05) rotate(-2deg);
   box-shadow: 0 16px 36px rgba(217, 92, 65, 0.18), 0 24px 60px rgba(0,0,0,0.12);
 }
-
-/* Bloc déroulant */
-.about-details {
-  display: none;
-  background: linear-gradient(90deg, #f5f9f7 0%, #fff 100%);
-  margin: 0;
-  padding: 0.8rem 0 1.4rem 0;
-  box-shadow: 0 2px 24px rgba(0,0,0,0.05);
-  border-radius: var(--radius);
-  animation: fadeDown 0.7s;
+.highlight {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 0.5em;
+  padding: 0.07em 0.45em;
+  font-weight: 600;
+  font-size: 1.03em;
+  letter-spacing: 0.02em;
+  margin-right: 0.13em;
 }
-@keyframes fadeDown {
-  0% {opacity: 0; transform: translateY(-30px);}
-  100% {opacity: 1; transform: translateY(0);}
-}
-
-.about-details.show { display: block; }
-.about-details h3 {
+.accent {
   color: var(--accent);
-  font-size: 1.45rem;
-  margin-bottom: 1.5rem;
+  font-weight: 700;
+  font-style: italic;
+}
+.about-signature {
+  text-align: center;
+  font-size: 1.13em;
+  color: var(--accent);
+  margin: 2.3em auto 0 auto;
+  font-style: italic;
+  background: #f7faf8;
+  border-radius: 1.3em;
+  padding: 1.3em 1em 1.2em 1em;
+  max-width: 600px;
+  letter-spacing: 0.03em;
+  box-shadow: 0 1px 10px rgba(90,60,30,0.06);
+  animation-delay: 0.45s;
+}
+.about-quote-icon {
+  color: var(--accent);
+  font-size: 1.2em;
+  vertical-align: -0.4em;
+  opacity: .19;
+  font-family: serif;
+  margin-right: .16em;
+}
+.about-mini-parcours {
+  display: block;
+  margin: 1.2em 0 1.2em 0;
+  padding-left: 1.1em;
+  border-left: 3px solid var(--accent);
+  background: #fafbfa;
+  font-size: 1.07em;
+  color: var(--text);
+  font-style: italic;
+  box-shadow: 0 1px 10px rgba(60,40,30,0.06);
+}
+.about-details {
+  margin-bottom: 1.8rem;
 }
 .about-details p {
-  font-size: 1.13rem;
+  font-size: 1.33rem;
+  max-width: 100%;
+  width: 100%;
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.6;
 }
+.about-details p,
+.about-signature {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(.23,.78,.35,1), transform 0.7s cubic-bezier(.23,.78,.35,1);
+}
+
+.about-details p.in-view,
+.about-signature.in-view {
+  opacity: 1;
+  transform: none;
+}
+.about-quote {
+  margin: 2.2em 0 0.7em 0;
+  padding-left: 1em;
+  border-left: 4px solid var(--accent);
+  color: var(--accent);
+  font-style: italic;
+  font-size: 1.13em;
+  line-height: 1.7;
+  background: #fff8f4;
+}
+
+.about-text {
+  flex: 1 1 1050px;
+  min-width: 1020px;
+  max-width: 1200px;
+  padding-top: 1rem;
+}
+.about-title span {
+  color: var(--accent);
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+
 .about-study {
   display: block;
-  margin: 1.2em 0 0.8em 0;
-  font-size: 1.04em;
-  color: var(--muted);
+  border-left: 4px solid var(--accent);
+  padding-left: 1.2em;
+  margin: 1.3em 0 1.2em 0;
+  font-size: 1.07em;
+  color: var(--text);
+  font-weight: 500;
+  background: #fff7f5;
+  letter-spacing: 0.03em;
 }
-/* par défaut : on cache la version mobile, on affiche la desktop */
-.about-details--mobile { display: none; }
-.about-details--desktop { display: none; }  
-.about-details--desktop.show { display: block; }
-@media (min-width: 901px) {
-  .about-details--desktop     { /* visible via .show */ }
-  .about-details--mobile      { display: none !important; }
+.about-study strong {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* Responsive */
+.about-photo-mobile {
+  display: none;
+}
 @media (max-width: 900px) {
-  .about-details--desktop     { display: none !important; }
-  .about-details--mobile.show { display: block; }
+
   .about-grid {
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 3.3rem;
-    justify-content: flex-start;
-    flex-wrap: wrap;
     margin-left: 0vw;
     width: 100%;
   }
   .about-text {
     width: 100%;
     min-width: unset;
-    max-width: 620px;
+    max-width: 95vw;    /* ou 95%, pour un léger padding latéral */
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 auto;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
-
-  .about-lead {
-    font-size: 0.98rem;
-    margin-top: 0.85rem;
-  }
-  .about-description {
-    font-size: 0.95rem;
-  }
-  .about-title span {
-    font-size: 1.5rem;
+  .about-details p {
+    max-width: 100%;
+    width: 100%;
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.3;
   }
   .about-photo-wrap {
-    display: none !important;  /* Cache la photo de gauche */
+    display: none !important;     /* Cache la photo desktop */
   }
   .about-photo-mobile {
-    display: flex;             /* Affiche la photo mobile */
+    display: flex !important;
     justify-content: center;
-    margin: 1rem 0;
+    align-items: center;
+    margin: 2rem 0 0.1rem 0;
     width: 100%;
+    background: none !important;
   }
   .about-photo-mobile-img {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 5px solid var(--accent);
     box-shadow: 0 8px 30px rgba(0,0,0,0.09);
@@ -464,18 +492,13 @@ header {
     background: #fff;
     transition: transform 0.4s;
   }
-  /* Afficher le détail sous le bouton */
-  .about-details {
-    display: none;          /* masqué par défaut */
-    margin: 1rem 0;         /* espace au-dessus */
+  .about-study {
+    border-left: none;
+    background: #fff7f5;
+    padding-left: 0.7em;
   }
-  .about-details.show {
-    display: block;         /* visible quand on ajoute la classe via JS */
-  }
-  .linkedin-center {
-    justify-content: center;
-    display: flex;
-    margin-top: 1.5rem;
+  .about-title span {
+    font-size: 1.9rem;
   }
 }
 
@@ -744,7 +767,7 @@ footer {
 /* Menu mobile */
 @media(max-width:920px) {
   .nav {
-    height: auto;
+    height: 80px;
     position: relative;
   }
 

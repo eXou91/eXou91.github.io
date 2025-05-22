@@ -13,15 +13,15 @@
   <body>
     <header>
       <div class="container nav">
-        <div class="logo">diane&nbsp;breton</div>
+        <a class="logo" href="index.html">diane&nbsp;breton</a>
         <button class="nav-toggle" aria-label="Ouvrir le menu">
           <span></span><span></span><span></span>
         </button>
         <ul class="menu">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#apropos">Studio</a></li>
-          <li><a href="#etonnements">Étonnements</a></li>
+          <li><a href="#services">Expertises</a></li>
+          <li><a href="#projets">Réalisations</a></li>
+          <li><a href="#apropos">Le Studio</a></li>
+          <li><a href="#etonnements">Carnet</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -35,6 +35,7 @@
           <p>J’accompagne les acteurs de la ville dans la conception et la mise en forme de leurs projets.
               Spécialisée en urbanisme, architecture et aménagement, je combine conseil stratégique, rédaction experte et design éditorial pour produire des documents clairs, solides et engageants.
           </p>
+          <a href="#apropos" class="btn">Mon parcours</a>
         </div>
       </section>
 
@@ -121,65 +122,40 @@
         </div>
       </section>
 
-<!-- SECTION À PROPOS -->
+<!-- SECTION À PROPOS (SIMPLE & DESIGN) -->
 <section id="apropos" class="hero fade" data-animate>
-<div class="container about-grid">
-  <div class="about-photo-wrap">
-    <img src="assets/diane.jpeg" alt="Portrait de Diane Breton" class="about-photo" />
-  </div>
-  <div class="about-text">
-    <h2 class="about-title"><span>Le studio</span></h2>
-    <p class="about-lead">
-      Conseil, édition & design graphique pour la ville.
-    </p>
-    <div class="about-description">
-      <p>
-        Expertise hybride en design, rédaction, architecture et urbanisme.<br>
-        J’accompagne promoteurs, architectes, collectivités et urbanistes dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
-      </p>
-    </div>
-    <div class="about-photo-mobile">
-      <img src="assets/diane.jpeg" alt="Portrait de Diane Breton" class="about-photo-mobile-img" />
-    </div>
-    <div class="btn-wrapper">
-      <button class="btn" id="aboutBtn">Mon parcours</button>
-    </div>
-    <div class="about-details about-details--mobile" id="aboutDetailsMobile">
-      <div class="container">
-        <h3>Mon approche & parcours</h3>
+  <div class="container about-grid">
+    <!-- Texte principal unique -->
+    <div class="about-text">
+      <h2 class="about-title"><span>Le studio</span></h2>
+      <div class="about-photo-wrap">
+        <img src="assets/diane.jpeg" alt="Portrait de Diane Breton" class="about-photo" />
+      </div>
+      <div class="about-photo-mobile">
+        <img src="assets/diane.jpeg" alt="Portrait de Diane Breton" class="about-photo-mobile-img" />
+      </div>
+      <div class="about-details">
         <p>
-          À mi-chemin entre le conseil, l’édition et le design graphique, j’accompagne les acteurs de l’aménagement dans la production de leurs documents&nbsp;: réponses à concours, dossiers, rapports, publications, expositions…<br><br>
-          Mon approche est transversale&nbsp;: une solide culture urbaine, une autonomie dans l’analyse/rédaction, une exigence graphique.<br>
-          <span class="about-study">
-            <strong>Formée</strong> à l’ENSAPLV (architecture), à Sciences Po Paris (urbanisme et sciences politiques), & prépa artistique.<br>
-            <strong>Expérience&nbsp;:</strong> 6 ans responsable développement grands projets chez des promoteurs nationaux & régionaux.<br>
+          À mi-chemin entre le <span class="highlight">conseil</span>, l’<span class="highlight">édition</span> et le <span class="highlight">design graphique</span>, j’accompagne <strong>promoteurs</strong>, <strong>architectes</strong>, <strong>collectivités</strong> et <strong>urbanistes</strong> dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
+        </p>
+        <p>
+          Mon approche est <span class="accent">transversale</span> : une <strong>solide culture urbaine</strong>, une vraie <strong>autonomie</strong> dans l’analyse et la rédaction, et une <strong>exigence graphique</strong> affirmée. Cette triple compétence me permet d’intervenir à toutes les étapes : de la stratégie éditoriale à la mise en page finale, en passant par la coordination et le storytelling du projet.<br>
+          <span style="display:block; margin-top:1.1em;">
+            Formée en architecture à <span class="accent">l’ENSAPLV</span>, en urbanisme et en sciences politiques à <span class="accent">Sciences Po Paris</span>, et passée par une prépa artistique, j’ai également développé mon expertise pendant six ans comme <strong>responsable développement grands projets</strong> chez <span class="accent">Legendre</span> et <span class="accent">SECIB</span>.<br>
+            Ce parcours m’a donné une <strong>compréhension fine</strong> des <strong>enjeux urbains</strong>, des <strong>dynamiques d’acteurs</strong> et des <strong>contraintes de production</strong>.
           </span>
-          Ce parcours me donne une compréhension fine des enjeux urbains, des dynamiques d’acteurs, et des contraintes de production.<br><br>
-          <em>Installée en Bretagne, j’ancre mes missions dans une attention forte aux territoires, aux usages, et à la manière dont on les raconte.</em>
+        </p>
+        <p class="about-signature">
+          <span class="about-quote-icon">«</span>
+          <em>Installée en Bretagne, j’ancre mes missions dans une attention forte aux territoires, aux usages et à la manière dont on les raconte.</em>
+          <span class="about-quote-icon" style="transform:scaleX(-1);margin-left:.2em;">»</span>
         </p>
       </div>
-    </div>
-    <div class="linkedin-center">
-      <a href="https://www.linkedin.com/in/diane-breton-049884127/" target="_blank" rel="noopener" class="linkedin-icon">
-        <img src="assets/linkedin-terre.svg" alt="LinkedIn" />
-      </a>
-    </div>
-  </div>
-</div>
-  <!-- Bloc déroulant : parcours -->
-  <div class="about-details about-details--desktop" id="aboutDetailsDesktop">
-    <div class="container">
-      <h3>Mon approche & parcours</h3>
-      <p>
-        À mi-chemin entre le conseil, l’édition et le design graphique, j’accompagne les acteurs de l’aménagement dans la production de leurs documents&nbsp;: réponses à concours, dossiers, rapports, publications, expositions…<br><br>
-        Mon approche est transversale&nbsp;: une solide culture urbaine, une autonomie dans l’analyse/rédaction, une exigence graphique.<br>
-        <span class="about-study">
-          <strong>Formée</strong> à l’ENSAPLV (architecture), à Sciences Po Paris (urbanisme et sciences politiques), & prépa artistique.<br>
-          <strong>Expérience&nbsp;:</strong> 6 ans responsable développement grands projets chez des promoteurs nationaux & régionaux.<br>
-        </span>
-        Ce parcours me donne une compréhension fine des enjeux urbains, des dynamiques d’acteurs, et des contraintes de production.<br><br>
-        <em>Installée en Bretagne, j’ancre mes missions dans une attention forte aux territoires, aux usages, et à la manière dont on les raconte.</em>
-      </p>
+      <div class="linkedin-center">
+        <a href="https://www.linkedin.com/in/diane-breton-049884127/" target="_blank" rel="noopener" class="linkedin-icon">
+          <img src="assets/linkedin-terre.svg" alt="LinkedIn" />
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -266,14 +242,20 @@
       );
     </script>
     <script>
-      const aboutBtn  = document.getElementById('aboutBtn');
-      const detDesktop = document.getElementById('aboutDetailsDesktop');
-      const detMobile  = document.getElementById('aboutDetailsMobile');
-
-      aboutBtn.addEventListener('click', () => {
-        detDesktop.classList.toggle('show');
-        detMobile .classList.toggle('show');
-      });
+document.addEventListener("DOMContentLoaded", function() {
+  const items = document.querySelectorAll('.about-details p, .about-signature');
+  const observer = new window.IntersectionObserver((entries, observer) => {
+    entries.forEach((entry, i) => {
+      if(entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('in-view');
+        }, i * 180); // Décale chaque item de 180ms
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => observer.observe(el));
+});
     </script>
   </body>
 </html>
