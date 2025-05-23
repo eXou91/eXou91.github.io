@@ -265,6 +265,27 @@ header {
   transform: translateY(-6px) scale(1.028);
 }
 .card h3 { font-size: 1.11rem; font-weight: 700; }
+
+/* SUR MOBILE : overlay toujours visible */
+@media (max-width: 900px) {
+  .card .overlay {
+    opacity: 1 !important;
+    pointer-events: auto;
+    background: transparent !important; /* plus de fond du tout */
+    padding-bottom: 1.1em;
+    align-items: flex-end; /* texte en bas */
+  }
+  .card .overlay h3 {
+    color: var(--accent);
+    background: rgba(255,255,255,0.74);
+    display: inline-block;
+    padding: .3em 1em;
+    border-radius: 2em;
+    font-size: 1em;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.14);
+    font-weight: 700;
+  }
+}
 /***** SECTION SERVICES *****/
 .services {
   background: #f5f9f7;
