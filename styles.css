@@ -45,8 +45,7 @@
   /* BOUTON  « En savoir plus » */
   .btn {
     display: inline-block;
-    background: rgba(217, 92, 65, 0.06);
-    /* Accent très léger */
+    background: #fff;
     color: var(--accent);
     border: 2px solid var(--accent);
     font-weight: 700;
@@ -850,6 +849,18 @@
     font-size: 1em;
     opacity: .7;
     letter-spacing: .01em;
+  }
+
+  .footer-renard {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5em;
+  }
+
+  .footer-renard img {
+    height: 4.1em;
+    width: auto;
+    opacity: 0.98;
   }
 
   /***** ANIMATION scroll fade *****/

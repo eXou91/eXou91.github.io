@@ -16,7 +16,10 @@
 <body>
   <header>
     <div class="container nav">
-      <a class="logo" href="index.html">diane&nbsp;breton</a>
+      <a class="logo" href="index.html" style="display:flex;align-items:center;gap:0.4em;">
+        diane&nbsp;breton
+        <img src="assets/design/renard.webp" alt="" style="height:3.6em;width:auto;vertical-align:middle;" />
+      </a>
       <button class="nav-toggle" aria-label="Ouvrir le menu">
         <span></span><span></span><span></span>
       </button>
@@ -104,6 +107,18 @@
       <div class="container">
         <h2 class="fade" data-animate>Dernières réalisations</h2>
         <div class="grid">
+          <a href="projets/b10/" class="card fade" data-animate>
+            <img src="assets/projets/couverture_b10.webp" alt="Via silva B10" />
+            <div class="overlay">
+              <h3>Via silva B10 – Réponse à consultation</h3>
+            </div>
+          </a>
+          <a href="projets/bois_du_chateau/" class="card fade" data-animate>
+            <img src="assets/projets/couverture_bois_du_chateau.webp" alt="Bois du chateau" />
+            <div class="overlay">
+              <h3>Bois du Chateau – Réponse à consultation</h3>
+            </div>
+          </a>
           <a href="projets/projet1/" class="card fade" data-animate>
             <img src="assets/esquisse_1.webp" alt="Concours ZAC Belleville" />
             <div class="overlay">
@@ -123,7 +138,7 @@
             </div>
           </a>
           <a href="projets/projet1/" class="card fade" data-animate>
-            <img src="assets/reunion.jpg" alt="Concours MixCité" />
+            <img src="assets/reunion.webp" alt="Concours MixCité" />
             <div class="overlay">
               <h3>MixCité 2024 – Dossier de consultation</h3>
             </div>
@@ -144,6 +159,7 @@
         <!-- Texte principal unique -->
         <div class="about-text">
           <h2 class="about-title"><span>Le studio</span></h2>
+
           <div class="about-photo-wrap">
             <img src="assets/diane.jpeg" alt="Portrait de Diane Breton" class="about-photo" />
           </div>
@@ -247,9 +263,13 @@
 
   <footer>
     <div class="footer-line"></div>
-    <div>
+    <div style="text-align:center;">
       © <span id="year"></span> Diane Breton studio • Conseil & design éditorial pour les acteurs de la ville
-      <br><span class="footer-bzh">Pensé & designé en Bretagne 🐚</span>
+      <br>
+      <span class="footer-bzh">Pensé & designé en Bretagne 🐚</span>
+    </div>
+    <div class="footer-renard">
+      <img src="assets/design/renard.webp" alt="Renard" />
     </div>
   </footer>
 
