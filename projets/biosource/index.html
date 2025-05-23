@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZAC Belleville – Diane Breton</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+  </head>
+  <body>
+    <!-- HEADER commun -->
+    <header>
+      <div class="container nav">
+        <a class="logo" href="../../index.html">diane&nbsp;breton</a>
+        <button class="nav-toggle" aria-label="Ouvrir le menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="menu">
+          <li><a href="../../index.html#services">Expertises</a></li>
+          <li><a href="../../index.html#projets">Réalisations</a></li>
+          <li><a href="../../index.html#apropos">Le Studio</a></li>
+          <li><a href="../../index.html#etonnements">Étonnements</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- HERO du projet -->
+    <section class="hero" style=" min-height:60vh; background:url('assets/esquisse_1.webp') center/cover no-repeat;">
+      <div class="container" style="background:rgba(255,255,255,0.75);padding:2rem 1.5rem;border-radius:0.75rem;max-width:720px;">
+        <h1>Construire Bio & Geosourcé <span>-</span> Document d' Innovation</h1>
+        <p>Politique d'innovation · SECIB · 2024</p>
+      </div>
+    </section>
+
+    <!-- Détails projet -->
+  <section class="project-content">
+    <div class="container">
+      <h2 class="accent-title">Le défi</h2>
+      <p class="lead">Réinventer un quartier mixte intégrant logements, tiers‑lieu culturel et coulée verte. Notre mission : <strong>concept narratif</strong>, dossier graphique, storytelling pour la soutenance, coordination des rendus.</p>
+
+      <div class="project-blocks">
+        <div class="project-block">
+          <h3>Éléments livrés</h3>
+          <ul>
+            <li>Mood-board & naming</li>
+            <li>Identité visuelle de l'opération</li>
+            <li>Mise en page du mémoire (56 pages)</li>
+            <li>Illustrations de principes d'aménagement</li>
+            <li>Préparation du support de soutenance</li>
+          </ul>
+        </div>
+        <div class="project-block">
+          <h3>Galerie</h3>
+          <div class="grid gallery">
+            <img src="../../assets/projets/prod_biosource_page.webp" alt="Vue aérienne" class="card" />
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin:2.5rem 0 0;">
+        <a href="../../assets/ZAC_Belleville_Memoire.pdf" class="btn" style="font-size:1.1rem;">Télécharger le mémoire (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+
+    <footer>
+      © <span id="year"></span> Diane breton studio • Conseil & design éditorial pour les acteurs de la ville &nbsp;•&nbsp; <a href="../../index.html" style="color:var(--text);text-decoration:none;">Retour à l'accueil</a>
+    </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script>
+      const navToggle = document.querySelector('.nav-toggle');
+      const navMenu = document.querySelector('.menu');
+      navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+        navToggle.classList.toggle('active');
+      });
+      // Ferme le menu quand on clique sur un lien (UX++)
+      navMenu.querySelectorAll('a').forEach(link =>
+        link.addEventListener('click', ()=> {
+          navMenu.classList.remove('open');
+          navToggle.classList.remove('active');
+        })
+      );
+    </script>
+  </body>
+</html>
