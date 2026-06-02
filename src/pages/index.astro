@@ -33,18 +33,20 @@ import Footer from '@/components/Footer.astro';
       </p>
 
       <!-- Mobile CTAs: first filled coral, second outlined -->
-      <div class="flex flex-col gap-3 mb-7">
+      <div class="flex flex-col items-center gap-3 pt-3">
         <a href="/realisations"
-           class="block text-center bg-coral text-white no-underline
-                  px-6 py-4 font-bold text-[11px] tracking-[0.18em] uppercase
-                  hover:opacity-90 transition-opacity">
-          Voir les réalisations
+          class="inline-flex items-center justify-between w-52 border-2 border-navy text-navy no-underline
+                  px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
+                  hover:bg-navy hover:text-white transition-colors duration-150">
+          <span>Réalisations</span>
+          <span aria-hidden="true">→</span>
         </a>
         <a href="/contact"
-           class="block text-center border-2 border-navy text-navy no-underline
-                  px-6 py-[0.85rem] font-bold text-[11px] tracking-[0.18em] uppercase
-                  hover:bg-navy hover:text-white transition-colors">
-          Parler de votre projet
+          class="inline-flex items-center justify-between w-52 border-2 border-navy text-navy no-underline
+                  px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
+                  hover:bg-navy hover:text-white transition-colors duration-150">
+          <span>Un projet&nbsp;?</span>
+          <span aria-hidden="true">→</span>
         </a>
       </div>
 
@@ -123,16 +125,16 @@ import Footer from '@/components/Footer.astro';
               documents clairs, solides et engageants
             </p>
 
-            <div class="flex flex-col gap-3 pt-3">
+            <div class="flex flex-col items-center gap-3 pt-3">
               <a href="/realisations"
-                 class="flex items-center justify-between border-2 border-navy text-navy no-underline
+                 class="inline-flex items-center justify-between w-72 border-2 border-navy text-navy no-underline
                         px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
                         hover:bg-navy hover:text-white transition-colors duration-150">
                 <span>Réalisations</span>
                 <span aria-hidden="true">→</span>
               </a>
               <a href="/contact"
-                 class="flex items-center justify-between border-2 border-navy text-navy no-underline
+                 class="inline-flex items-center justify-between w-72 border-2 border-navy text-navy no-underline
                         px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
                         hover:bg-navy hover:text-white transition-colors duration-150">
                 <span>Un projet&nbsp;?</span>
