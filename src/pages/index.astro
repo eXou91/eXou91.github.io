@@ -1,0 +1,149 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<Layout
+  title="A vous la ville — Concevoir le récit de vos projets urbains"
+  description="Design graphique & édition stratégique pour la ville, l'architecture et l'urbanisme."
+>
+  <div class="min-h-screen flex flex-col font-display text-navy">
+
+    <Header />
+    <div class="mx-6 md:mx-10 border-t border-gray-200"></div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         MOBILE hero  (hidden on md+)
+    ═════════════════════════════════════════════════════════════ -->
+    <div class="md:hidden px-6 pt-8 pb-10">
+      <h1 class="font-extrabold leading-[0.92] m-0 mb-5" style="font-size: clamp(3rem, 11vw, 3.8rem);">
+        Concevoir<br>
+        le récit de vos<br>
+        projets urbains.
+      </h1>
+
+      <h2 class="font-bold text-[0.9rem] leading-snug m-0 mb-3">
+        Design graphique &amp; édition stratégique pour la ville, l'architecture et l'urbanisme.
+      </h2>
+
+      <p class="text-[0.82rem] leading-relaxed m-0 mb-6">
+        À vous la ville accompagne les acteurs publics et privés dans la valorisation de leurs projets.
+        Nous transformons la complexité des enjeux urbains en récits clairs, vivants et sensibles.
+      </p>
+
+      <!-- Mobile CTAs: first filled coral, second outlined -->
+      <div class="flex flex-col gap-3 mb-7">
+        <a href="/realisations"
+           class="block text-center bg-coral text-white no-underline
+                  px-6 py-4 font-bold text-[11px] tracking-[0.18em] uppercase
+                  hover:opacity-90 transition-opacity">
+          Voir les réalisations
+        </a>
+        <a href="/contact"
+           class="block text-center border-2 border-navy text-navy no-underline
+                  px-6 py-[0.85rem] font-bold text-[11px] tracking-[0.18em] uppercase
+                  hover:bg-navy hover:text-white transition-colors">
+          Parler de votre projet
+        </a>
+      </div>
+
+      <!-- Image placeholder -->
+      <div class="bg-gray-200 w-full aspect-[4/3]" aria-hidden="true"></div>
+
+      <!-- Ce que je fais -->
+      <section class="mt-12">
+        <h2 class="font-extrabold text-[2rem] leading-none m-0 mb-7">Ce que je fais</h2>
+        <div class="flex flex-col gap-4">
+          {[
+            { title: 'Stratégie éditoriale',  desc: 'Structurer l\'intention, clarifier les messages et construire un fil conducteur.' },
+            { title: 'Écriture et contenu',   desc: 'Formuler avec précision, rendre lisible et convaincre.'                           },
+            { title: 'Design et mise en forme', desc: 'Donner de la forme au fond par un design clair, cohérent et impactant.'         },
+          ].map(({ title, desc }) => (
+            <div class="flex gap-4 items-start">
+              <div class="w-12 h-12 rounded-lg bg-blush border border-coral shrink-0" aria-hidden="true"></div>
+              <div>
+                <p class="font-bold text-[0.9rem] m-0 mb-1">{title}</p>
+                <p class="text-[0.8rem] leading-snug m-0 text-gray-600">{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Le studio teaser -->
+      <section class="mt-10 bg-cream rounded-sm overflow-hidden">
+        <div class="p-6">
+          <h2 class="font-extrabold text-[1.6rem] leading-tight m-0 mb-3">Le studio</h2>
+          <p class="text-[0.8rem] leading-relaxed m-0 mb-4 text-gray-700">
+            À vous la ville est un studio indépendant, spécialisé dans le conseil, le design graphique
+            et l'édition appliquées à l'urbanisme, à l'architecture et à la fabrique de la ville.
+          </p>
+          <a href="/le-studio"
+             class="inline-flex items-center gap-2 font-bold text-[0.8rem] text-navy no-underline hover:opacity-60">
+            Découvrir le studio <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="bg-gray-200 h-40 w-full" aria-hidden="true"></div>
+      </section>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════════
+         DESKTOP hero  (hidden below md)
+    ═════════════════════════════════════════════════════════════ -->
+    <main class="hidden md:flex flex-1 flex-col px-10 pt-10 pb-14">
+      <div class="grid gap-14 min-h-[580px]" style="grid-template-columns: 42fr 58fr;">
+
+        <!-- Image placeholder -->
+        <div class="bg-gray-200 w-full" aria-hidden="true"></div>
+
+        <!-- Right: text content -->
+        <div class="flex flex-col">
+          <h1 class="font-extrabold text-navy m-0 leading-[0.92]"
+              style="font-size: clamp(3.5rem, 5.5vw, 5.75rem);">
+            Concevoir<br>
+            le récit de vos<br>
+            projets urbains.
+          </h1>
+
+          <div class="mt-auto text-right space-y-[1.1rem]">
+            <h2 class="text-[0.9rem] font-bold leading-snug m-0">
+              Design graphique &amp; édition stratégique<br>
+              pour la ville, l'architecture et<br>
+              l'urbanisme.
+            </h2>
+            <p class="text-[0.82rem] leading-relaxed m-0">
+              J'accompagne les acteurs de la ville dans la conception et la
+              mise en forme de leurs projets.
+            </p>
+            <p class="text-[0.82rem] leading-relaxed m-0">
+              Architecte de formation, forte de 6 ans en réponse à concours
+              en promotion immobilière, je combine conseil stratégique,
+              rédaction experte et design éditorial pour produire des
+              documents clairs, solides et engageants
+            </p>
+
+            <div class="flex flex-col gap-3 pt-3">
+              <a href="/realisations"
+                 class="flex items-center justify-between border-2 border-navy text-navy no-underline
+                        px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
+                        hover:bg-navy hover:text-white transition-colors duration-150">
+                <span>Réalisations</span>
+                <span aria-hidden="true">→</span>
+              </a>
+              <a href="/contact"
+                 class="flex items-center justify-between border-2 border-navy text-navy no-underline
+                        px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
+                        hover:bg-navy hover:text-white transition-colors duration-150">
+                <span>Un projet&nbsp;?</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

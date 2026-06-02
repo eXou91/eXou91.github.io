@@ -1,0 +1,150 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+
+const projects = [
+  {
+    category: 'Vers le nouveau bois habité',
+    type: 'Réponse à concours',
+    desc: "Conception éditoriale et graphique d'une réponse à concours en deux tours, sur un nouveau territoire pour le client.",
+    tags: ['Structuration du propos', 'design éditorial', 'composition', 'harmonisation visuelle'],
+    imageLeft: true,
+  },
+  {
+    category: 'À l\'orée des champs',
+    type: 'Réponse à concours',
+    desc: "Conception éditoriale et graphique d'un dossier de candidature conçu pour faire émerger des idées fortes et une identité singulière, afin de distinguer la réponse dans un contexte sans projet architectural encore arrêté.",
+    tags: ['Éditorial', 'mise en page', 'hiérarchisation de contenu', 'direction graphique'],
+    imageLeft: false,
+  },
+  {
+    category: 'Construire bio et géosourcé',
+    type: 'Livret éditorial',
+    desc: "Réalisation d'un livret éditorial dédié aux enjeux du construire bio et géosourcé, mené avec l'appui de la directrice développement, grands projets et innovation. Ce travail a été prolongé par l'animation de temps de sensibilisation en interne.",
+    tags: ['Édition', 'vulgarisation', 'mise en page', 'structuration éditoriale'],
+    imageLeft: true,
+  },
+  {
+    category: 'Anti-coper demain',
+    type: 'Réponse à concours',
+    desc: "Conception éditoriale et graphique d'un dossier de candidature de 1er tour en co-promotion, pour une consultation combinant de fortes attentes techniques, des enjeux de durabilité affirmés et un programme mixte.",
+    tags: ['Dossier de candidature', 'narration visuelle', 'mise en page', 'valorisation de projet'],
+    imageLeft: false,
+  },
+  {
+    category: 'Rapport RSE 2025 — SECIB Immobilier',
+    type: 'Rapport institutionnel',
+    desc: "Réalisation complète du rapport RSE 2025 de SECIB Immobilier, de la conception éditoriale à la forme finale, en autonomie, incluant les entretiens avec les équipes, la définition de la trame, la mise en page et la création d'éléments graphiques.",
+    tags: ['Rapport RSE', 'stratégie éditoriale', 'rédaction', 'mise en page', 'éléments graphiques'],
+    imageLeft: true,
+  },
+  {
+    category: 'Où il fait bon vivre',
+    type: 'Réponse à concours',
+    desc: "Conception éditoriale et graphique d'un dossier de réponse développé avec une équipe d'architectes, dans une logique de production fluide et réactive pendant le concours.",
+    tags: ['Couverture illustrée', 'trame éditoriale', 'rédaction', 'mise en cohérence', 'concours'],
+    imageLeft: false,
+  },
+];
+---
+
+<Layout
+  title="Réalisations — A vous la ville"
+  description="De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet."
+>
+  <div class="min-h-screen flex flex-col font-display text-navy">
+
+    <Header activePage="realisations" />
+    <div class="mx-6 md:mx-10 border-t border-gray-200"></div>
+
+    <main class="flex-1 px-6 md:px-10 pt-8 md:pt-12 pb-14">
+
+      <!-- ── Page intro ──────────────────────────────────────── -->
+      <div class="md:grid md:gap-16 mb-12 md:mb-20" style="grid-template-columns: 50fr 50fr;">
+        <div>
+          <h1 class="font-extrabold m-0 mb-5 leading-none" style="font-size: clamp(2.8rem, 7vw, 6rem);">
+            Réalisations
+          </h1>
+          <p class="font-bold text-[0.95rem] leading-snug m-0">
+            De la stratégie éditoriale à la mise en forme finale,
+            j'interviens à toutes les étapes d'un projet.
+          </p>
+        </div>
+        <div class="mt-4 md:mt-0 md:pt-2">
+          <p class="text-[0.82rem] leading-relaxed m-0 text-gray-700">
+            Réponses à concours, livrets, supports de communication ou documents de présentation :
+            chaque réalisation est pensée pour clarifier un propos, structurer l'information et
+            donner une forme qui fait au fond.
+          </p>
+        </div>
+      </div>
+
+      <!-- ── Project list ────────────────────────────────────── -->
+      <div class="flex flex-col gap-12 md:gap-24">
+        {projects.map(({ category, type, desc, tags, imageLeft }, i) => (
+          <article>
+            <!-- Mobile: image top, text below -->
+            <div class="md:hidden">
+              <div class="bg-gray-200 w-full aspect-[4/3] mb-4" aria-hidden="true"></div>
+              <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-coral m-0 mb-1">
+                {category}
+              </p>
+              <h2 class="font-extrabold text-[1.4rem] leading-tight m-0 mb-3">{type}</h2>
+              <p class="text-[0.8rem] leading-relaxed m-0 mb-3 text-gray-700">{desc}</p>
+              <p class="text-[0.75rem] font-bold text-coral m-0">
+                {tags.join(' · ')}
+              </p>
+            </div>
+
+            <!-- Desktop: alternating image/text -->
+            <div
+              class={`hidden md:grid gap-14 items-center ${
+                imageLeft ? 'grid-cols-[45fr_55fr]' : 'grid-cols-[55fr_45fr]'
+              }`}
+            >
+              {imageLeft ? (
+                <>
+                  <div class="bg-gray-200 w-full aspect-[4/3]" aria-hidden="true"></div>
+                  <div>
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-coral m-0 mb-2">
+                      {category}
+                    </p>
+                    <h2 class="font-extrabold m-0 mb-4 leading-tight"
+                        style="font-size: clamp(1.4rem, 2.2vw, 2rem);">
+                      {type}
+                    </h2>
+                    <p class="text-[0.85rem] leading-relaxed m-0 mb-4 text-gray-700">{desc}</p>
+                    <p class="text-[0.75rem] font-bold text-coral m-0">
+                      {tags.join(' · ')}
+                    </p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-coral m-0 mb-2">
+                      {category}
+                    </p>
+                    <h2 class="font-extrabold m-0 mb-4 leading-tight"
+                        style="font-size: clamp(1.4rem, 2.2vw, 2rem);">
+                      {type}
+                    </h2>
+                    <p class="text-[0.85rem] leading-relaxed m-0 mb-4 text-gray-700">{desc}</p>
+                    <p class="text-[0.75rem] font-bold text-coral m-0">
+                      {tags.join(' · ')}
+                    </p>
+                  </div>
+                  <div class="bg-gray-200 w-full aspect-[4/3]" aria-hidden="true"></div>
+                </>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

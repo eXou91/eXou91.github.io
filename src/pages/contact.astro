@@ -1,0 +1,133 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<Layout
+  title="Contact — A vous la ville"
+  description="Vous préparez un concours, un dossier stratégique, ou vous cherchez un appui régulier ? Parlons-en."
+>
+  <div class="min-h-screen flex flex-col font-display text-navy">
+
+    <Header activePage="contact" />
+    <div class="mx-6 md:mx-10 border-t border-gray-200"></div>
+
+    <main class="flex-1 px-6 md:px-10 pt-8 md:pt-12 pb-14">
+
+      <div class="md:grid md:gap-20" style="grid-template-columns: 50fr 50fr;">
+
+        <!-- Left: heading + intro -->
+        <div>
+          <h1
+            class="font-extrabold m-0 mb-6 leading-none"
+            style="font-size: clamp(2.8rem, 7vw, 6rem);"
+          >
+            Contact.
+          </h1>
+
+          <p class="font-bold text-[1rem] leading-snug m-0 mb-6">
+            Vous préparez un concours, un dossier stratégique,
+            ou vous cherchez un appui régulier au sein de vos équipes&nbsp;?
+          </p>
+
+          <p class="text-[0.85rem] leading-relaxed m-0 mb-8 text-gray-700">
+            Décrivez-moi votre projet ou votre besoin — je vous répondrai dans les 48&nbsp;h.
+          </p>
+
+          <!-- Direct contact -->
+          <div class="space-y-3">
+            <a
+              href="mailto:contact@avouslaville.fr"
+              class="flex items-center gap-3 text-[0.85rem] font-bold text-navy no-underline hover:text-coral transition-colors"
+            >
+              <span class="w-8 h-8 rounded-full border border-navy flex items-center justify-center text-[11px]" aria-hidden="true">@</span>
+              contact@avouslaville.fr
+            </a>
+            <a
+              href="https://www.linkedin.com/in/avouslaville"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 text-[0.85rem] font-bold text-navy no-underline hover:text-coral transition-colors"
+            >
+              <span class="w-8 h-8 rounded-full bg-navy flex items-center justify-center text-white text-[11px] font-extrabold" aria-hidden="true">in</span>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: contact form -->
+        <div class="mt-10 md:mt-0">
+          <form
+            method="POST"
+            action="#"
+            class="flex flex-col gap-5"
+            novalidate
+          >
+            <div>
+              <label for="name" class="block text-[11px] font-bold tracking-[0.12em] uppercase mb-2">
+                Nom / structure
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                class="w-full border-2 border-gray-200 focus:border-navy outline-none px-4 py-3 text-[0.85rem] transition-colors"
+              />
+            </div>
+
+            <div>
+              <label for="email" class="block text-[11px] font-bold tracking-[0.12em] uppercase mb-2">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                class="w-full border-2 border-gray-200 focus:border-navy outline-none px-4 py-3 text-[0.85rem] transition-colors"
+              />
+            </div>
+
+            <div>
+              <label for="subject" class="block text-[11px] font-bold tracking-[0.12em] uppercase mb-2">
+                Objet
+              </label>
+              <input
+                id="subject"
+                name="subject"
+                type="text"
+                class="w-full border-2 border-gray-200 focus:border-navy outline-none px-4 py-3 text-[0.85rem] transition-colors"
+              />
+            </div>
+
+            <div>
+              <label for="message" class="block text-[11px] font-bold tracking-[0.12em] uppercase mb-2">
+                Votre message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                class="w-full border-2 border-gray-200 focus:border-navy outline-none px-4 py-3 text-[0.85rem] resize-y transition-colors"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              class="self-start bg-coral text-white font-extrabold text-[0.9rem] tracking-[0.12em] uppercase
+                     px-10 py-4 hover:opacity-90 transition-opacity duration-150"
+            >
+              Envoyer
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

@@ -1,0 +1,138 @@
+---
+interface Props {
+  activePage?: 'expertises' | 'realisations' | 'studio' | 'contact';
+}
+const { activePage } = Astro.props;
+
+const navItems = [
+  { label: 'Expertises',   href: '/expertises',  key: 'expertises'   },
+  { label: 'Réalisations', href: '/realisations', key: 'realisations' },
+  { label: 'Le Studio',    href: '/le-studio',   key: 'studio'       },
+  { label: 'Contact',      href: '/contact',     key: 'contact'      },
+];
+---
+
+<header class="flex items-center justify-between px-6 md:px-10 py-5">
+
+  <!-- Logo -->
+  <a href="/" aria-label="A vous la ville — accueil" class="no-underline text-navy">
+    <div class="font-display leading-[1] select-none">
+      <div class="flex items-end gap-[3px]">
+        <span class="text-[9px] md:text-[11px] font-bold mb-[4px] md:mb-[5px]">à</span>
+        <span class="text-[1.7rem] md:text-[2.1rem] font-extrabold leading-none">vous</span>
+      </div>
+      <div class="flex items-end gap-[3px]">
+        <span class="text-[9px] md:text-[11px] font-bold mb-[4px] md:mb-[5px]">la</span>
+        <span class="text-[1.7rem] md:text-[2.1rem] font-extrabold leading-none">ville</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Desktop nav -->
+  <nav class="hidden md:block" aria-label="Navigation principale">
+    <ul class="flex items-center gap-10 list-none m-0 p-0">
+      {navItems.map(({ label, href, key }) => (
+        <li>
+          <a
+            href={href}
+            class={`text-[11px] font-semibold tracking-[0.14em] uppercase no-underline transition-opacity duration-150 ${
+              activePage === key
+                ? 'text-coral pointer-events-none'
+                : 'text-navy hover:opacity-50'
+            }`}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <!-- Mobile: hamburger -->
+  <button
+    id="menu-open"
+    class="md:hidden text-navy p-1"
+    aria-label="Ouvrir le menu"
+    aria-expanded="false"
+    aria-controls="mobile-nav"
+  >
+    <svg width="26" height="18" viewBox="0 0 26 18" fill="none">
+      <rect width="26" height="2.5" rx="1.25" fill="currentColor"/>
+      <rect y="7.75" width="26" height="2.5" rx="1.25" fill="currentColor"/>
+      <rect y="15.5" width="26" height="2.5" rx="1.25" fill="currentColor"/>
+    </svg>
+  </button>
+</header>
+
+<!-- Mobile nav overlay -->
+<div
+  id="mobile-nav"
+  class="hidden fixed inset-0 z-50 bg-white flex-col"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menu"
+>
+  <div class="flex items-center justify-between px-6 py-5">
+    <a href="/" class="no-underline text-navy">
+      <div class="font-display leading-[1] select-none">
+        <div class="flex items-end gap-[3px]">
+          <span class="text-[9px] font-bold mb-[4px]">à</span>
+          <span class="text-[1.7rem] font-extrabold leading-none">vous</span>
+        </div>
+        <div class="flex items-end gap-[3px]">
+          <span class="text-[9px] font-bold mb-[4px]">la</span>
+          <span class="text-[1.7rem] font-extrabold leading-none">ville</span>
+        </div>
+      </div>
+    </a>
+    <button id="menu-close" class="text-navy p-1" aria-label="Fermer le menu">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M1 1L21 21M21 1L1 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="px-6 pt-10 flex-1">
+    <ul class="list-none m-0 p-0 space-y-7">
+      {navItems.map(({ label, href, key }) => (
+        <li>
+          <a
+            href={href}
+            class={`text-[2rem] font-extrabold font-display no-underline block ${
+              activePage === key ? 'text-coral' : 'text-navy'
+            }`}
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</div>
+
+<script is:inline>
+  (function () {
+    var openBtn  = document.getElementById('menu-open');
+    var closeBtn = document.getElementById('menu-close');
+    var nav      = document.getElementById('mobile-nav');
+
+    function open() {
+      nav.classList.remove('hidden');
+      nav.classList.add('flex');
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      nav.classList.add('hidden');
+      nav.classList.remove('flex');
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    openBtn && openBtn.addEventListener('click', open);
+    closeBtn && closeBtn.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
+  })();
+</script>

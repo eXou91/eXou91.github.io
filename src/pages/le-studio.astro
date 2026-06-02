@@ -1,0 +1,127 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<Layout
+  title="Le studio — A vous la ville"
+  description="À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, architectes, collectivités et urbanistes."
+>
+  <div class="min-h-screen flex flex-col font-display text-navy">
+
+    <Header activePage="studio" />
+    <div class="mx-6 md:mx-10 border-t border-gray-200"></div>
+
+    <main class="flex-1 px-6 md:px-10 pt-8 md:pt-12 pb-14">
+
+      <!-- ── Desktop: two-column ──────────────────────────────── -->
+      <div class="hidden md:grid gap-16 items-start" style="grid-template-columns: 52fr 48fr;">
+
+        <!-- Left: all text -->
+        <div>
+          <h1
+            class="font-extrabold m-0 mb-10 leading-none"
+            style="font-size: clamp(3rem, 6vw, 6rem);"
+          >
+            Le studio.
+          </h1>
+
+          <p class="font-bold text-[1.05rem] leading-snug m-0 mb-8">
+            À mi-chemin entre le conseil, l'édition et le design graphique,
+            j'accompagne promoteurs, architectes, collectivités, et urbanistes
+            dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
+          </p>
+
+          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+            Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
+            aux usages et à la manière dont on les raconte.
+          </p>
+
+          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+            Mon approche est transversale : une solide culture urbaine,
+            une vraie autonomie dans l'analyse et la rédaction,
+            et une exigence graphique affirmée.
+          </p>
+
+          <div class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+            <p class="m-0 mb-2">J'interviens à toutes les étapes :</p>
+            <p class="m-0">→ de la stratégie éditoriale</p>
+            <p class="m-0">→ à la mise en page finale,</p>
+            <p class="m-0">→ en passant par la coordination</p>
+            <p class="m-0">→ et le storytelling du projet.</p>
+          </div>
+
+          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+            Formée en architecture et urbanisme (<strong>ENSAPLV</strong>),
+            puis en sciences politiques à <strong>Sciences Po Paris</strong>,
+            j'ai développé mon expertise pendant six ans comme responsable développement grands projets
+            chez <strong>Legendre</strong> et <strong>SECIB</strong>.
+          </p>
+
+          <p class="text-[0.85rem] leading-relaxed m-0 text-gray-700">
+            Ce parcours m'a donné une compréhension fine des enjeux urbains,
+            des dynamiques d'acteurs et des contraintes de production.
+          </p>
+        </div>
+
+        <!-- Right: portrait placeholder -->
+        <div class="bg-gray-200 w-full" style="aspect-ratio: 3/4; min-height: 500px;" aria-hidden="true"></div>
+
+      </div>
+
+      <!-- ── Mobile: stacked ──────────────────────────────────── -->
+      <div class="md:hidden">
+        <h1
+          class="font-extrabold m-0 mb-6 leading-none"
+          style="font-size: clamp(2.5rem, 10vw, 3.5rem);"
+        >
+          Le studio
+        </h1>
+
+        <!-- Portrait placeholder -->
+        <div class="bg-gray-200 w-full aspect-[3/4] mb-8" aria-hidden="true"></div>
+
+        <p class="font-bold text-[0.95rem] leading-snug m-0 mb-5">
+          À mi-chemin entre le conseil, l'édition et le design graphique,
+          j'accompagne promoteurs, architectes, collectivités, et urbanistes
+          dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
+        </p>
+
+        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+          Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
+          aux usages et à la manière dont on les raconte.
+        </p>
+
+        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+          Mon approche est transversale : une solide culture urbaine,
+          une vraie autonomie dans l'analyse et la rédaction,
+          et une exigence graphique affirmée.
+        </p>
+
+        <div class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+          <p class="m-0 mb-1">J'interviens à toutes les étapes :</p>
+          <p class="m-0">→ de la stratégie éditoriale</p>
+          <p class="m-0">→ à la mise en page finale,</p>
+          <p class="m-0">→ en passant par la coordination</p>
+          <p class="m-0">→ et le storytelling du projet.</p>
+        </div>
+
+        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+          Formée en architecture et urbanisme (<strong>ENSAPLV</strong>),
+          puis en sciences politiques à <strong>Sciences Po Paris</strong>,
+          j'ai développé mon expertise pendant six ans comme responsable développement grands projets
+          chez <strong>Legendre</strong> et <strong>SECIB</strong>.
+        </p>
+
+        <p class="text-[0.82rem] leading-relaxed m-0 text-gray-700">
+          Ce parcours m'a donné une compréhension fine des enjeux urbains,
+          des dynamiques d'acteurs et des contraintes de production.
+        </p>
+      </div>
+
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
