@@ -1,3 +1,87 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Inter (variable) ──────────────────────────────────── */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Italic-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Neue Haas Grotesk Display Pro ─────────────────────── */
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Roman.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-RomanItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Black.ttf') format('truetype');
+  font-weight: 800 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Neue Haas Display';
+  src: url('/fonts/neue-haas/NeueHaasDisplay-BlackItalic.ttf') format('truetype');
+  font-weight: 800 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ── Base ──────────────────────────────────────────────── */
+@layer base {
+  body {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Neue Haas Display', ui-sans-serif, system-ui, sans-serif;
+  }
+}

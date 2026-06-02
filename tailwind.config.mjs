@@ -4,13 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: '#1B2B6B',
-        coral: '#E35C52',
-        cream: '#F5F3EE',
-        blush: '#FEF2F1',
+        navy:  '#26387F',
+        coral: '#E51D41',
+        cream: '#FFF5ED',
+        blush: '#F7C4A8',
+        rose:  '#F0858C',
       },
       fontFamily: {
-        display: ['Bricolage Grotesque', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans:    ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['Neue Haas Display', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
     },
   },

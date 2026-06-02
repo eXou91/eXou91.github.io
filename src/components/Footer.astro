@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoBleu from '../../assets/images/logo/logo_bleu.webp';
+
 const navLinks = [
   { label: 'Expertises',     href: '/expertises'     },
   { label: 'Réalisations',   href: '/realisations'   },
@@ -9,7 +12,7 @@ const navLinks = [
 ---
 
 <!-- ── Desktop footer ──────────────────────────────────── -->
-<footer class="hidden md:block font-display px-10 pb-8">
+<footer class="hidden md:block px-10 pb-8">
   <div class="border-t border-gray-200 mb-7"></div>
   <div class="text-center text-[11px] text-gray-400 leading-[1.8]">
     <p class="m-0">© 2026 A VOUS LA VILLE</p>
@@ -19,23 +22,14 @@ const navLinks = [
 </footer>
 
 <!-- ── Mobile footer ──────────────────────────────────── -->
-<footer class="md:hidden font-display">
+<footer class="md:hidden">
   <div class="border-t border-navy mx-6 mb-6"></div>
 
   <div class="px-6 pb-5 flex justify-between gap-6">
     <!-- Logo + tagline -->
     <div class="shrink-0">
-      <a href="/" class="no-underline text-navy block mb-3">
-        <div class="leading-[1] select-none">
-          <div class="flex items-end gap-[3px]">
-            <span class="text-[8px] font-bold mb-[3px]">à</span>
-            <span class="text-[1.35rem] font-extrabold leading-none">vous</span>
-          </div>
-          <div class="flex items-end gap-[3px]">
-            <span class="text-[8px] font-bold mb-[3px]">la</span>
-            <span class="text-[1.35rem] font-extrabold leading-none">ville</span>
-          </div>
-        </div>
+      <a href="/" class="no-underline block mb-3 shrink-0">
+        <Image src={logoBleu} alt="À vous la ville" class="h-9 w-auto" loading="lazy" />
       </a>
       <p class="text-[11px] text-navy leading-[1.45] m-0 max-w-[145px]">
         Conseil, conception éditoriale et graphique pour ceux qui font la ville

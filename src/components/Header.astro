@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoBleu from '../../assets/images/logo/logo_bleu.webp';
+
 interface Props {
   activePage?: 'expertises' | 'realisations' | 'studio' | 'carnet' | 'contact';
 }
@@ -8,25 +11,21 @@ const navItems = [
   { label: 'Expertises',    href: '/expertises',    key: 'expertises'   },
   { label: 'Réalisations',  href: '/realisations',  key: 'realisations' },
   { label: 'Le Studio',     href: '/le-studio',     key: 'studio'       },
-  { label: 'Carnet de bord', href: '/carnet-de-bord', key: 'carnet'     },
+  { label: 'Carnet de bord', href: '/carnet-de-bord', key: 'carnet'    },
   { label: 'Contact',       href: '/contact',       key: 'contact'      },
 ];
 ---
 
-<header class="relative z-10 flex items-center justify-between px-6 md:px-10 py-5 shadow-[0_2px_10px_rgba(0,0,0,0.08)]">
+<header class="relative z-10 flex items-center justify-between px-6 md:px-10 py-4 md:py-5 shadow-[0_2px_10px_rgba(0,0,0,0.08)]">
 
   <!-- Logo -->
-  <a href="/" aria-label="A vous la ville — accueil" class="no-underline text-navy">
-    <div class="font-display leading-[1] select-none">
-      <div class="flex items-end gap-[3px]">
-        <span class="text-[9px] md:text-[11px] font-bold mb-[4px] md:mb-[5px]">à</span>
-        <span class="text-[1.7rem] md:text-[2.1rem] font-extrabold leading-none">vous</span>
-      </div>
-      <div class="flex items-end gap-[3px]">
-        <span class="text-[9px] md:text-[11px] font-bold mb-[4px] md:mb-[5px]">la</span>
-        <span class="text-[1.7rem] md:text-[2.1rem] font-extrabold leading-none">ville</span>
-      </div>
-    </div>
+  <a href="/" aria-label="A vous la ville — accueil" class="no-underline shrink-0">
+    <Image
+      src={logoBleu}
+      alt="À vous la ville"
+      class="h-11 md:h-12 w-auto"
+      loading="eager"
+    />
   </a>
 
   <!-- Desktop nav -->
@@ -73,18 +72,14 @@ const navItems = [
   aria-modal="true"
   aria-label="Menu"
 >
-  <div class="flex items-center justify-between px-6 py-5">
-    <a href="/" class="no-underline text-navy">
-      <div class="font-display leading-[1] select-none">
-        <div class="flex items-end gap-[3px]">
-          <span class="text-[9px] font-bold mb-[4px]">à</span>
-          <span class="text-[1.7rem] font-extrabold leading-none">vous</span>
-        </div>
-        <div class="flex items-end gap-[3px]">
-          <span class="text-[9px] font-bold mb-[4px]">la</span>
-          <span class="text-[1.7rem] font-extrabold leading-none">ville</span>
-        </div>
-      </div>
+  <div class="flex items-center justify-between px-6 py-4">
+    <a href="/" class="no-underline shrink-0">
+      <Image
+        src={logoBleu}
+        alt="À vous la ville"
+        class="h-11 w-auto"
+        loading="eager"
+      />
     </a>
     <button id="menu-close" class="text-navy p-1" aria-label="Fermer le menu">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">

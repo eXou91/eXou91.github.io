@@ -2,13 +2,15 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import { Image } from 'astro:assets';
+import studioImg from '../../assets/images/studio/studio.webp';
 ---
 
 <Layout
   title="Le studio — A vous la ville"
   description="À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, architectes, collectivités et urbanistes."
 >
-  <div class="min-h-screen flex flex-col font-display text-navy bg-cream md:bg-white">
+  <div class="min-h-screen flex flex-col text-navy bg-cream md:bg-white">
 
     <Header activePage="studio" />
 
@@ -32,18 +34,18 @@ import Footer from '@/components/Footer.astro';
             dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
           </p>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
             Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
             aux usages et à la manière dont on les raconte.
           </p>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
             Mon approche est transversale : une solide culture urbaine,
             une vraie autonomie dans l'analyse et la rédaction,
             et une exigence graphique affirmée.
           </p>
 
-          <div class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+          <div class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
             <p class="m-0 mb-2">J'interviens à toutes les étapes :</p>
             <p class="m-0">→ de la stratégie éditoriale</p>
             <p class="m-0">→ à la mise en page finale,</p>
@@ -51,21 +53,28 @@ import Footer from '@/components/Footer.astro';
             <p class="m-0">→ et le storytelling du projet.</p>
           </div>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-gray-700">
+          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
             Formée en architecture et urbanisme (<strong>ENSAPLV</strong>),
             puis en sciences politiques à <strong>Sciences Po Paris</strong>,
             j'ai développé mon expertise pendant six ans comme responsable développement grands projets
             chez <strong>Legendre</strong> et <strong>SECIB</strong>.
           </p>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 text-gray-700">
+          <p class="text-[0.85rem] leading-relaxed m-0 text-navy">
             Ce parcours m'a donné une compréhension fine des enjeux urbains,
             des dynamiques d'acteurs et des contraintes de production.
           </p>
         </div>
 
-        <!-- Right: portrait placeholder -->
-        <div class="bg-gray-200 w-full" style="aspect-ratio: 3/4; min-height: 500px;" aria-hidden="true"></div>
+        <!-- Right: portrait -->
+        <div class="w-full overflow-hidden" style="aspect-ratio: 3/4; min-height: 500px;">
+          <Image
+            src={studioImg}
+            alt="Portrait — À vous la ville"
+            class="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </div>
 
       </div>
 
@@ -78,8 +87,15 @@ import Footer from '@/components/Footer.astro';
           Le studio
         </h1>
 
-        <!-- Portrait placeholder -->
-        <div class="bg-gray-200 w-full aspect-[3/4] mb-8" aria-hidden="true"></div>
+        <!-- Portrait -->
+        <div class="w-full aspect-[3/4] mb-8 overflow-hidden">
+          <Image
+            src={studioImg}
+            alt="Portrait — À vous la ville"
+            class="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </div>
 
         <p class="font-bold text-[0.95rem] leading-snug m-0 mb-5">
           À mi-chemin entre le conseil, l'édition et le design graphique,
@@ -87,18 +103,18 @@ import Footer from '@/components/Footer.astro';
           dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
         </p>
 
-        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
           Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
           aux usages et à la manière dont on les raconte.
         </p>
 
-        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
           Mon approche est transversale : une solide culture urbaine,
           une vraie autonomie dans l'analyse et la rédaction,
           et une exigence graphique affirmée.
         </p>
 
-        <div class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+        <div class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
           <p class="m-0 mb-1">J'interviens à toutes les étapes :</p>
           <p class="m-0">→ de la stratégie éditoriale</p>
           <p class="m-0">→ à la mise en page finale,</p>
@@ -106,14 +122,14 @@ import Footer from '@/components/Footer.astro';
           <p class="m-0">→ et le storytelling du projet.</p>
         </div>
 
-        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-gray-700">
+        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
           Formée en architecture et urbanisme (<strong>ENSAPLV</strong>),
           puis en sciences politiques à <strong>Sciences Po Paris</strong>,
           j'ai développé mon expertise pendant six ans comme responsable développement grands projets
           chez <strong>Legendre</strong> et <strong>SECIB</strong>.
         </p>
 
-        <p class="text-[0.82rem] leading-relaxed m-0 text-gray-700">
+        <p class="text-[0.82rem] leading-relaxed m-0 text-navy">
           Ce parcours m'a donné une compréhension fine des enjeux urbains,
           des dynamiques d'acteurs et des contraintes de production.
         </p>
