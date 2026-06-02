@@ -40,7 +40,7 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
   title="Expertises — A vous la ville"
   description="De la stratégie éditoriale à la mise en forme finale, j'aide les équipes à produire des dossiers clairs, solides et convaincants."
 >
-  <div class="min-h-screen flex flex-col font-display text-navy">
+  <div class="min-h-screen flex flex-col font-display text-navy bg-cream md:bg-white">
 
     <Header activePage="expertises" />
 
@@ -125,12 +125,12 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
           {services.map(({ title, subtitle, body, tags, iconRight }) => (
             <div>
               <!-- Mobile card -->
-              <div class="md:hidden flex gap-4 items-start bg-cream p-5 rounded-sm">
+              <div class="md:hidden flex gap-4 items-start bg-white p-4 rounded-md">
                 <div class="w-14 h-14 rounded-xl bg-blush border border-coral shrink-0" aria-hidden="true"></div>
                 <div>
                   <p class="font-extrabold text-[1rem] m-0 mb-[2px]" set:html={title} />
-                  <p class="font-bold text-[0.8rem] text-coral m-0 mb-2">{subtitle}</p>
-                  <p class="text-[0.78rem] leading-snug m-0 text-gray-700">{body}</p>
+                  <p class="font-bold text-[0.78rem] text-coral m-0 mb-2">{subtitle}</p>
+                  <p class="text-[0.76rem] leading-snug m-0 text-gray-600">{body}</p>
                 </div>
               </div>
 
@@ -171,27 +171,20 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
       </section>
 
       <!-- ── Permanence stratégique ───────────────────────────── -->
-      <section class="px-6 md:px-10 py-10 md:py-16">
-        <!-- Mobile intro label -->
-        <p class="md:hidden text-[10px] font-bold tracking-[0.15em] uppercase text-gray-400 m-0 mb-8">
-          Mais aussi une offre de présence régulière au sein de vos équipes
-        </p>
+      <!-- Mobile: blush bg, decorative letter visible; Desktop: white bg, large letter left -->
+      <section class="bg-blush md:bg-white px-6 md:px-10 py-10 md:py-16">
 
-        <div class="md:grid md:gap-12 md:items-center" style="grid-template-columns: 220px 1fr;">
-
-          <!-- Decorative letter (desktop only) -->
-          <div class="hidden md:flex items-center justify-center select-none" aria-hidden="true">
+        <!-- Desktop layout -->
+        <div class="hidden md:grid md:gap-12 md:items-center" style="grid-template-columns: 220px 1fr;">
+          <div class="flex items-center justify-center select-none" aria-hidden="true">
             <span class="font-extrabold text-coral leading-none" style="font-size: 14rem; line-height: 0.8;">à</span>
           </div>
-
           <div>
-            <p class="hidden md:block text-[11px] font-bold tracking-[0.13em] uppercase text-coral italic m-0 mb-3">
+            <p class="text-[11px] font-bold tracking-[0.13em] uppercase text-coral italic m-0 mb-3">
               Mais aussi une offre de présence régulière au sein de vos équipes
             </p>
-            <h2
-              class="font-extrabold text-coral m-0 mb-4 leading-[0.92]"
-              style="font-size: clamp(2rem, 4vw, 3.5rem);"
-            >
+            <h2 class="font-extrabold text-coral m-0 mb-4 leading-[0.92]"
+                style="font-size: clamp(2rem, 4vw, 3.5rem);">
               Permanence stratégique
             </h2>
             <p class="font-bold text-[0.95rem] leading-snug m-0 mb-4">
@@ -206,8 +199,6 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
               Ce format permet d'accompagner les équipes dans la durée, au plus près des projets,
               en apportant à la fois un regard stratégique, une capacité de rédaction et une mise en forme opérationnelle.
             </p>
-
-            <!-- Benefit bullets -->
             <div class="flex flex-col gap-4">
               {benefits.map(({ title, desc }) => (
                 <div class="flex gap-3 items-start">
@@ -215,6 +206,33 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
                   <div>
                     <p class="font-bold text-[0.85rem] m-0 mb-[2px]">{title}</p>
                     <p class="text-[0.78rem] leading-snug m-0 text-gray-600">{desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile layout -->
+        <div class="md:hidden flex gap-4 items-start">
+          <span class="font-extrabold text-coral select-none shrink-0 leading-none"
+                style="font-size: 6rem; line-height: 0.85;" aria-hidden="true">à</span>
+          <div>
+            <h2 class="font-extrabold text-coral m-0 mb-3 leading-[0.92]"
+                style="font-size: clamp(1.4rem, 6vw, 1.8rem);">
+              Permanence stratégique
+            </h2>
+            <p class="font-bold text-[0.82rem] leading-snug m-0 mb-4">
+              Un appui régulier au sein de vos équipes, pour sécuriser le fond,
+              gagner du temps et renforcer la cohérence des dossiers.
+            </p>
+            <div class="flex flex-col gap-3">
+              {benefits.map(({ title, desc }) => (
+                <div class="flex gap-3 items-start">
+                  <div class="w-7 h-7 rounded-full bg-white border border-coral shrink-0 mt-0.5" aria-hidden="true"></div>
+                  <div>
+                    <p class="font-bold text-[0.82rem] m-0 mb-[1px]">{title}</p>
+                    <p class="text-[0.74rem] leading-snug m-0 text-gray-700">{desc}</p>
                   </div>
                 </div>
               ))}

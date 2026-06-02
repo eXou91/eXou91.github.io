@@ -8,7 +8,7 @@ import Footer from '@/components/Footer.astro';
   title="A vous la ville — Concevoir le récit de vos projets urbains"
   description="Design graphique & édition stratégique pour la ville, l'architecture et l'urbanisme."
 >
-  <div class="min-h-screen flex flex-col font-display text-navy">
+  <div class="min-h-screen flex flex-col font-display text-navy bg-cream md:bg-white">
 
     <Header />
 
@@ -31,21 +31,19 @@ import Footer from '@/components/Footer.astro';
         Nous transformons la complexité des enjeux urbains en récits clairs, vivants et sensibles.
       </p>
 
-      <!-- Mobile CTAs: first filled coral, second outlined -->
-      <div class="flex flex-col items-center gap-3 pt-3">
+      <!-- Mobile CTAs -->
+      <div class="flex flex-col gap-3 mb-8">
         <a href="/realisations"
-          class="inline-flex items-center justify-between w-52 border-2 border-navy text-navy no-underline
-                  px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
-                  hover:bg-navy hover:text-white transition-colors duration-150">
-          <span>Réalisations</span>
-          <span aria-hidden="true">→</span>
+          class="w-full flex justify-center bg-coral text-white no-underline
+                 py-4 font-bold text-[11px] tracking-[0.18em] uppercase
+                 hover:opacity-90 transition-opacity">
+          Voir les réalisations
         </a>
         <a href="/contact"
-          class="inline-flex items-center justify-between w-52 border-2 border-navy text-navy no-underline
-                  px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
-                  hover:bg-navy hover:text-white transition-colors duration-150">
-          <span>Un projet&nbsp;?</span>
-          <span aria-hidden="true">→</span>
+          class="w-full flex justify-center border-2 border-navy text-navy no-underline
+                 py-[0.9rem] font-bold text-[11px] tracking-[0.18em] uppercase
+                 hover:bg-navy hover:text-white transition-colors">
+          Parler de votre projet
         </a>
       </div>
 
@@ -55,17 +53,17 @@ import Footer from '@/components/Footer.astro';
       <!-- Ce que je fais -->
       <section class="mt-12">
         <h2 class="font-extrabold text-[2rem] leading-none m-0 mb-7">Ce que je fais</h2>
-        <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-3">
           {[
-            { title: 'Stratégie éditoriale',  desc: 'Structurer l\'intention, clarifier les messages et construire un fil conducteur.' },
-            { title: 'Écriture et contenu',   desc: 'Formuler avec précision, rendre lisible et convaincre.'                           },
-            { title: 'Design et mise en forme', desc: 'Donner de la forme au fond par un design clair, cohérent et impactant.'         },
+            { title: 'Stratégie éditoriale',    desc: 'Structurer l\'intention, clarifier les messages et construire un fil conducteur.' },
+            { title: 'Écriture et contenu',     desc: 'Formuler avec précision, rendre lisible et convaincre.'                           },
+            { title: 'Design et mise en forme', desc: 'Donner de la forme au fond par un design clair, cohérent et impactant.'           },
           ].map(({ title, desc }) => (
-            <div class="flex gap-4 items-start">
+            <div class="flex gap-4 items-center bg-white p-4 rounded-md">
               <div class="w-12 h-12 rounded-lg bg-blush border border-coral shrink-0" aria-hidden="true"></div>
               <div>
-                <p class="font-bold text-[0.9rem] m-0 mb-1">{title}</p>
-                <p class="text-[0.8rem] leading-snug m-0 text-gray-600">{desc}</p>
+                <p class="font-bold text-[0.88rem] m-0 mb-0.5">{title}</p>
+                <p class="text-[0.76rem] leading-snug m-0 text-gray-600">{desc}</p>
               </div>
             </div>
           ))}
@@ -73,19 +71,21 @@ import Footer from '@/components/Footer.astro';
       </section>
 
       <!-- Le studio teaser -->
-      <section class="mt-10 bg-cream rounded-sm overflow-hidden">
-        <div class="p-6">
-          <h2 class="font-extrabold text-[1.6rem] leading-tight m-0 mb-3">Le studio</h2>
-          <p class="text-[0.8rem] leading-relaxed m-0 mb-4 text-gray-700">
-            À vous la ville est un studio indépendant, spécialisé dans le conseil, le design graphique
-            et l'édition appliquées à l'urbanisme, à l'architecture et à la fabrique de la ville.
-          </p>
+      <section class="mt-10 bg-white rounded-md overflow-hidden flex">
+        <div class="p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h2 class="font-extrabold text-[1.4rem] leading-tight m-0 mb-2">Le studio</h2>
+            <p class="text-[0.76rem] leading-relaxed m-0 mb-4 text-gray-700">
+              À vous la ville est un studio indépendant, spécialisé dans le conseil, le design
+              graphique et l'édition appliquées à l'urbanisme, à l'architecture et à la fabrique de la ville.
+            </p>
+          </div>
           <a href="/le-studio"
              class="inline-flex items-center gap-2 font-bold text-[0.8rem] text-navy no-underline hover:opacity-60">
             Découvrir le studio <span aria-hidden="true">→</span>
           </a>
         </div>
-        <div class="bg-gray-200 h-40 w-full" aria-hidden="true"></div>
+        <div class="bg-gray-200 w-[38%] shrink-0" aria-hidden="true"></div>
       </section>
     </div>
 

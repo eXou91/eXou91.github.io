@@ -53,7 +53,7 @@ const projects = [
   title="Réalisations — A vous la ville"
   description="De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet."
 >
-  <div class="min-h-screen flex flex-col font-display text-navy">
+  <div class="min-h-screen flex flex-col font-display text-navy bg-cream md:bg-white">
 
     <Header activePage="realisations" />
 
@@ -83,17 +83,19 @@ const projects = [
       <div class="flex flex-col gap-12 md:gap-24">
         {projects.map(({ category, type, desc, tags, imageLeft }, i) => (
           <article>
-            <!-- Mobile: image top, text below -->
-            <div class="md:hidden">
-              <div class="bg-gray-200 w-full aspect-[4/3] mb-4" aria-hidden="true"></div>
-              <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-coral m-0 mb-1">
-                {category}
-              </p>
-              <h2 class="font-extrabold text-[1.4rem] leading-tight m-0 mb-3">{type}</h2>
-              <p class="text-[0.8rem] leading-relaxed m-0 mb-3 text-gray-700">{desc}</p>
-              <p class="text-[0.75rem] font-bold text-coral m-0">
-                {tags.join(' · ')}
-              </p>
+            <!-- Mobile: image left, text right -->
+            <div class="md:hidden flex gap-4 items-start">
+              <div class="bg-gray-200 w-[38%] shrink-0 aspect-square rounded-sm" aria-hidden="true"></div>
+              <div class="min-w-0">
+                <p class="text-[9px] font-bold tracking-[0.1em] uppercase text-coral m-0 mb-1 leading-tight">
+                  {category}
+                </p>
+                <h2 class="font-extrabold text-[1.05rem] leading-tight m-0 mb-2">{type}</h2>
+                <p class="text-[0.72rem] leading-snug m-0 mb-2 text-gray-700">{desc}</p>
+                <p class="text-[0.68rem] font-bold text-coral m-0 leading-snug">
+                  {tags.join(' · ')}
+                </p>
+              </div>
             </div>
 
             <!-- Desktop: alternating image/text -->
