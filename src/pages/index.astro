@@ -2,6 +2,18 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import { Image } from 'astro:assets';
+import introWebImg    from '../../assets/images/index/web/intro_index.webp';
+import introMobileImg from '../../assets/images/index/mobile/intro_index_mobile.webp';
+import ampouleImg     from '../../assets/images/expertises/Ampoule@300x.webp';
+import crayonImg      from '../../assets/images/expertises/Crayon@300x.webp';
+import immeubleImg    from '../../assets/images/expertises/Immeuble@300x.webp';
+
+const services = [
+  { title: 'Stratégie éditoriale',    desc: 'Structurer l\'intention, clarifier les messages et construire un fil conducteur.', icon: ampouleImg  },
+  { title: 'Écriture et contenu',     desc: 'Formuler avec précision, rendre lisible et convaincre.',                           icon: crayonImg   },
+  { title: 'Design et mise en forme', desc: 'Donner de la forme au fond par un design clair, cohérent et impactant.',           icon: immeubleImg },
+];
 ---
 
 <Layout
@@ -47,20 +59,23 @@ import Footer from '@/components/Footer.astro';
         </a>
       </div>
 
-      <!-- Image placeholder -->
-      <div class="bg-gray-200 w-full aspect-[4/3]" aria-hidden="true"></div>
+      <!-- Image hero mobile -->
+      <div class="w-full overflow-hidden rounded-sm">
+        <Image
+          src={introMobileImg}
+          alt="Projet urbain"
+          class="w-full h-auto"
+          loading="eager"
+        />
+      </div>
 
       <!-- Ce que je fais -->
       <section class="mt-12">
         <h2 class="font-extrabold text-[2rem] leading-none m-0 mb-7">Ce que je fais</h2>
         <div class="flex flex-col gap-3">
-          {[
-            { title: 'Stratégie éditoriale',    desc: 'Structurer l\'intention, clarifier les messages et construire un fil conducteur.' },
-            { title: 'Écriture et contenu',     desc: 'Formuler avec précision, rendre lisible et convaincre.'                           },
-            { title: 'Design et mise en forme', desc: 'Donner de la forme au fond par un design clair, cohérent et impactant.'           },
-          ].map(({ title, desc }) => (
+          {services.map(({ title, desc, icon }) => (
             <div class="flex gap-4 items-center bg-white p-4 rounded-md">
-              <div class="w-12 h-12 rounded-lg bg-blush border border-coral shrink-0" aria-hidden="true"></div>
+              <Image src={icon} alt="" class="w-12 h-12 shrink-0 object-contain" aria-hidden="true" />
               <div>
                 <p class="font-bold text-[0.88rem] m-0 mb-0.5">{title}</p>
                 <p class="text-[0.76rem] leading-snug m-0 text-navy">{desc}</p>
@@ -93,10 +108,17 @@ import Footer from '@/components/Footer.astro';
          DESKTOP hero  (hidden below md)
     ═════════════════════════════════════════════════════════════ -->
     <main class="hidden md:flex flex-1 flex-col px-10 pt-10 pb-14">
-      <div class="grid gap-14" style="grid-template-columns: 42fr 58fr; min-height: calc(100vh - 5.5rem);">
+      <div class="grid gap-14" style="grid-template-columns: 42fr 58fr;">
 
-        <!-- Image placeholder -->
-        <div class="bg-gray-200 w-full" aria-hidden="true"></div>
+        <!-- Image hero desktop -->
+        <div class="overflow-hidden">
+          <Image
+            src={introWebImg}
+            alt="Projet urbain"
+            class="w-full h-full object-cover object-center"
+            loading="eager"
+          />
+        </div>
 
         <!-- Right: text content -->
         <div class="flex flex-col">
@@ -108,7 +130,7 @@ import Footer from '@/components/Footer.astro';
           </h1>
 
           <!-- Text block: constrained right-aligned -->
-          <div class="mt-auto ml-auto w-[55%] text-right space-y-[1.1rem]">
+          <div class="mt-14 ml-auto w-[55%] text-right space-y-[1.1rem]">
             <h2 class="text-[1.3rem] font-bold leading-snug m-0">
               Design graphique &amp; édition stratégique
               pour la ville, l'architecture et l'urbanisme.
