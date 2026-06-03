@@ -2,6 +2,13 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import { Image } from 'astro:assets';
+import boisHabiteImg      from '../../assets/images/realisations/realisation_bois_habité.webp';
+import oreeDesChampsImg   from '../../assets/images/realisations/realisation_orée_des_champs.webp';
+import livretBiosourceImg from '../../assets/images/realisations/realisation_livret_biosource.webp';
+import anticiperDemainImg from '../../assets/images/realisations/realisation_anticiper_demain.webp';
+import rapportRseImg      from '../../assets/images/realisations/realisation_rapport_rse.webp';
+import bonVivreImg        from '../../assets/images/realisations/realisation_bon_vivre.webp';
 
 const projects = [
   {
@@ -10,6 +17,7 @@ const projects = [
     desc: "Conception éditoriale et graphique d'une réponse à concours en deux tours, sur un nouveau territoire pour le client.",
     tags: ['Structuration du propos', 'design éditorial', 'composition', 'harmonisation visuelle'],
     imageLeft: true,
+    image: boisHabiteImg,
   },
   {
     category: 'À l\'orée des champs',
@@ -17,6 +25,7 @@ const projects = [
     desc: "Conception éditoriale et graphique d'un dossier de candidature conçu pour faire émerger des idées fortes et une identité singulière, afin de distinguer la réponse dans un contexte sans projet architectural encore arrêté.",
     tags: ['Éditorial', 'mise en page', 'hiérarchisation de contenu', 'direction graphique'],
     imageLeft: false,
+    image: oreeDesChampsImg,
   },
   {
     category: 'Construire bio et géosourcé',
@@ -24,6 +33,7 @@ const projects = [
     desc: "Réalisation d'un livret éditorial dédié aux enjeux du construire bio et géosourcé, mené avec l'appui de la directrice développement, grands projets et innovation. Ce travail a été prolongé par l'animation de temps de sensibilisation en interne.",
     tags: ['Édition', 'vulgarisation', 'mise en page', 'structuration éditoriale'],
     imageLeft: true,
+    image: livretBiosourceImg,
   },
   {
     category: 'Anti-coper demain',
@@ -31,6 +41,7 @@ const projects = [
     desc: "Conception éditoriale et graphique d'un dossier de candidature de 1er tour en co-promotion, pour une consultation combinant de fortes attentes techniques, des enjeux de durabilité affirmés et un programme mixte.",
     tags: ['Dossier de candidature', 'narration visuelle', 'mise en page', 'valorisation de projet'],
     imageLeft: false,
+    image: anticiperDemainImg,
   },
   {
     category: 'Rapport RSE 2025 — SECIB Immobilier',
@@ -38,6 +49,7 @@ const projects = [
     desc: "Réalisation complète du rapport RSE 2025 de SECIB Immobilier, de la conception éditoriale à la forme finale, en autonomie, incluant les entretiens avec les équipes, la définition de la trame, la mise en page et la création d'éléments graphiques.",
     tags: ['Rapport RSE', 'stratégie éditoriale', 'rédaction', 'mise en page', 'éléments graphiques'],
     imageLeft: true,
+    image: rapportRseImg,
   },
   {
     category: 'Où il fait bon vivre',
@@ -45,6 +57,7 @@ const projects = [
     desc: "Conception éditoriale et graphique d'un dossier de réponse développé avec une équipe d'architectes, dans une logique de production fluide et réactive pendant le concours.",
     tags: ['Couverture illustrée', 'trame éditoriale', 'rédaction', 'mise en cohérence', 'concours'],
     imageLeft: false,
+    image: bonVivreImg,
   },
 ];
 ---
@@ -81,11 +94,15 @@ const projects = [
 
       <!-- ── Project list ────────────────────────────────────── -->
       <div class="flex flex-col gap-12 md:gap-24">
-        {projects.map(({ category, type, desc, tags, imageLeft }, i) => (
+        {projects.map(({ category, type, desc, tags, imageLeft, image }, i) => (
           <article>
             <!-- Mobile: image left, text right -->
             <div class="md:hidden flex gap-4 items-start">
-              <div class="bg-gray-200 w-[38%] shrink-0 aspect-square rounded-sm" aria-hidden="true"></div>
+              <Image
+                src={image}
+                alt={category}
+                class="w-[38%] shrink-0 aspect-square object-cover rounded-sm"
+              />
               <div class="min-w-0">
                 <p class="text-[9px] font-bold tracking-[0.1em] uppercase text-coral m-0 mb-1 leading-tight">
                   {category}
@@ -106,7 +123,7 @@ const projects = [
             >
               {imageLeft ? (
                 <>
-                  <div class="bg-gray-200 w-full aspect-[4/3]" aria-hidden="true"></div>
+                  <Image src={image} alt={category} class="w-full aspect-[4/3] object-cover" />
                   <div>
                     <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-coral m-0 mb-2">
                       {category}
@@ -136,7 +153,7 @@ const projects = [
                       {tags.join(' · ')}
                     </p>
                   </div>
-                  <div class="bg-gray-200 w-full aspect-[4/3]" aria-hidden="true"></div>
+                  <Image src={image} alt={category} class="w-full aspect-[4/3] object-cover" />
                 </>
               )}
             </div>
