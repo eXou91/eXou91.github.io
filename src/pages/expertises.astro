@@ -3,12 +3,15 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { Image } from 'astro:assets';
-import poucImg  from '../../assets/images/expertises/pouce.webp';
-import timeImg  from '../../assets/images/expertises/time-left.webp';
-import secuImg  from '../../assets/images/expertises/security.webp';
-import starImg  from '../../assets/images/expertises/star.webp';
-import calImg   from '../../assets/images/expertises/mobile/calendar.webp';
-import shakeImg from '../../assets/images/expertises/mobile/handshake.webp';
+import poucImg    from '../../assets/images/expertises/pouce.webp';
+import timeImg    from '../../assets/images/expertises/time-left.webp';
+import secuImg    from '../../assets/images/expertises/security.webp';
+import starImg    from '../../assets/images/expertises/star.webp';
+import calImg     from '../../assets/images/expertises/mobile/calendar.webp';
+import shakeImg   from '../../assets/images/expertises/mobile/handshake.webp';
+import ampouleImg from '../../assets/images/expertises/Ampoule@300x.webp';
+import crayonImg  from '../../assets/images/expertises/Crayon@300x.webp';
+import immeubleImg from '../../assets/images/expertises/Immeuble@300x.webp';
 
 const services = [
   {
@@ -17,6 +20,7 @@ const services = [
     body: 'Clarifier le positionnement d\'une opération, faire émerger les messages clés, construire un fil conducteur, aligner les partenaires autour d\'un récit partagé.',
     tags: 'Positionnement d\'opération · concept éditorial · narration territoriale · stratégie concours',
     iconRight: true,
+    icon: ampouleImg,
   },
   {
     title: 'Écriture &amp; contenu',
@@ -24,6 +28,7 @@ const services = [
     body: 'Rendre un projet lisible, crédible et convaincant grâce à des contenus structurés, hiérarchisés et adaptés à leurs destinataires.',
     tags: 'Réponses à concours · dossiers stratégiques · notes d\'intention · rapports · contenus éditoriaux',
     iconRight: false,
+    icon: crayonImg,
   },
   {
     title: 'Design &amp; mise en forme',
@@ -31,6 +36,7 @@ const services = [
     body: 'Concevoir des documents où la forme soutient vraiment le propos : mise en page, hiérarchisation de l\'information, identité de dossier, éléments graphiques et cohérence d\'ensemble.',
     tags: 'Mise en page de dossiers concours · livrets · rapports · identités graphiques · supports de communication',
     iconRight: true,
+    icon: immeubleImg,
   },
 ];
 
@@ -131,11 +137,11 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
         <h2 class="md:hidden font-extrabold text-[1.4rem] leading-none m-0 mb-6">3 expertises</h2>
 
         <div class="flex flex-col gap-8 md:gap-20">
-          {services.map(({ title, subtitle, body, tags, iconRight }) => (
+          {services.map(({ title, subtitle, body, tags, iconRight, icon }) => (
             <div>
               <!-- Mobile card -->
               <div class="md:hidden flex gap-4 items-start bg-white p-4 rounded-md">
-                <div class="w-14 h-14 rounded-xl bg-blush border border-coral shrink-0" aria-hidden="true"></div>
+                <Image src={icon} alt="" class="w-14 h-14 shrink-0 object-contain" aria-hidden="true" />
                 <div>
                   <p class="font-extrabold text-[1rem] m-0 mb-[2px]" set:html={title} />
                   <p class="font-bold text-[0.78rem] text-coral m-0 mb-2">{subtitle}</p>
@@ -143,19 +149,14 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
                 </div>
               </div>
 
-              <!-- Desktop card -->
-              <div
-                class={`hidden md:grid gap-16 items-center ${
-                  iconRight
-                    ? 'grid-cols-[1fr_200px]'
-                    : 'grid-cols-[200px_1fr]'
-                }`}
-              >
-                {!iconRight && (
-                  <div class="flex justify-center">
-                    <div class="w-40 h-40 rounded-2xl bg-blush border-2 border-coral" aria-hidden="true"></div>
-                  </div>
-                )}
+              <!-- Desktop card: 3-column [icon-or-spacer | text | icon-or-spacer] -->
+              <div class="hidden md:grid grid-cols-[240px_1fr_240px] gap-12 items-center">
+                <div class="flex justify-center items-center">
+                  {!iconRight
+                    ? <Image src={icon} alt="" class="w-48 h-48 object-contain" aria-hidden="true" />
+                    : <span />
+                  }
+                </div>
 
                 <div>
                   <h3
@@ -164,15 +165,16 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
                     set:html={title}
                   />
                   <p class="font-bold text-[0.9rem] text-coral m-0 mb-4">{subtitle}</p>
-                  <p class="text-[0.85rem] leading-relaxed m-0 mb-3 max-w-xl">{body}</p>
-                  <p class="text-[0.75rem] text-gray-400 m-0">{tags}</p>
+                  <p class="text-[0.85rem] leading-relaxed m-0 mb-3">{body}</p>
+                  <p class="text-[0.75rem] text-navy/40 m-0">{tags}</p>
                 </div>
 
-                {iconRight && (
-                  <div class="flex justify-center">
-                    <div class="w-40 h-40 rounded-2xl bg-blush border-2 border-coral" aria-hidden="true"></div>
-                  </div>
-                )}
+                <div class="flex justify-center items-center">
+                  {iconRight
+                    ? <Image src={icon} alt="" class="w-48 h-48 object-contain" aria-hidden="true" />
+                    : <span />
+                  }
+                </div>
               </div>
             </div>
           ))}
@@ -183,10 +185,13 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
       <section class="bg-cream md:bg-white px-6 md:px-10 py-8 md:py-16">
 
         <!-- Desktop layout -->
-        <div class="hidden md:grid md:gap-14 md:items-start" style="grid-template-columns: 220px 1fr;">
-          <Image src={poucImg} alt="" class="w-full" aria-hidden="true" />
+        <div class="hidden md:grid grid-cols-[240px_1fr_240px] gap-12 items-start">
+          <div class="flex justify-center">
+            <Image src={poucImg} alt="" class="w-full" aria-hidden="true" />
+          </div>
           <div>
-            <p class="text-[11px] font-bold tracking-[0.13em] uppercase text-coral italic m-0 mb-3">
+            <p class="font-normal uppercase italic text-coral m-0 mb-4 leading-tight"
+               style="font-size: clamp(1.4rem, 2.8vw, 2.2rem);">
               Mais aussi une offre de présence régulière au sein de vos équipes
             </p>
             <h2 class="font-extrabold text-coral m-0 mb-4 leading-[0.92]"
@@ -211,6 +216,7 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
               en qualité éditoriale des productions internes.
             </p>
           </div>
+          <div aria-hidden="true" />
         </div>
 
         <!-- Mobile layout: rounded card -->
