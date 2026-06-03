@@ -3,7 +3,7 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { Image } from 'astro:assets';
-import poucImg    from '../../assets/images/expertises/pouce.webp';
+import poucImg    from '../../assets/images/expertises/pouce_inverse.webp';
 import timeImg    from '../../assets/images/expertises/time-left.webp';
 import secuImg    from '../../assets/images/expertises/security.webp';
 import starImg    from '../../assets/images/expertises/star.webp';
@@ -182,13 +182,20 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
       </section>
 
       <!-- ── Permanence stratégique ───────────────────────────── -->
-      <section class="bg-cream md:bg-white px-6 md:px-10 py-8 md:py-16">
+      <section class="relative bg-cream md:bg-white px-6 md:px-10 py-8 md:py-16">
+
+        <!-- Desktop: pouce sort du bord gauche -->
+        <div
+          class="hidden md:block absolute top-1/2 w-[240px] pointer-events-none"
+          style="left: -0.85rem; transform: translateY(-65%) rotate(-23deg);"
+          aria-hidden="true"
+        >
+          <Image src={poucImg} alt="" class="w-full h-auto" loading="lazy" />
+        </div>
 
         <!-- Desktop layout -->
         <div class="hidden md:grid grid-cols-[240px_1fr_240px] gap-12 items-start">
-          <div class="flex justify-center">
-            <Image src={poucImg} alt="" class="w-full" aria-hidden="true" />
-          </div>
+          <div aria-hidden="true" />
           <div>
             <p class="font-normal uppercase italic text-coral m-0 mb-4 leading-tight"
                style="font-size: clamp(1.4rem, 2.8vw, 2.2rem);">
