@@ -20,7 +20,7 @@ const services = [
   title="A vous la ville — Concevoir le récit de vos projets urbains"
   description="Design graphique & édition stratégique pour la ville, l'architecture et l'urbanisme."
 >
-  <div class="min-h-screen flex flex-col text-navy bg-cream md:bg-white">
+  <div class="min-h-screen flex flex-col text-navy bg-paper md:bg-white">
 
     <Header />
 
@@ -46,13 +46,13 @@ const services = [
       <!-- Mobile CTAs -->
       <div class="flex flex-col gap-3 mb-8">
         <a href="/realisations"
-          class="w-full flex justify-center bg-coral text-white no-underline
+          class="w-full flex justify-center rounded-full bg-coral text-white no-underline
                  py-4 font-bold text-[11px] tracking-[0.18em] uppercase
                  hover:opacity-90 transition-opacity">
           Voir les réalisations
         </a>
         <a href="/contact"
-          class="w-full flex justify-center border-2 border-navy text-navy no-underline
+          class="w-full flex justify-center rounded-full border-2 border-navy text-navy no-underline
                  py-[0.9rem] font-bold text-[11px] tracking-[0.18em] uppercase
                  hover:bg-navy hover:text-white transition-colors">
           Parler de votre projet
@@ -60,7 +60,7 @@ const services = [
       </div>
 
       <!-- Image hero mobile -->
-      <div class="w-full overflow-hidden rounded-sm">
+      <div class="w-full overflow-hidden rounded-xl">
         <Image
           src={introMobileImg}
           alt="Projet urbain"
@@ -74,7 +74,7 @@ const services = [
         <h2 class="font-extrabold text-[2rem] leading-none m-0 mb-7">Ce que je fais</h2>
         <div class="flex flex-col gap-3">
           {services.map(({ title, desc, icon }) => (
-            <div class="flex gap-4 items-center bg-white p-4 rounded-md">
+            <div class="flex gap-4 items-center bg-cream p-4 rounded-xl">
               <Image src={icon} alt="" class="w-12 h-12 shrink-0 object-contain" aria-hidden="true" />
               <div>
                 <p class="font-bold text-[0.88rem] m-0 mb-0.5">{title}</p>
@@ -86,7 +86,7 @@ const services = [
       </section>
 
       <!-- Le studio teaser -->
-      <section class="mt-10 bg-white rounded-md overflow-hidden flex">
+      <section class="mt-10 bg-cream rounded-xl overflow-hidden flex">
         <div class="p-5 flex-1 flex flex-col justify-between">
           <div>
             <h2 class="font-extrabold text-[1.4rem] leading-tight m-0 mb-2">Le studio</h2>

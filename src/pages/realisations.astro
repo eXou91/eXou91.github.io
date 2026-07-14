@@ -66,7 +66,7 @@ const projects = [
   title="Réalisations — A vous la ville"
   description="De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet."
 >
-  <div class="min-h-screen flex flex-col text-navy bg-cream md:bg-white">
+  <div class="min-h-screen flex flex-col text-navy bg-paper md:bg-white">
 
     <Header activePage="realisations" />
 
@@ -97,18 +97,18 @@ const projects = [
         {projects.map(({ category, type, desc, tags, imageLeft, image }, i) => (
           <article>
             <!-- Mobile: image left, text right -->
-            <div class="md:hidden flex gap-4 items-start">
+            <div class="md:hidden flex overflow-hidden rounded-xl bg-cream">
               <Image
                 src={image}
                 alt={category}
-                class="w-[38%] shrink-0 aspect-square object-cover rounded-sm"
+                class="w-[38%] shrink-0 self-stretch h-auto object-cover"
               />
-              <div class="min-w-0">
-                <p class="text-[9px] font-bold tracking-[0.1em] uppercase text-coral m-0 mb-1 leading-tight">
+              <div class="min-w-0 p-4">
+                <p class="text-[9px] font-semibold tracking-[0.02em] text-royal m-0 mb-1 leading-tight">
                   {category}
                 </p>
-                <h2 class="font-extrabold text-[1.05rem] leading-tight m-0 mb-2">{type}</h2>
-                <p class="text-[0.72rem] leading-snug m-0 mb-2 text-navy">{desc}</p>
+                <h2 class="font-extrabold text-[1.05rem] leading-tight m-0 mb-2 text-royal">{type}</h2>
+                <p class="text-[0.72rem] leading-snug m-0 mb-2 text-royal">{desc}</p>
                 <p class="text-[0.68rem] font-bold text-coral m-0 leading-snug">
                   {tags.join(' · ')}
                 </p>

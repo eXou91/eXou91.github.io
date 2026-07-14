@@ -5,8 +5,10 @@ export default {
     extend: {
       colors: {
         navy:  '#26387F',
+        royal: '#001F98',
         coral: '#E51D41',
-        cream: '#FFF5ED',
+        paper: '#FFF5ED',
+        cream: '#FFFFFF',
         blush: '#F7C4A8',
         rose:  '#F0858C',
       },
