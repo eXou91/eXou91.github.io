@@ -4,6 +4,7 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { Image } from 'astro:assets';
 import poucImg    from '../../assets/images/expertises/pouce_inverse.webp';
+import poucMobileImg from '../../assets/images/expertises/pouce.webp';
 import timeImg    from '../../assets/images/expertises/time-left.webp';
 import secuImg    from '../../assets/images/expertises/security.webp';
 import starImg    from '../../assets/images/expertises/star.webp';
@@ -226,37 +227,42 @@ const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urban
           <div aria-hidden="true" />
         </div>
 
-        <!-- Mobile layout: rounded card -->
-        <div class="md:hidden rounded-2xl overflow-hidden flex items-stretch" style="background-color: rgb(240 133 140 / 0.2);">
-          <!-- Left: pouce filling full column height with object-cover -->
-          <div class="w-[45%] shrink-0">
-            <Image
-              src={poucImg}
-              alt=""
-              width={400}
-              class="block w-full h-full object-cover object-center"
-              aria-hidden="true"
-            />
-          </div>
-          <!-- Right: all content -->
-          <div class="flex-1 pt-5 pb-5 pr-4">
+        <!-- Mobile layout: title on page bg, benefits in a card, pouce overlapping both -->
+        <div class="md:hidden">
+          <div class="relative z-30 pr-32 mb-6">
             <h2 class="font-extrabold text-coral m-0 mb-2 leading-[0.92]"
                 style="font-size: clamp(1.3rem, 5vw, 1.6rem);">
               Permanence stratégique
             </h2>
-            <p class="font-bold text-[0.75rem] leading-snug m-0 mb-4 text-coral">
+            <p class="font-bold text-[0.75rem] leading-snug m-0 text-coral">
               Un appui régulier au sein de vos équipes, pour sécuriser le fond,
               gagner du temps et renforcer la cohérence des dossiers.
             </p>
-            <div class="flex flex-col gap-3">
+          </div>
+
+          <div class="relative">
+            <!-- Card background -->
+            <div class="absolute inset-0 rounded-2xl z-0" style="background-color: rgb(240 133 140 / 0.2);" aria-hidden="true"></div>
+
+            <!-- Decorative pouce, overlaps title above and card below -->
+            <div
+              class="absolute z-10 w-[100px] pointer-events-none"
+              style="top: -2.25rem; right: -1rem; transform: rotate(35deg);"
+              aria-hidden="true"
+            >
+              <Image src={poucMobileImg} alt="" class="w-full h-auto" loading="lazy" />
+            </div>
+
+            <!-- Benefits list, above the pouce -->
+            <div class="relative z-20 p-5 flex flex-col gap-4">
               {benefits.map(({ title, desc, icon }) => (
-                <div class="flex gap-2 items-start">
+                <div class="flex gap-3 items-start">
                   <div class="w-8 shrink-0 mt-0.5">
                     <Image src={icon} alt="" width={32} class="w-full h-auto" aria-hidden="true" />
                   </div>
                   <div>
-                    <p class="font-bold text-[0.73rem] m-0 mb-[2px] text-navy">{title}</p>
-                    <p class="text-[0.67rem] leading-snug m-0 text-navy">{desc}</p>
+                    <p class="font-bold text-[0.8rem] m-0 mb-[2px] text-navy">{title}</p>
+                    <p class="text-[0.72rem] leading-snug m-0 text-navy">{desc}</p>
                   </div>
                 </div>
               ))}

@@ -20,7 +20,7 @@ const services = [
   title="A vous la ville — Concevoir le récit de vos projets urbains"
   description="Design graphique & édition stratégique pour la ville, l'architecture et l'urbanisme."
 >
-  <div class="min-h-screen flex flex-col text-navy bg-paper md:bg-white">
+  <div class="min-h-screen md:h-screen md:overflow-hidden flex flex-col text-navy bg-paper md:bg-white">
 
     <Header />
 
@@ -107,8 +107,8 @@ const services = [
     <!-- ════════════════════════════════════════════════════════════
          DESKTOP hero  (hidden below md)
     ═════════════════════════════════════════════════════════════ -->
-    <main class="hidden md:flex flex-1 flex-col px-10 pt-10 pb-14">
-      <div class="grid gap-14" style="grid-template-columns: 42fr 58fr;">
+    <main class="hidden md:flex flex-1 flex-col px-10 pt-6 pb-8 min-h-0">
+      <div class="grid gap-10 h-full" style="grid-template-columns: 42fr 58fr;">
 
         <!-- Image hero desktop -->
         <div class="overflow-hidden">
@@ -121,44 +121,44 @@ const services = [
         </div>
 
         <!-- Right: text content -->
-        <div class="flex flex-col">
+        <div class="flex flex-col justify-center">
           <h1 class="font-extrabold text-navy m-0 leading-[0.92]"
-              style="font-size: clamp(3.5rem, 5.5vw, 5.75rem);">
+              style="font-size: clamp(2.6rem, 4.2vw, 4.2rem);">
             Concevoir<br>
             le récit de vos<br>
             projets urbains.
           </h1>
 
           <!-- Text block: constrained right-aligned -->
-          <div class="mt-14 ml-auto w-[55%] text-right space-y-[1.1rem]">
-            <h2 class="text-[1.3rem] font-bold leading-snug m-0">
+          <div class="mt-8 ml-auto w-[55%] text-right space-y-[0.7rem]">
+            <h2 class="text-[1.1rem] font-bold leading-snug m-0">
               Design graphique &amp; édition stratégique
               pour la ville, l'architecture et l'urbanisme.
             </h2>
-            <p class="text-[0.82rem] leading-relaxed m-0">
+            <p class="text-[0.78rem] leading-relaxed m-0">
               J'accompagne les acteurs de la ville dans la conception et la
               mise en forme de leurs projets.
             </p>
-            <p class="text-[0.82rem] leading-relaxed m-0">
+            <p class="text-[0.78rem] leading-relaxed m-0">
               Architecte de formation, forte de 6 ans en réponse à concours
               en promotion immobilière, je combine conseil stratégique,
               rédaction experte et design éditorial pour produire des
-              documents clairs, solides et engageants
+              documents clairs, solides et engageants.
             </p>
           </div>
 
           <!-- CTAs: centered on the full right column -->
-          <div class="flex flex-col items-center gap-3 pt-8">
+          <div class="flex flex-col items-center gap-2 pt-5">
             <a href="/realisations"
-               class="inline-flex items-center justify-between w-72 border-2 border-navy text-navy no-underline
-                      px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
+               class="inline-flex items-center justify-center gap-2 w-64 border-2 border-navy text-navy no-underline
+                      px-6 py-3 font-bold text-[10.5px] tracking-[0.2em] uppercase
                       hover:bg-navy hover:text-white transition-colors duration-150">
               <span>Réalisations</span>
               <span aria-hidden="true">→</span>
             </a>
             <a href="/contact"
-               class="inline-flex items-center justify-between w-72 border-2 border-navy text-navy no-underline
-                      px-6 py-[0.9rem] font-bold text-[10.5px] tracking-[0.2em] uppercase
+               class="inline-flex items-center justify-center gap-2 w-64 border-2 border-navy text-navy no-underline
+                      px-6 py-3 font-bold text-[10.5px] tracking-[0.2em] uppercase
                       hover:bg-navy hover:text-white transition-colors duration-150">
               <span>Un projet&nbsp;?</span>
               <span aria-hidden="true">→</span>
