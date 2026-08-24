@@ -2,6 +2,18 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+
+// Clé publique Web3Forms (elle est visible dans le HTML par conception : c'est un
+// identifiant de boîte de réception, pas un secret). Si elle devait être révoquée,
+// il suffit d'en régénérer une sur https://web3forms.com — le formulaire retombe
+// automatiquement sur l'ouverture du logiciel de messagerie en cas de valeur absente.
+const WEB3FORMS_KEY = '79a90915-b326-4592-9a3f-7f9e1dc356e4';
+const contactEmail = 'contact@avouslaville.fr';
+
+const champ =
+  'w-full h-[44px] md:h-[46px] rounded-[7px] border border-[#dcdce2] focus:border-navy outline-none px-4 text-[0.85rem] transition-colors';
+const etiquette =
+  'block text-[11px] md:text-[11.5px] font-bold tracking-[0.05em] md:tracking-[0.06em] uppercase text-navy mb-2 md:mb-2.5';
 ---
 
 <Layout
@@ -34,11 +46,11 @@ import Footer from '@/components/Footer.astro';
           <!-- Direct contact -->
           <div class="space-y-3.5 md:space-y-4">
             <a
-              href="mailto:contact@avouslaville.fr"
+              href={`mailto:${contactEmail}`}
               class="flex items-center gap-3 md:gap-3.5 text-[14px] md:text-[0.9rem] font-bold text-navy no-underline hover:text-coral transition-colors"
             >
               <span class="w-[34px] h-[34px] md:w-[38px] md:h-[38px] rounded-full border-[1.5px] border-navy flex items-center justify-center text-[13px]" aria-hidden="true">@</span>
-              contact@avouslaville.fr
+              {contactEmail}
             </a>
             <a
               href="https://www.linkedin.com/company/%C3%A0-vous-la-ville/about/"
@@ -56,44 +68,35 @@ import Footer from '@/components/Footer.astro';
         <div class="pt-7 md:pt-0 md:mt-0">
           <form
             id="contact-form"
-            method="GET"
-            action="mailto:contact@avouslaville.fr"
+            method="POST"
+            action="https://api.web3forms.com/submit"
+            data-key={WEB3FORMS_KEY}
+            data-email={contactEmail}
             class="flex flex-col gap-5 md:gap-[26px]"
           >
+            <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+            <input type="hidden" name="subject" value="Nouveau message depuis avouslaville.fr" />
+            <input type="hidden" name="from_name" value="Site À vous la ville" />
+            {/* Piège à robots : invisible pour un humain, rempli par les spambots. */}
+            <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
             <div>
-              <label for="name" class="block text-[11px] md:text-[11.5px] font-bold tracking-[0.05em] md:tracking-[0.06em] uppercase text-navy mb-2 md:mb-2.5">
-                Nom / structure
-              </label>
-              <input
-                id="name" name="name" type="text" required
-                class="w-full h-[44px] md:h-[46px] rounded-[7px] border border-[#dcdce2] focus:border-navy outline-none px-4 text-[0.85rem] transition-colors"
-              />
+              <label for="name" class={etiquette}>Nom / structure</label>
+              <input id="name" name="name" type="text" required autocomplete="organization" class={champ} />
             </div>
 
             <div>
-              <label for="email" class="block text-[11px] md:text-[11.5px] font-bold tracking-[0.05em] md:tracking-[0.06em] uppercase text-navy mb-2 md:mb-2.5">
-                Email
-              </label>
-              <input
-                id="email" name="email" type="email" required
-                class="w-full h-[44px] md:h-[46px] rounded-[7px] border border-[#dcdce2] focus:border-navy outline-none px-4 text-[0.85rem] transition-colors"
-              />
+              <label for="email" class={etiquette}>Email</label>
+              <input id="email" name="email" type="email" required autocomplete="email" class={champ} />
             </div>
 
             <div>
-              <label for="subject" class="block text-[11px] md:text-[11.5px] font-bold tracking-[0.05em] md:tracking-[0.06em] uppercase text-navy mb-2 md:mb-2.5">
-                Objet
-              </label>
-              <input
-                id="subject" name="subject" type="text"
-                class="w-full h-[44px] md:h-[46px] rounded-[7px] border border-[#dcdce2] focus:border-navy outline-none px-4 text-[0.85rem] transition-colors"
-              />
+              <label for="objet" class={etiquette}>Objet</label>
+              <input id="objet" name="objet" type="text" class={champ} />
             </div>
 
             <div>
-              <label for="message" class="block text-[11px] md:text-[11.5px] font-bold tracking-[0.05em] md:tracking-[0.06em] uppercase text-navy mb-2 md:mb-2.5">
-                Votre message
-              </label>
+              <label for="message" class={etiquette}>Votre message</label>
               <textarea
                 id="message" name="message" rows="6" required
                 class="w-full h-[120px] md:h-[150px] rounded-[7px] border border-[#dcdce2] focus:border-navy outline-none px-4 py-3 text-[0.85rem] resize-y transition-colors"
@@ -101,18 +104,17 @@ import Footer from '@/components/Footer.astro';
             </div>
 
             <button
+              id="submit-btn"
               type="submit"
               class="w-full md:w-auto md:self-start bg-coral text-white font-bold text-[12.5px] md:text-[13px] tracking-[0.06em] uppercase
-                     rounded-lg px-5 md:px-8 py-[15px] md:py-4 hover:opacity-90 transition-opacity duration-150"
+                     rounded-lg px-5 md:px-8 py-[15px] md:py-4 hover:opacity-90 transition-opacity duration-150
+                     disabled:opacity-60 disabled:cursor-wait"
             >
               Envoyer
             </button>
 
-            <p id="form-feedback" hidden class="text-[13px] leading-relaxed text-grey m-0 rounded-lg bg-paper px-4 py-3">
-              Votre logiciel de messagerie devrait s'ouvrir avec le message pré-rempli&nbsp;; il ne reste qu'à
-              l'envoyer. S'il ne s'ouvre pas, écrivez-moi directement à
-              <a href="mailto:contact@avouslaville.fr" class="text-navy font-bold underline">contact@avouslaville.fr</a>.
-            </p>
+            <p id="form-status" hidden role="status" aria-live="polite"
+               class="text-[13px] leading-relaxed m-0 rounded-lg px-4 py-3"></p>
           </form>
         </div>
 
@@ -128,32 +130,72 @@ import Footer from '@/components/Footer.astro';
     var form = document.getElementById('contact-form');
     if (!form) return;
 
-    var feedback = document.getElementById('form-feedback');
+    var btn = document.getElementById('submit-btn');
+    var status = document.getElementById('form-status');
+    var key = form.dataset.key;
+    var email = form.dataset.email;
+    var keyManquante = !key || key.indexOf('REMPLACER') === 0;
+
+    function afficher(texte, type) {
+      status.innerHTML = texte;
+      status.className =
+        'text-[13px] leading-relaxed m-0 rounded-lg px-4 py-3 ' +
+        (type === 'ok' ? 'bg-paper text-navy font-bold' : 'bg-paper text-grey');
+      status.hidden = false;
+    }
+
+    // Repli : sans clé configurée, on ouvre le logiciel de messagerie comme avant.
+    function replimailto() {
+      var corps =
+        'Nom / structure : ' + form.name.value.trim() + '\n' +
+        'Email : ' + form.email.value.trim() + '\n\n' +
+        form.message.value.trim();
+      var objet = form.objet.value.trim() || ('Contact depuis le site — ' + form.name.value.trim());
+      window.location.href =
+        'mailto:' + email + '?subject=' + encodeURIComponent(objet) + '&body=' + encodeURIComponent(corps);
+      afficher(
+        "Votre logiciel de messagerie devrait s'ouvrir avec le message pré-rempli ; il ne reste qu'à l'envoyer. " +
+        "S'il ne s'ouvre pas, écrivez-moi à <a class='text-navy font-bold underline' href='mailto:" + email + "'>" + email + '</a>.',
+        'info'
+      );
+    }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-
-      // Laisse le navigateur signaler les champs requis / l'email mal formé.
       if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
 
-      var name = form.name.value.trim();
-      var email = form.email.value.trim();
-      var subject = form.subject.value.trim();
-      var message = form.message.value.trim();
+      if (keyManquante) { replimailto(); return; }
 
-      var mailSubject = subject || ('Contact depuis le site — ' + name);
-      var mailBody =
-        'Nom / structure : ' + name + '\n' +
-        'Email : ' + email + '\n\n' +
-        message;
+      btn.disabled = true;
+      var libelle = btn.textContent;
+      btn.textContent = 'Envoi…';
+      status.hidden = true;
 
-      var mailto =
-        'mailto:contact@avouslaville.fr' +
-        '?subject=' + encodeURIComponent(mailSubject) +
-        '&body=' + encodeURIComponent(mailBody);
-
-      window.location.href = mailto;
-      if (feedback) feedback.hidden = false;
+      fetch(form.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success) {
+            form.reset();
+            afficher('Merci, votre message est bien parti. Je vous réponds sous 48 h.', 'ok');
+          } else {
+            throw new Error(data.message || 'échec');
+          }
+        })
+        .catch(function () {
+          afficher(
+            "L'envoi n'a pas abouti. Écrivez-moi directement à " +
+            "<a class='text-navy font-bold underline' href='mailto:" + email + "'>" + email + '</a>.',
+            'info'
+          );
+        })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = libelle;
+        });
     });
   })();
 </script>
