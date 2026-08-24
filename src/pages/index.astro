@@ -5,8 +5,9 @@ import Footer from '@/components/Footer.astro';
 import { Image } from 'astro:assets';
 import introWebImg    from '../../assets/images/index/web/intro_index.webp';
 import introMobileImg from '../../assets/images/index/mobile/intro_index_mobile.webp';
-import studioTeaserImg from '../../assets/images/index/mobile/le_studio.jpg';
-import signatureImg   from '../../assets/images/studio/studio.webp';
+// Portrait de Diane : sert à la fois la signature du hero desktop et l'encart
+// « Le studio » du mobile (conforme aux maquettes).
+import portraitImg    from '../../assets/images/studio/studio.webp';
 
 const services = [
   {
@@ -126,7 +127,7 @@ const services = [
           </a>
         </div>
         <div class="flex-1 rounded-[10px] overflow-hidden">
-          <Image src={studioTeaserImg} alt="Diane Breton, fondatrice de À vous la ville" class="w-full h-full object-cover" loading="lazy" />
+          <Image src={portraitImg} alt="Diane Breton, fondatrice de À vous la ville" class="w-full h-full object-cover" loading="lazy" />
         </div>
       </section>
     </div>
@@ -135,21 +136,23 @@ const services = [
          DESKTOP hero  (hidden below md)
     ═════════════════════════════════════════════════════════════ -->
     <main class="hidden md:flex flex-1 flex-col px-14 pt-2.5 pb-[60px] min-h-0">
-      <div class="grid grid-cols-2 gap-14 items-center">
+      <div class="grid grid-cols-2 gap-14 items-stretch flex-1 min-h-0">
 
-        <!-- Image hero desktop -->
-        <div class="overflow-hidden rounded-md" style="height: 440px;">
+        <!-- Image hero desktop : occupe toute la hauteur disponible jusqu'au footer.
+             Le recadrage rogne le ciel et le premier plan végétal, en gardant les
+             habitations dans le cadre. -->
+        <div class="relative overflow-hidden rounded-md">
           <Image
             src={introWebImg}
             alt="Projet urbain"
-            class="w-full h-full object-cover"
-            style="object-position: center 40%;"
+            class="absolute inset-0 w-full h-full object-cover"
+            style="object-position: center 42%;"
             loading="eager"
           />
         </div>
 
-        <!-- Right: text content -->
-        <div>
+        <!-- Right: text content, centré verticalement en face de la photo -->
+        <div class="flex flex-col justify-center">
           <h1 class="font-extrabold text-navy m-0 leading-[0.92] tracking-[-0.015em]"
               style="font-size: clamp(2.6rem, 3.6vw, 3.375rem);">
             Concevoir le récit<br>
@@ -183,7 +186,7 @@ const services = [
           </div>
 
           <div class="flex items-center gap-2.5 max-w-[420px]">
-            <Image src={signatureImg} alt="Diane Breton" class="w-[46px] h-[46px] rounded-full object-cover shrink-0" loading="lazy" />
+            <Image src={portraitImg} alt="Diane Breton" class="w-[46px] h-[46px] rounded-full object-cover shrink-0" loading="lazy" />
             <span class="text-[12.5px] leading-snug text-grey">
               <b class="text-navy">Diane Breton</b><br>Architecte de formation, fondatrice de À vous la ville
             </span>

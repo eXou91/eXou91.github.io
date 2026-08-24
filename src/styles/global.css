@@ -85,3 +85,20 @@
     font-family: 'Neue Haas Display', ui-sans-serif, system-ui, sans-serif;
   }
 }
+
+/* ── Composants ────────────────────────────────────────── */
+@layer components {
+  /* Titre de page, uniformisé sur toutes les pages intérieures
+     (Expertises, Réalisations, Le studio, Carnet de bord, Contact). */
+  .page-title {
+    font-size: clamp(2.4rem, 11.3vw, 3.2rem);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+  }
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: clamp(3rem, 5.5vw, 4.875rem);
+      line-height: 0.9;
+    }
+  }
+}

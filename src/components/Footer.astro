@@ -14,6 +14,8 @@ const navLinks = [
   { label: 'Carnet de bord', href: '/carnet-de-bord', key: 'carnet'       },
   { label: 'Contact',        href: '/contact',        key: 'contact'      },
 ];
+
+const linkedinUrl = 'https://www.linkedin.com/company/%C3%A0-vous-la-ville/about/';
 ---
 
 <!-- ── Desktop footer ──────────────────────────────────── -->
@@ -34,7 +36,7 @@ const navLinks = [
   </nav>
 
   <div class="flex flex-col items-end gap-3.5">
-    <a href="#" aria-label="LinkedIn"
+    <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
        class="w-[26px] h-[26px] bg-navy rounded-md flex items-center justify-center no-underline">
       <span class="text-white text-[11.5px] font-extrabold">in</span>
     </a>
@@ -64,7 +66,7 @@ const navLinks = [
     </nav>
   </div>
 
-  <a href="#" aria-label="LinkedIn"
+  <a href={linkedinUrl} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
      class="w-6 h-6 bg-navy rounded-[5px] flex items-center justify-center no-underline mt-3">
     <span class="text-white text-[11px] font-extrabold">in</span>
   </a>
