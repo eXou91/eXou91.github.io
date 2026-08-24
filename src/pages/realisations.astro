@@ -99,9 +99,9 @@ const projects = [
               <!-- Mobile: image on top, text below -->
               <div class="md:hidden">
                 <div class="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-[0_8px_20px_rgba(41,54,130,0.16)] mb-3.5">
-                  <Image src={image} alt={category} class="w-full h-full object-cover" />
+                  <Image src={image} alt={category} width={780} class="w-full h-full object-cover" />
                 </div>
-                <p class="font-extrabold text-[17px] leading-[1.2] m-0 mb-[5px] tracking-[-0.005em]">{category}</p>
+                <h3 class="font-extrabold text-[17px] leading-[1.2] m-0 mb-[5px] tracking-[-0.005em]">{category}</h3>
                 <p class="text-[10.5px] font-bold tracking-[0.06em] uppercase text-mute m-0 mb-3">{type}</p>
                 <p class="text-[13.5px] leading-[1.58] text-grey m-0 mb-3">{desc}</p>
                 <p class="text-[10.5px] leading-[1.5] text-mute m-0">{tags}</p>
@@ -110,10 +110,10 @@ const projects = [
               <!-- Desktop: alternating image/text -->
               <div class={`hidden md:flex gap-12 items-center ${imageLeft ? '' : 'flex-row-reverse'}`}>
                 <div class="flex-1 aspect-[4/3] rounded-[14px] overflow-hidden shadow-[0_10px_28px_rgba(41,54,130,0.16)]">
-                  <Image src={image} alt={category} class="w-full h-full object-cover" />
+                  <Image src={image} alt={category} width={1280} class="w-full h-full object-cover" />
                 </div>
                 <div class="flex-1">
-                  <p class="font-extrabold text-[1.3rem] leading-tight m-0 mb-1.5 tracking-[-0.005em]">{category}</p>
+                  <h3 class="font-extrabold text-[1.3rem] leading-tight m-0 mb-1.5 tracking-[-0.005em]">{category}</h3>
                   <p class="text-[11.5px] font-bold tracking-[0.07em] uppercase text-mute m-0 mb-4">{type}</p>
                   <p class="text-[0.9rem] leading-relaxed text-grey m-0 mb-3.5 max-w-[460px]">{desc}</p>
                   <p class="text-[11.5px] text-mute m-0">{tags}</p>

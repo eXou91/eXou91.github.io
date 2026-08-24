@@ -24,6 +24,7 @@ const navItems = [
       src={logoBleu}
       alt="À vous la ville"
       class="h-[30px] md:h-[34px] w-auto"
+      width={160}
       loading="eager"
     />
   </a>
@@ -78,6 +79,7 @@ const navItems = [
         src={logoBleu}
         alt="À vous la ville"
         class="h-[30px] w-auto"
+        width={160}
         loading="eager"
       />
     </a>
@@ -112,23 +114,50 @@ const navItems = [
     var closeBtn = document.getElementById('menu-close');
     var nav      = document.getElementById('mobile-nav');
 
+    var header = document.querySelector('header');
+    var main = document.querySelector('main');
+
+    // Masque le reste de la page aux lecteurs d'écran et empêche la tabulation
+    // de sortir du menu vers du contenu invisible derrière lui.
+    function setBackgroundInert(on) {
+      [header, main].forEach(function (el) {
+        if (!el) return;
+        if (on) { el.setAttribute('inert', ''); el.setAttribute('aria-hidden', 'true'); }
+        else { el.removeAttribute('inert'); el.removeAttribute('aria-hidden'); }
+      });
+    }
+
     function open() {
       nav.classList.remove('hidden');
       nav.classList.add('flex');
       openBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
+      setBackgroundInert(true);
+      closeBtn && closeBtn.focus();
     }
     function close() {
       nav.classList.add('hidden');
       nav.classList.remove('flex');
       openBtn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
+      setBackgroundInert(false);
+      openBtn && openBtn.focus();
     }
 
     openBtn && openBtn.addEventListener('click', open);
     closeBtn && closeBtn.addEventListener('click', close);
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') close();
+      if (e.key === 'Escape' && !nav.classList.contains('hidden')) close();
+    });
+
+    // Boucle la tabulation à l'intérieur du menu
+    nav.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var f = nav.querySelectorAll('a[href], button');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
   })();
 </script>

@@ -4,15 +4,15 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { getCollection } from 'astro:content';
 
-const articles = await getCollection('carnet-de-bord');
-articles.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const latest = articles[0];
-const formattedDate = latest?.data.date.toLocaleDateString('fr-FR', {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-  timeZone: 'UTC',
-});
+// Un article = un fichier .md dans src/content/carnet-de-bord/.
+// Le nom du fichier devient l'URL (ex. mon-article.md -> /carnet-de-bord/mon-article).
+// Du plus récent au plus ancien ; à date égale, ordre alphabétique stable.
+const articles = (await getCollection('carnet-de-bord')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id),
+);
+
+const formatDate = (d: Date) =>
+  d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
 ---
 
 <Layout
@@ -40,26 +40,28 @@ const formattedDate = latest?.data.date.toLocaleDateString('fr-FR', {
         </p>
       </div>
 
-      <!-- Encart article -->
-      {latest && (
-        <div class="mb-[26px] md:mb-16 md:pt-2.5">
-          <div class="border border-navy/[0.12] rounded-[14px] md:rounded-2xl bg-white shadow-[0_4px_16px_rgba(41,54,130,0.08)] md:shadow-[0_4px_20px_rgba(41,54,130,0.08)] px-5 py-[22px] md:p-9 flex flex-col gap-2 md:gap-3 max-w-[640px]">
-            <span class="inline-flex self-start bg-blush text-navy text-[9.5px] md:text-[10.5px] font-extrabold tracking-[0.05em] uppercase px-2 md:px-2.5 py-[3px] md:py-1 rounded-[5px]">
-              {latest.data.tag}
-            </span>
-            <h3 class="font-extrabold text-navy m-0 leading-[1.2] md:leading-[1.15]" style="font-size: clamp(1.125rem, 4.6vw, 1.625rem);">
-              {latest.data.title}
-            </h3>
-            <p class="text-[13.5px] md:text-[0.95rem] leading-[1.5] md:leading-relaxed text-grey m-0">
-              <span class="md:hidden">{latest.data.excerptShort ?? latest.data.excerpt}</span><span class="hidden md:inline">{latest.data.excerpt}</span>
-            </p>
-            <div class="flex items-center justify-between mt-1 md:mt-2">
-              <span class="text-[11px] md:text-[12px] font-semibold text-mute">{formattedDate}</span>
-              <a href={`/carnet-de-bord/${latest.id}`} class="text-[12.5px] md:text-[13px] font-bold text-navy no-underline hover:opacity-70 shrink-0">
-                Lire l'article &rarr;
-              </a>
+      <!-- Liste des articles -->
+      {articles.length > 0 && (
+        <div class="mb-[26px] md:mb-16 md:pt-2.5 flex flex-col gap-4 md:gap-5">
+          {articles.map((article) => (
+            <div class="border border-navy/[0.12] rounded-[14px] md:rounded-2xl bg-white shadow-[0_4px_16px_rgba(41,54,130,0.08)] md:shadow-[0_4px_20px_rgba(41,54,130,0.08)] px-5 py-[22px] md:p-9 flex flex-col gap-2 md:gap-3 max-w-[640px]">
+              <span class="inline-flex self-start bg-blush text-navy text-[9.5px] md:text-[10.5px] font-extrabold tracking-[0.05em] uppercase px-2 md:px-2.5 py-[3px] md:py-1 rounded-[5px]">
+                {article.data.tag}
+              </span>
+              <h2 class="font-extrabold text-navy m-0 leading-[1.2] md:leading-[1.15]" style="font-size: clamp(1.125rem, 4.6vw, 1.625rem);">
+                {article.data.title}
+              </h2>
+              <p class="text-[13.5px] md:text-[0.95rem] leading-[1.5] md:leading-relaxed text-grey m-0">
+                <span class="md:hidden">{article.data.excerptShort ?? article.data.excerpt}</span><span class="hidden md:inline">{article.data.excerpt}</span>
+              </p>
+              <div class="flex items-center justify-between mt-1 md:mt-2">
+                <span class="text-[11px] md:text-[12px] font-semibold text-mute">{formatDate(article.data.date)}</span>
+                <a href={`/carnet-de-bord/${article.id}`} class="text-[12.5px] md:text-[13px] font-bold text-navy no-underline hover:opacity-70 shrink-0">
+                  Lire l'article &rarr;
+                </a>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       )}
 
