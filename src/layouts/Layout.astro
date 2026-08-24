@@ -55,5 +55,17 @@ const imageUrl = new URL(image, Astro.site).href;
   </head>
   <body class="bg-white text-gray-900 antialiased">
     <slot />
+
+    {/* Mesure d'audience GoatCounter : sans cookie, donc sans bandeau de consentement.
+        Chargé uniquement dans les builds de production, pour que les visites en
+        développement local ne soient jamais comptabilisées. */}
+    {import.meta.env.PROD && (
+      <script
+        is:inline
+        data-goatcounter="https://avouslaville.goatcounter.com/count"
+        async
+        src="https://gc.zgo.at/count.js"
+      ></script>
+    )}
   </body>
 </html>
