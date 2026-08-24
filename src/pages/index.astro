@@ -5,14 +5,36 @@ import Footer from '@/components/Footer.astro';
 import { Image } from 'astro:assets';
 import introWebImg    from '../../assets/images/index/web/intro_index.webp';
 import introMobileImg from '../../assets/images/index/mobile/intro_index_mobile.webp';
-import ampouleImg     from '../../assets/images/expertises/Ampoule@300x.webp';
-import crayonImg      from '../../assets/images/expertises/Crayon@300x.webp';
-import immeubleImg    from '../../assets/images/expertises/Immeuble@300x.webp';
+import studioTeaserImg from '../../assets/images/index/mobile/le_studio.jpg';
+import signatureImg   from '../../assets/images/studio/studio.webp';
 
 const services = [
-  { title: 'Stratégie éditoriale',    desc: 'Structurer l\'intention, clarifier les messages et construire un fil conducteur.', icon: ampouleImg  },
-  { title: 'Écriture et contenu',     desc: 'Formuler avec précision, rendre lisible et convaincre.',                           icon: crayonImg   },
-  { title: 'Design et mise en forme', desc: 'Donner de la forme au fond par un design clair, cohérent et impactant.',           icon: immeubleImg },
+  {
+    title: 'Réponse à concours',
+    desc: "Analyser le dossier de consultation, définir l'angle, construire l'argumentaire qui fait la différence.",
+    icon: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3a2 2 0 0 1-2 4M7 5H4a2 2 0 0 0 2 4"/>',
+  },
+  {
+    title: 'Stratégie éditoriale',
+    desc: "Structurer l'intention, clarifier les messages et construire un fil conducteur.",
+    icon: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.4.3.6.8.6 1.3V16h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3Z"/>',
+  },
+  {
+    title: 'Écriture et contenu',
+    desc: 'Formuler avec précision, rendre lisible et convaincre.',
+    icon: '<path d="m17 3 4 4-11 11-5 1 1-5L17 3Z"/>',
+  },
+  {
+    title: 'Design et mise en forme',
+    desc: 'Donner de la forme au fond par un design clair, cohérent et impactant.',
+    icon: '<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h2M8 12h2M8 16h2M14 8h2M14 12h2M14 16h2"/>',
+  },
+  {
+    title: 'Accompagnement process &amp; IA',
+    desc: "Auditer vos méthodes de travail, organiser l'information et intégrer l'IA quand elle fait vraiment gagner du temps.",
+    icon: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+    isNew: true,
+  },
 ];
 ---
 
@@ -20,65 +42,68 @@ const services = [
   title="A vous la ville — Concevoir le récit de vos projets urbains"
   description="Design graphique & édition stratégique pour la ville, l'architecture et l'urbanisme."
 >
-  <div class="min-h-screen md:h-screen md:overflow-hidden flex flex-col text-navy bg-paper md:bg-white">
+  <div class="min-h-screen flex flex-col text-navy bg-white">
 
     <Header />
 
     <!-- ════════════════════════════════════════════════════════════
-         MOBILE hero  (hidden on md+)
+         MOBILE  (hidden on md+)
     ═════════════════════════════════════════════════════════════ -->
-    <div class="md:hidden px-6 pt-8 pb-10">
-      <h1 class="font-extrabold leading-[0.92] m-0 mb-5" style="font-size: clamp(3rem, 11vw, 3.8rem);">
-        Concevoir<br>
-        le récit de vos<br>
-        projets urbains.
+    <div class="md:hidden px-[18px] pt-1.5 pb-2">
+      <h1 class="font-extrabold leading-[0.92] tracking-[-0.015em] mt-1.5 mb-4" style="font-size: clamp(2rem, 9.6vw, 2.4rem);">
+        Concevoir le récit de vos projets urbains.
       </h1>
 
-      <h2 class="font-bold text-[0.9rem] leading-snug m-0 mb-3">
-        Design graphique &amp; édition stratégique pour la ville, l'architecture et l'urbanisme.
-      </h2>
+      <p class="font-bold text-[15px] leading-[1.4] m-0 mb-2.5">
+        Conseil stratégique, réponse à concours et design éditorial pour les promoteurs, bailleurs, architectes et élus.
+      </p>
 
-      <p class="text-[0.82rem] leading-relaxed m-0 mb-6">
-        À vous la ville accompagne les acteurs publics et privés dans la valorisation de leurs projets.
-        Nous transformons la complexité des enjeux urbains en récits clairs, vivants et sensibles.
+      <p class="text-[14px] leading-[1.55] m-0 mb-[18px] text-grey">
+        <b class="text-navy">Qu'est-ce qui fait gagner un concours quand le projet, lui, ne suffit plus&nbsp;?</b>
+        Architecte de formation, forte de 6 ans à répondre à des concours côté maîtrise d'ouvrage, je vous aide
+        à gagner vos concours, structurer vos dossiers, raconter vos réalisations et optimiser la façon
+        dont vos équipes travaillent, IA comprise.
       </p>
 
       <!-- Mobile CTAs -->
-      <div class="flex flex-col gap-3 mb-8">
-        <a href="/realisations"
-          class="w-full flex justify-center rounded-full bg-coral text-white no-underline
-                 py-4 font-bold text-[11px] tracking-[0.18em] uppercase
-                 hover:opacity-90 transition-opacity">
-          Voir les réalisations
-        </a>
+      <div class="flex flex-col gap-2.5 mb-[18px]">
         <a href="/contact"
-          class="w-full flex justify-center rounded-full border-2 border-navy text-navy no-underline
-                 py-[0.9rem] font-bold text-[11px] tracking-[0.18em] uppercase
+          class="w-full flex items-center justify-center gap-1.5 rounded-full bg-coral text-white no-underline
+                 py-3.5 px-[18px] font-bold text-[12.5px] tracking-[0.06em] uppercase
+                 hover:opacity-90 transition-opacity">
+          Parler de votre projet &rarr;
+        </a>
+        <a href="/realisations"
+          class="w-full flex items-center justify-center rounded-full border-[1.5px] border-navy text-navy no-underline
+                 py-3.5 px-[18px] font-bold text-[12.5px] tracking-[0.06em] uppercase
                  hover:bg-navy hover:text-white transition-colors">
-          Parler de votre projet
+          Voir les réalisations
         </a>
       </div>
 
       <!-- Image hero mobile -->
-      <div class="w-full overflow-hidden rounded-xl">
+      <div class="w-full h-[220px] overflow-hidden rounded-md mb-[26px]">
         <Image
           src={introMobileImg}
           alt="Projet urbain"
-          class="w-full h-auto"
+          class="w-full h-full object-cover"
+          style="object-position: center 42%;"
           loading="eager"
         />
       </div>
 
       <!-- Ce que je fais -->
-      <section class="mt-12">
-        <h2 class="font-extrabold text-[2rem] leading-none m-0 mb-7">Ce que je fais</h2>
+      <section class="mb-2">
+        <h2 class="font-extrabold text-[24px] leading-none mt-3.5 mb-3.5">Ce que je fais</h2>
         <div class="flex flex-col gap-3">
-          {services.map(({ title, desc, icon }) => (
-            <div class="flex gap-4 items-center bg-cream p-4 rounded-xl">
-              <Image src={icon} alt="" class="w-12 h-12 shrink-0 object-contain" aria-hidden="true" />
+          {services.map(({ title, desc, icon, isNew }) => (
+            <div class="flex gap-3 items-start bg-white border border-[#f0f0f3] shadow-[0_2px_10px_rgba(41,54,130,0.10)] p-4 rounded-[14px]">
+              <div class="w-[38px] h-[38px] shrink-0 bg-blush rounded-[9px] flex items-center justify-center" aria-hidden="true">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#293682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
+              </div>
               <div>
-                <p class="font-bold text-[0.88rem] m-0 mb-0.5">{title}</p>
-                <p class="text-[0.76rem] leading-snug m-0 text-navy">{desc}</p>
+                <p class="font-bold text-[15px] text-navy m-0 mb-1" set:html={isNew ? `${title} <span class="inline-block bg-coral text-white text-[9.5px] font-extrabold tracking-[0.06em] uppercase rounded px-1.5 py-0.5 ml-1.5 align-middle">nouveau</span>` : title} />
+                <p class="text-[13px] leading-[1.45] m-0 text-grey">{desc}</p>
               </div>
             </div>
           ))}
@@ -86,83 +111,82 @@ const services = [
       </section>
 
       <!-- Le studio teaser -->
-      <section class="mt-10 bg-cream rounded-xl overflow-hidden flex">
-        <div class="p-5 flex-1 flex flex-col justify-between">
-          <div>
-            <h2 class="font-extrabold text-[1.4rem] leading-tight m-0 mb-2">Le studio</h2>
-            <p class="text-[0.76rem] leading-relaxed m-0 mb-4 text-navy">
-              À vous la ville est un studio indépendant, spécialisé dans le conseil, le design
-              graphique et l'édition appliquées à l'urbanisme, à l'architecture et à la fabrique de la ville.
-            </p>
-          </div>
-          <a href="/le-studio"
-             class="inline-flex items-center gap-2 font-bold text-[0.8rem] text-navy no-underline hover:opacity-60">
-            Découvrir le studio <span aria-hidden="true">→</span>
+      <section class="flex gap-3 items-stretch mt-2.5 mb-2">
+        <div class="flex-[1.3] flex flex-col justify-center">
+          <h3 class="font-extrabold text-[19px] m-0 mb-2 leading-tight">Le studio</h3>
+          <p class="text-[13px] leading-[1.5] m-0 mb-2.5 text-grey">
+            Je suis architecte de formation et fondatrice de À vous la ville. Après 6 ans à répondre à des concours
+            et à piloter l'innovation et le marketing produit chez Legendre Immobilier puis SECIB Immobilier,
+            j'ai choisi de mettre cette double culture, architecture et fabrication concrète de la ville,
+            au service des promoteurs, bailleurs, architectes et élus. Je conseille, j'écris, je mets en page,
+            et j'accompagne aussi l'optimisation de vos méthodes de travail, IA comprise.
+          </p>
+          <a href="/le-studio" class="font-bold text-[13px] text-navy no-underline hover:opacity-60">
+            Me découvrir &rarr;
           </a>
         </div>
-        <div class="bg-gray-200 w-[38%] shrink-0" aria-hidden="true"></div>
+        <div class="flex-1 rounded-[10px] overflow-hidden">
+          <Image src={studioTeaserImg} alt="Diane Breton, fondatrice de À vous la ville" class="w-full h-full object-cover" loading="lazy" />
+        </div>
       </section>
     </div>
 
     <!-- ════════════════════════════════════════════════════════════
          DESKTOP hero  (hidden below md)
     ═════════════════════════════════════════════════════════════ -->
-    <main class="hidden md:flex flex-1 flex-col px-10 pt-6 pb-8 min-h-0">
-      <div class="grid gap-10 h-full" style="grid-template-columns: 42fr 58fr;">
+    <main class="hidden md:flex flex-1 flex-col px-14 pt-2.5 pb-[60px] min-h-0">
+      <div class="grid grid-cols-2 gap-14 items-center">
 
         <!-- Image hero desktop -->
-        <div class="overflow-hidden">
+        <div class="overflow-hidden rounded-md" style="height: 440px;">
           <Image
             src={introWebImg}
             alt="Projet urbain"
-            class="w-full h-full object-cover object-center"
+            class="w-full h-full object-cover"
+            style="object-position: center 40%;"
             loading="eager"
           />
         </div>
 
         <!-- Right: text content -->
-        <div class="flex flex-col justify-center">
-          <h1 class="font-extrabold text-navy m-0 leading-[0.92]"
-              style="font-size: clamp(2.6rem, 4.2vw, 4.2rem);">
-            Concevoir<br>
-            le récit de vos<br>
-            projets urbains.
+        <div>
+          <h1 class="font-extrabold text-navy m-0 leading-[0.92] tracking-[-0.015em]"
+              style="font-size: clamp(2.6rem, 3.6vw, 3.375rem);">
+            Concevoir le récit<br>
+            de vos projets urbains.
           </h1>
 
-          <!-- Text block: constrained, left-aligned so paragraphs share the same start -->
-          <div class="mt-8 ml-auto w-[55%] text-left space-y-[0.7rem]">
-            <h2 class="text-[1.1rem] font-bold leading-snug m-0">
-              Design graphique &amp; édition stratégique
-              pour la ville, l'architecture et l'urbanisme.
-            </h2>
-            <p class="text-[0.78rem] leading-relaxed m-0">
-              J'accompagne les acteurs de la ville dans la conception et la
-              mise en forme de leurs projets.
-            </p>
-            <p class="text-[0.78rem] leading-relaxed m-0">
-              Architecte de formation, forte de 6 ans en réponse à concours
-              en promotion immobilière, je combine conseil stratégique,
-              rédaction experte et design éditorial pour produire des
-              documents clairs, solides et engageants.
-            </p>
+          <p class="font-bold text-[1.125rem] leading-snug m-0 mt-5 mb-3.5 max-w-[480px]">
+            Conseil stratégique, réponse à concours et design éditorial pour les promoteurs, bailleurs, architectes et élus.
+          </p>
+
+          <p class="text-[0.97rem] leading-relaxed m-0 mb-6 max-w-[480px] text-grey">
+            <b class="text-navy">Qu'est-ce qui fait gagner un concours quand le projet, lui, ne suffit plus&nbsp;?</b>
+            Architecte de formation, forte de 6 ans à répondre à des concours côté maîtrise d'ouvrage, je vous aide
+            à gagner vos concours, structurer vos dossiers, raconter vos réalisations et optimiser la façon
+            dont vos équipes travaillent, IA comprise.
+          </p>
+
+          <div class="flex flex-col gap-3 max-w-[280px] mb-5">
+            <a href="/contact"
+               class="flex items-center justify-center gap-1.5 rounded-full bg-coral text-white no-underline
+                      py-[15px] px-5 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                      hover:opacity-90 transition-opacity">
+              Parler de votre projet &rarr;
+            </a>
+            <a href="/realisations"
+               class="flex items-center justify-center rounded-full border-[1.5px] border-navy text-navy no-underline
+                      py-[15px] px-5 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                      hover:bg-navy hover:text-white transition-colors">
+              Voir les réalisations
+            </a>
           </div>
 
-          <!-- CTAs: centered on the full right column -->
-          <div class="flex flex-col items-center gap-2 pt-5">
-            <a href="/realisations"
-               class="inline-flex items-center justify-center gap-2 w-64 border-2 border-navy text-navy no-underline
-                      px-6 py-3 font-bold text-[10.5px] tracking-[0.2em] uppercase
-                      hover:bg-navy hover:text-white transition-colors duration-150">
-              <span>Réalisations</span>
-              <span aria-hidden="true">→</span>
-            </a>
-            <a href="/contact"
-               class="inline-flex items-center justify-center gap-2 w-64 border-2 border-navy text-navy no-underline
-                      px-6 py-3 font-bold text-[10.5px] tracking-[0.2em] uppercase
-                      hover:bg-navy hover:text-white transition-colors duration-150">
-              <span>Un projet&nbsp;?</span>
-              <span aria-hidden="true">→</span>
-            </a>
+          <div class="flex items-center gap-2.5 max-w-[420px]">
+            <Image src={signatureImg} alt="Diane Breton" class="w-[46px] h-[46px] rounded-full object-cover shrink-0" loading="lazy" />
+            <span class="text-[12.5px] leading-snug text-grey">
+              <b class="text-navy">Diane Breton</b><br>Architecte de formation, fondatrice de À vous la ville
+            </span>
           </div>
         </div>
       </div>

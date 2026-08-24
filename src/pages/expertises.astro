@@ -2,338 +2,249 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import { Image } from 'astro:assets';
-import poucImg    from '../../assets/images/expertises/pouce_inverse.webp';
-import poucMobileImg from '../../assets/images/expertises/pouce.webp';
-import timeImg    from '../../assets/images/expertises/time-left.webp';
-import secuImg    from '../../assets/images/expertises/security.webp';
-import starImg    from '../../assets/images/expertises/star.webp';
-import calImg     from '../../assets/images/expertises/mobile/calendar.webp';
-import shakeImg   from '../../assets/images/expertises/mobile/handshake.webp';
-import ampouleImg from '../../assets/images/expertises/Ampoule@300x.webp';
-import crayonImg  from '../../assets/images/expertises/Crayon@300x.webp';
-import immeubleImg from '../../assets/images/expertises/Immeuble@300x.webp';
+
+// Les maquettes mobiles reprennent des versions abrégées des mêmes textes :
+// `desc`/`body`/`tags` = version desktop, `descS`/`bodyS`/`tagsS` = version mobile.
+const formats = [
+  {
+    num: '01', title: 'Mission ponctuelle',
+    desc: "Pour un besoin ciblé : rédaction, restructuration d'un dossier, mise en page, mise à jour, relecture stratégique ou effort sur une phase précise.",
+    descS: "Pour un besoin ciblé : rédaction, restructuration d'un dossier, mise en page, mise à jour ou relecture stratégique.",
+  },
+  {
+    num: '02', title: 'Accompagnement transversal',
+    desc: "De l'amont à la version finale : stratégie éditoriale, rédaction, coordination, design et finalisation du document.",
+    descS: "De l'amont à la version finale : stratégie éditoriale, rédaction, coordination, design et finalisation.",
+  },
+  {
+    num: '03', title: 'Permanence stratégique',
+    desc: 'Un accompagnement régulier au sein des équipes, pour suivre plusieurs sujets dans le temps et intervenir comme ressource embarquée.',
+    descS: 'Un accompagnement régulier au sein des équipes, comme ressource embarquée.',
+  },
+];
 
 const services = [
   {
+    title: 'Réponse à concours',
+    tagline: 'Sécuriser la victoire.',
+    body: "Analyser le dossier de consultation, définir l'angle qui fait la différence, construire l'argumentaire, assurer la mise en page et, si besoin, produire les visuels (croquis, illustrations...) jusqu'au rendu.",
+    bodyS: "Analyser le dossier, définir l'angle, construire l'argumentaire, assurer la mise en page et, si besoin, les visuels (croquis, illustrations...).",
+    tags: "Analyse de consultation · positionnement de candidature · argumentaire · pilotage de rendu",
+    tagsS: "Analyse de consultation · positionnement · argumentaire · pilotage de rendu",
+    icon: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3a2 2 0 0 1-2 4M7 5H4a2 2 0 0 0 2 4"/>',
+  },
+  {
     title: 'Stratégie éditoriale',
-    subtitle: 'Structurer l\'intention.',
-    body: 'Clarifier le positionnement d\'une opération, faire émerger les messages clés, construire un fil conducteur, aligner les partenaires autour d\'un récit partagé.',
-    tags: 'Positionnement d\'opération · concept éditorial · narration territoriale · stratégie concours',
-    iconRight: true,
-    icon: ampouleImg,
+    tagline: "Structurer l'intention.",
+    body: "Clarifier le positionnement d'une opération, faire émerger les messages clés, construire un fil conducteur, aligner les partenaires autour d'un récit partagé.",
+    bodyS: "Clarifier le positionnement, faire émerger les messages clés, construire un fil conducteur.",
+    tags: "Positionnement d'opération · concept éditorial · narration territoriale",
+    icon: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.4.3.6.8.6 1.3V16h6v-.9c0-.5.2-1 .6-1.3A6 6 0 0 0 12 3Z"/>',
   },
   {
     title: 'Écriture &amp; contenu',
-    subtitle: 'Formuler avec précision.',
+    tagline: 'Formuler avec précision.',
     body: 'Rendre un projet lisible, crédible et convaincant grâce à des contenus structurés, hiérarchisés et adaptés à leurs destinataires.',
-    tags: 'Réponses à concours · dossiers stratégiques · notes d\'intention · rapports · contenus éditoriaux',
-    iconRight: false,
-    icon: crayonImg,
+    bodyS: 'Rendre un projet lisible, crédible et convaincant grâce à des contenus structurés et hiérarchisés.',
+    tags: "Dossiers stratégiques · notes d'intention · rapports · contenus éditoriaux",
+    tagsS: "Dossiers stratégiques · notes d'intention · rapports",
+    icon: '<path d="m17 3 4 4-11 11-5 1 1-5L17 3Z"/>',
   },
   {
     title: 'Design &amp; mise en forme',
-    subtitle: 'Donner de la force au fond.',
-    body: 'Concevoir des documents où la forme soutient vraiment le propos : mise en page, hiérarchisation de l\'information, identité de dossier, éléments graphiques et cohérence d\'ensemble.',
-    tags: 'Mise en page de dossiers concours · livrets · rapports · identités graphiques · supports de communication',
-    iconRight: true,
-    icon: immeubleImg,
+    tagline: 'Donner de la force au fond.',
+    body: 'Concevoir des documents où la forme soutient vraiment le propos : mise en page, hiérarchisation de l\'information, identité de dossier et cohérence d\'ensemble.',
+    bodyS: "Mise en page, hiérarchisation de l'information, identité de dossier et cohérence d'ensemble.",
+    tags: 'Livrets · rapports · identités graphiques · supports de communication',
+    tagsS: 'Livrets · rapports · identités graphiques',
+    icon: '<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h2M8 12h2M8 16h2M14 8h2M14 12h2M14 16h2"/>',
+  },
+  {
+    title: 'Accompagnement process &amp; IA',
+    titleS: 'Process &amp; IA',
+    tagline: 'Optimiser la manière de travailler.',
+    body: "Auditer vos méthodes de travail, organiser l'information et l'accès aux références, et intégrer l'IA quand elle fait vraiment gagner du temps aux équipes.",
+    bodyS: "Auditer les méthodes de travail et intégrer l'IA quand elle fait vraiment gagner du temps.",
+    tags: "Audit des méthodes · organisation de l'information · outils &amp; automatisations · usages raisonnés de l'IA",
+    tagsS: "Audit des méthodes · organisation de l'information · IA",
+    icon: '<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>',
+    isNew: true,
+    wide: true,
   },
 ];
 
 const benefits = [
-  { title: 'Gagner du temps',                   desc: 'J\'interviens au plus près de votre rythme pour alléger votre charge et fluidifier la production de vos dossiers.', icon: timeImg },
-  { title: 'Sécuriser le fond',                 desc: 'Je veille à la justesse des messages, à la solidité du contenu et à la cohérence stratégique de vos documents.',     icon: secuImg },
-  { title: 'Renforcer la qualité des livrables', desc: 'Chaque document gagne en clarté, en impact et en cohérence pour convaincre durablement.',                           icon: starImg },
+  { title: 'Gagner du temps', desc: 'Au plus près de votre rythme, pour alléger la charge et fluidifier la production des dossiers.', descS: 'Alléger la charge et fluidifier la production des dossiers.', icon: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>' },
+  { title: 'Sécuriser le fond', desc: 'Justesse des messages, solidité du contenu et cohérence stratégique des documents.', descS: 'Justesse des messages et cohérence stratégique.', icon: '<path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6l-8-3Z"/>' },
+  { title: 'Renforcer la qualité des livrables', desc: 'Chaque document gagne en clarté, en impact et en cohérence pour convaincre durablement.', descS: "Plus de clarté, d'impact et de cohérence.", icon: '<path d="m12 2 2.9 6.3 6.9.7-5.2 4.7 1.5 6.8L12 17l-6.1 3.5 1.5-6.8L2.2 9l6.9-.7L12 2Z"/>' },
 ];
 
-const formats = [
-  { title: 'Mission ponctuelle',     desc: 'Pour un besoin ciblé : rédaction, restauration d\'un dossier, mise à jour, relecture stratégique ou effort sur une phase précise.', icon: calImg   },
-  { title: 'Permanence stratégique', desc: 'Un appui régulier au sein de vos équipes pour sécuriser le fond, gagner du temps et renforcer la cohérence des dossiers.',           icon: shakeImg },
-];
-
-const audiences = ['Promoteurs', 'Aménageurs', 'Architectes et agences d\'urbanisme', 'Collectivités', 'Entreprises et associations engagées dans la fabrique de la ville'];
+const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbanisme", 'Collectivités', 'Entreprises et associations engagées dans la fabrique de la ville'];
 ---
 
 <Layout
   title="Expertises — A vous la ville"
-  description="De la stratégie éditoriale à la mise en forme finale, j'aide les équipes à produire des dossiers clairs, solides et convaincants."
+  description="Un projet a toujours sa pépite. Je la fais émerger, je la mets en récit et en forme, et j'aide vos équipes à mieux s'organiser au quotidien."
 >
-  <div class="min-h-screen flex flex-col text-navy bg-paper md:bg-white">
+  <div class="min-h-screen flex flex-col text-navy bg-white">
 
     <Header activePage="expertises" />
 
     <main class="flex-1">
 
       <!-- ── Page intro ──────────────────────────────────────── -->
-      <section class="px-6 md:px-10 pt-8 md:pt-12 pb-10 md:pb-16">
+      <section class="px-[18px] md:px-14 pt-1.5 md:pt-8 pb-1 md:pb-8">
+        <h1 class="font-extrabold mt-1.5 md:mt-0 mb-3.5 md:mb-[18px] leading-[0.95] tracking-[-0.015em]" style="font-size: clamp(2.375rem, 9.5vw, 3.25rem);">
+          Expertises.
+        </h1>
+        <p class="text-[14px] md:text-[1rem] leading-[1.55] md:leading-relaxed mt-0 mb-[22px] md:mb-0 max-w-[520px] text-grey">
+          <b class="text-navy">Un projet a toujours sa pépite.</b> Je la fais émerger, je la mets en récit et en forme,
+          et j'aide vos équipes à mieux s'organiser au quotidien.
+        </p>
+      </section>
 
-        <!-- Desktop: two-column intro -->
-        <div class="hidden md:grid gap-16" style="grid-template-columns: 55fr 45fr;">
-          <div>
-            <h1 class="font-extrabold m-0 mb-6 leading-none" style="font-size: clamp(3.5rem, 6vw, 6rem);">
-              Expertises
-            </h1>
-            <p class="font-bold text-[1.05rem] leading-snug m-0">
-              De la stratégie éditoriale à la mise en forme finale,
-              j'aide les équipes à produire des dossiers clairs, solides et convaincants.
-            </p>
-          </div>
-          <div class="pt-4">
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-navy mb-4 m-0">
-              Formats d'intervention
-            </p>
-            <div class="space-y-3 text-[0.8rem] leading-relaxed">
-              <p class="m-0">
-                <strong>Mission ponctuelle pour un besoin ciblé :</strong> rédaction, restructuration d'un dossier,
-                mise en page, mise à jour, relecture stratégique ou effort sur une phase précise.
-              </p>
-              <p class="m-0">
-                <strong>Accompagnement transversal :</strong> De l'amont à la version finale : stratégie éditoriale,
-                rédaction, coordination, design et finalisation du document.
-              </p>
-              <p class="m-0">
-                <strong>Permanence stratégique :</strong> Un accompagnement régulier au sein des équipes,
-                pour suivre plusieurs sujets dans le temps et intervenir comme ressource embarquée.
+      <!-- ── Formats d'intervention ────────────────────────────── -->
+      <section class="mx-[18px] md:mx-14 mb-2 md:mb-8 bg-paper rounded-2xl md:rounded-[18px] px-[18px] py-5 md:p-10">
+        <p class="text-[12px] font-semibold tracking-[0.08em] uppercase text-slate m-0 mb-3.5 md:mb-[18px]">
+          Formats d'intervention
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 md:gap-0">
+          {formats.map(({ num, title, desc, descS }, i) => (
+            <div class={`flex-1 md:px-8 ${i > 0 ? 'md:border-l border-navy/15' : ''} ${i === 0 ? 'md:pl-0' : ''} ${i === formats.length - 1 ? 'md:pr-0' : ''}`}>
+              <p class="font-extrabold text-coral text-[16px] md:text-[1.25rem] m-0 mb-1 md:mb-2">{num}</p>
+              <h4 class="font-bold text-[14px] md:text-[0.95rem] text-navy m-0 mb-[3px] md:mb-1.5">{title}</h4>
+              <p class="text-[12.5px] md:text-[0.82rem] leading-[1.5] md:leading-relaxed text-grey m-0">
+                <span class="md:hidden">{descS ?? desc}</span><span class="hidden md:inline">{desc}</span>
               </p>
             </div>
-          </div>
-        </div>
-
-        <!-- Mobile: single-column intro -->
-        <div class="md:hidden">
-          <h1 class="font-extrabold m-0 mb-5 leading-none" style="font-size: clamp(2.8rem, 10vw, 4rem);">
-            Expertises
-          </h1>
-          <p class="font-bold text-[0.95rem] leading-snug m-0 mb-4">
-            De la stratégie éditoriale à la mise en forme finale,
-            j'aide les équipes à produire des dossiers clairs, solides et convaincants.
-          </p>
-          <p class="text-[0.82rem] leading-relaxed m-0 text-navy">
-            Que ce soit pour un besoin ponctuel ou un appui régulier,
-            j'interviens à vos côtés pour structurer vos messages, clarifier vos contenus
-            et concevoir des documents impactants, au service de vos projets urbains.
-          </p>
+          ))}
         </div>
       </section>
 
-      <!-- ── 2 formats (mobile only) ──────────────────────────── -->
-      <section class="md:hidden px-6 pb-10">
-        <h2 class="font-extrabold text-[1.4rem] leading-none m-0 mb-6">2 formats d'intervention</h2>
-        <div class="flex flex-col gap-4">
-          {formats.map(({ title, desc, icon }) => (
-            <div class="flex gap-4 items-start bg-white border border-gray-100 p-4 rounded-sm">
-              <Image src={icon} alt="" class="w-12 h-12 shrink-0 object-contain" aria-hidden="true" />
+      <!-- ── 5 expertises ──────────────────────────────────────── -->
+      <section class="px-[18px] md:px-14 md:pt-5 pb-2">
+        <h2 class="font-extrabold text-navy mt-[18px] md:mt-0 mb-3.5 md:mb-6" style="font-size: clamp(1.5rem, 6vw, 1.75rem);">5 expertises</h2>
+        <div class="grid md:grid-cols-2 gap-3 md:gap-[18px]">
+          {services.map(({ title, titleS, tagline, body, bodyS, tags, tagsS, icon, isNew, wide }) => {
+            const badge = '<span class="inline-block bg-coral text-white text-[9.5px] font-extrabold tracking-[0.06em] uppercase rounded px-1.5 py-0.5 ml-1.5 align-middle">nouveau</span>';
+            return (
+            <div class={`flex gap-3 md:gap-4 items-start bg-white border border-[#f0f0f3] shadow-[0_2px_10px_rgba(41,54,130,0.10)] rounded-[14px] p-4 md:p-6 ${wide ? 'md:col-span-2' : ''}`}>
+              <div class="w-[38px] h-[38px] md:w-11 md:h-11 shrink-0 bg-blush rounded-[9px] md:rounded-[10px] flex items-center justify-center" aria-hidden="true">
+                <svg class="w-[19px] h-[19px] md:w-[22px] md:h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#293682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
+              </div>
               <div>
-                <p class="font-bold text-[0.9rem] m-0 mb-1">{title}</p>
-                <p class="text-[0.78rem] leading-snug m-0 text-navy">{desc}</p>
+                <h3 class="font-bold text-[15px] md:text-[1.05rem] text-navy m-0 mb-0.5">
+                  <span class="md:hidden" set:html={isNew ? `${titleS ?? title} ${badge}` : (titleS ?? title)} /><span class="hidden md:inline" set:html={isNew ? `${title} ${badge}` : title} />
+                </h3>
+                <p class="font-bold text-[12.5px] md:text-[0.85rem] text-navy m-0 mb-1.5 md:mb-2">{tagline}</p>
+                <p class="text-[13px] md:text-[0.85rem] leading-[1.45] md:leading-relaxed text-grey m-0 mb-2 md:mb-2.5 max-w-[440px]">
+                  <span class="md:hidden" set:html={bodyS ?? body} /><span class="hidden md:inline" set:html={body} />
+                </p>
+                <p class="text-[11px] md:text-[11.5px] leading-[1.5] text-mute m-0">
+                  <span class="md:hidden" set:html={tagsS ?? tags} /><span class="hidden md:inline" set:html={tags} />
+                </p>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
-      <!-- ── 3 expertises (mobile) / service cards (desktop) ──── -->
-      <section class="px-6 md:px-10 pb-10 md:pb-16">
-        <h2 class="md:hidden font-extrabold text-[1.4rem] leading-none m-0 mb-6">3 expertises</h2>
-
-        <div class="flex flex-col gap-8 md:gap-20">
-          {services.map(({ title, subtitle, body, tags, iconRight, icon }) => (
-            <div>
-              <!-- Mobile card -->
-              <div class="md:hidden flex gap-4 items-start bg-white p-4 rounded-md">
-                <Image src={icon} alt="" class="w-14 h-14 shrink-0 object-contain" aria-hidden="true" />
-                <div>
-                  <p class="font-extrabold text-[1rem] m-0 mb-[2px]" set:html={title} />
-                  <p class="font-bold text-[0.78rem] text-coral m-0 mb-2">{subtitle}</p>
-                  <p class="text-[0.76rem] leading-snug m-0 text-navy">{body}</p>
-                </div>
+      <!-- ── Permanence stratégique ────────────────────────────── -->
+      <section class="mx-[18px] md:mx-14 mt-[18px] md:mt-9 mb-2 bg-paper rounded-2xl md:rounded-[18px] px-[18px] py-5 md:p-10">
+        <p class="text-[12px] font-semibold tracking-[0.08em] uppercase text-slate m-0 mb-2">
+          <span class="md:hidden">Mais aussi</span>
+          <span class="hidden md:inline">Mais aussi une offre de présence régulière</span>
+        </p>
+        <h2 class="font-extrabold text-navy m-0 mb-2 md:mb-3" style="font-size: clamp(1.3125rem, 5.4vw, 1.625rem);">
+          Permanence stratégique
+        </h2>
+        <p class="text-[13px] md:text-[0.9rem] leading-[1.55] md:leading-relaxed text-grey m-0 mb-4 md:mb-6 max-w-[640px]">
+          <span class="md:hidden">
+            Un appui régulier au sein de vos équipes, pour sécuriser le fond, gagner du temps et renforcer
+            la cohérence des dossiers.
+          </span>
+          <span class="hidden md:inline">
+            Un appui régulier au sein de vos équipes, quelques jours par mois ou à un rythme plus soutenu selon
+            les besoins, pour sécuriser le fond, gagner du temps et renforcer la cohérence des dossiers :
+            préparation de concours, structuration de dossiers de candidature, coordination légère entre
+            partenaires ou montée en qualité éditoriale des productions internes.
+          </span>
+        </p>
+        <div class="grid md:grid-cols-3 gap-3.5 md:gap-5">
+          {benefits.map(({ title, desc, descS, icon }) => (
+            <div class="flex gap-2.5 md:gap-3 items-start">
+              <div class="w-[34px] h-[34px] md:w-11 md:h-11 shrink-0 bg-white rounded-[9px] md:rounded-[10px] flex items-center justify-center" aria-hidden="true">
+                <svg class="w-[17px] h-[17px] md:w-[22px] md:h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#293682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
               </div>
-
-              <!-- Desktop card: 3-column [icon-or-spacer | text | icon-or-spacer] -->
-              <div class="hidden md:grid grid-cols-[240px_1fr_240px] gap-12 items-center">
-                <div class="flex justify-center items-center">
-                  {!iconRight
-                    ? <Image src={icon} alt="" class="w-48 h-48 object-contain" aria-hidden="true" />
-                    : <span />
-                  }
-                </div>
-
-                <div>
-                  <h3
-                    class="font-extrabold m-0 mb-2 leading-none"
-                    style="font-size: clamp(1.6rem, 2.5vw, 2.4rem);"
-                    set:html={title}
-                  />
-                  <p class="font-bold text-[0.9rem] text-coral m-0 mb-4">{subtitle}</p>
-                  <p class="text-[0.85rem] leading-relaxed m-0 mb-3">{body}</p>
-                  <p class="text-[0.75rem] text-navy/40 m-0">{tags}</p>
-                </div>
-
-                <div class="flex justify-center items-center">
-                  {iconRight
-                    ? <Image src={icon} alt="" class="w-48 h-48 object-contain" aria-hidden="true" />
-                    : <span />
-                  }
-                </div>
+              <div>
+                <h4 class="font-bold text-[13px] md:text-[0.87rem] text-navy m-0 mb-[3px] md:mb-1">{title}</h4>
+                <p class="text-[12px] md:text-[0.78rem] leading-[1.45] md:leading-relaxed text-grey m-0">
+                  <span class="md:hidden">{descS ?? desc}</span><span class="hidden md:inline">{desc}</span>
+                </p>
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      <!-- ── Permanence stratégique ───────────────────────────── -->
-      <section class="relative bg-paper md:bg-white px-6 md:px-10 py-8 md:py-16">
-
-        <!-- Desktop: pouce sort du bord gauche -->
-        <div
-          class="hidden md:block absolute top-1/2 w-[240px] pointer-events-none"
-          style="left: -0.85rem; transform: translateY(-65%) rotate(-23deg);"
-          aria-hidden="true"
-        >
-          <Image src={poucImg} alt="" class="w-full h-auto" loading="lazy" />
-        </div>
-
-        <!-- Desktop layout -->
-        <div class="hidden md:grid grid-cols-[240px_1fr_240px] gap-12 items-start">
-          <div aria-hidden="true" />
-          <div>
-            <p class="font-normal uppercase italic text-coral m-0 mb-4 leading-tight"
-               style="font-size: clamp(1.4rem, 2.8vw, 2.2rem);">
-              Mais aussi une offre de présence régulière au sein de vos équipes
-            </p>
-            <h2 class="font-extrabold text-coral m-0 mb-4 leading-[0.92]"
-                style="font-size: clamp(2rem, 4vw, 3.5rem);">
-              Permanence stratégique
-            </h2>
-            <p class="font-bold text-[0.95rem] leading-snug m-0 mb-4 text-coral">
-              Un appui régulier au sein de vos équipes, pour sécuriser le fond,
-              gagner du temps et renforcer la cohérence des dossiers.
-            </p>
-            <p class="text-[0.82rem] leading-relaxed m-0 mb-3 text-coral">
-              J'interviens aussi sous forme de permanence, quelques jours par mois ou à un rythme
-              plus soutenu selon les besoins.
-            </p>
-            <p class="text-[0.82rem] leading-relaxed m-0 mb-3 text-coral">
-              Ce format permet d'accompagner les équipes dans la durée, au plus près de leurs projets,
-              en apportant à la fois un regard stratégique, une capacité de rédaction et une mise en forme opérationnelle.
-            </p>
-            <p class="text-[0.82rem] leading-relaxed m-0 text-coral">
-              La permanence peut porter sur la préparation de concours, la structuration de dossiers de candidature,
-              la formalisation de supports stratégiques, la coordination légère entre partenaires ou encore la montée
-              en qualité éditoriale des productions internes.
-            </p>
-          </div>
-          <div aria-hidden="true" />
-        </div>
-
-        <!-- Mobile layout: title on page bg, benefits in a card, pouce overlapping both -->
-        <div class="md:hidden">
-          <div class="relative z-30 pr-32 mb-6">
-            <h2 class="font-extrabold text-coral m-0 mb-2 leading-[0.92]"
-                style="font-size: clamp(1.3rem, 5vw, 1.6rem);">
-              Permanence stratégique
-            </h2>
-            <p class="font-bold text-[0.75rem] leading-snug m-0 text-coral">
-              Un appui régulier au sein de vos équipes, pour sécuriser le fond,
-              gagner du temps et renforcer la cohérence des dossiers.
-            </p>
-          </div>
-
-          <div class="relative">
-            <!-- Card background -->
-            <div class="absolute inset-0 rounded-2xl z-0" style="background-color: rgb(240 133 140 / 0.2);" aria-hidden="true"></div>
-
-            <!-- Decorative pouce, overlaps title above and card below -->
-            <div
-              class="absolute z-10 w-[100px] pointer-events-none"
-              style="top: -2.25rem; right: -1rem; transform: rotate(35deg);"
-              aria-hidden="true"
-            >
-              <Image src={poucMobileImg} alt="" class="w-full h-auto" loading="lazy" />
-            </div>
-
-            <!-- Benefits list, above the pouce -->
-            <div class="relative z-20 p-5 flex flex-col gap-4">
-              {benefits.map(({ title, desc, icon }) => (
-                <div class="flex gap-3 items-start">
-                  <div class="w-8 shrink-0 mt-0.5">
-                    <Image src={icon} alt="" width={32} class="w-full h-auto" aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p class="font-bold text-[0.8rem] m-0 mb-[2px] text-navy">{title}</p>
-                    <p class="text-[0.72rem] leading-snug m-0 text-navy">{desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
       <!-- ── Méthode ──────────────────────────────────────────── -->
-      <section class="bg-navy text-white px-6 md:px-10 py-12 md:py-16">
-        <h2
-          class="font-extrabold m-0 mb-8 leading-none"
-          style="font-size: clamp(2.5rem, 6vw, 5rem);"
-        >
-          Méthode
-        </h2>
-
+      <section class="mt-6 md:mt-11 bg-navy text-white px-[18px] md:px-14 pt-[26px] pb-[30px] md:py-[52px]">
         <div class="md:grid md:gap-16" style="grid-template-columns: 45fr 55fr;">
           <div>
-            <p class="font-bold text-[1.05rem] leading-snug m-0 mb-8">
+            <h2 class="font-extrabold m-0 mb-2.5 md:mb-3.5 leading-[1.05]" style="font-size: clamp(1.5rem, 6vw, 2.125rem);">
+              Méthode
+            </h2>
+            <p class="text-[13px] md:text-[0.9rem] leading-[1.5] md:leading-relaxed text-white/75 m-0 mb-[18px] md:mb-6 max-w-[340px]">
               Une implication aux côtés des équipes, comme partenaire éditorial et stratégique.
             </p>
-
-            <p class="text-[10px] font-bold tracking-[0.15em] uppercase text-white/60 m-0 mb-3">
+            <p class="text-[12px] font-semibold tracking-[0.08em] uppercase text-white/60 m-0 mb-2 md:mb-2.5">
               Pour qui&nbsp;?
             </p>
-            <ul class="list-none m-0 p-0 space-y-1">
+            <ul class="list-none m-0 p-0 space-y-[7px] md:space-y-2">
               {audiences.map((a) => (
-                <li class="text-[0.85rem] flex items-center gap-2">
-                  <span class="w-1.5 h-1.5 rounded-full bg-coral shrink-0" aria-hidden="true"></span>
+                <li class="text-[13.5px] md:text-[0.9rem] font-semibold flex items-start gap-2">
+                  <span class="w-[5px] h-[5px] md:w-1.5 md:h-1.5 rounded-full bg-coral shrink-0 mt-[7px] md:mt-2" aria-hidden="true"></span>
                   {a}
                 </li>
               ))}
             </ul>
           </div>
-
-          <div class="mt-8 md:mt-0">
-            <p class="text-[0.85rem] leading-relaxed m-0 mb-4 text-white/80">
-              Chaque intervention s'adapte au contexte du projet, au niveau d'avancement du dossier
-              et à l'organisation de l'équipe. Elle peut être ponctuelle ou suivie, autonome ou
-              coordonnée avec les architectes, paysagistes, bureaux d'études et équipes développement.
-            </p>
-            <p class="text-[0.85rem] leading-relaxed m-0 text-white/80">
-              L'objectif reste le même : sécuriser le fond autant que la forme, faire gagner du temps
-              aux équipes et produire des documents plus clairs, plus cohérents et plus convaincants.
+          <div class="mt-[18px] md:mt-0 flex items-center">
+            <p class="text-[13px] md:text-[0.9rem] leading-[1.55] md:leading-relaxed text-white/85 m-0">
+              <span class="md:hidden">
+                Chaque intervention s'adapte au contexte du projet et à l'organisation de l'équipe.
+                L'objectif reste le même&nbsp;: sécuriser le fond autant que la forme, faire gagner du temps
+                et produire des documents plus clairs et plus convaincants.
+              </span>
+              <span class="hidden md:inline">
+                Chaque intervention s'adapte au contexte du projet, au niveau d'avancement du dossier et à
+                l'organisation de l'équipe. Elle peut être ponctuelle ou suivie, autonome ou coordonnée avec
+                les architectes, paysagistes, bureaux d'études et équipes développement.<br /><br />
+                L'objectif reste le même&nbsp;: sécuriser le fond autant que la forme, faire gagner du temps
+                aux équipes et produire des documents plus clairs, plus cohérents et plus convaincants.
+              </span>
             </p>
           </div>
         </div>
       </section>
 
       <!-- ── CTA bottom ───────────────────────────────────────── -->
-      <section class="px-6 md:px-10 py-14 md:py-20 text-center">
-        <p
-          class="font-extrabold text-coral m-0 mb-8 leading-[1.1]"
-          style="font-size: clamp(1.4rem, 3.5vw, 2.2rem);"
-        >
-          Vous préparez un concours, un dossier stratégique
-          ou vous cherchez un appui régulier au sein de vos équipes&nbsp;?
+      <section class="px-[18px] md:px-14 pt-[30px] pb-2.5 md:py-14 text-center">
+        <p class="font-extrabold text-navy m-0 mb-[18px] md:mb-6 leading-[1.3] md:leading-[1.25] tracking-[-0.015em] max-w-[640px] mx-auto" style="font-size: clamp(1.25rem, 5.1vw, 1.625rem);">
+          <span class="md:hidden">Vous préparez un concours ou cherchez un appui régulier au sein de vos équipes&nbsp;?</span>
+          <span class="hidden md:inline">Vous préparez un concours, un dossier stratégique ou vous cherchez un appui régulier au sein de vos équipes&nbsp;?</span>
         </p>
-        <a
-          href="/contact"
-          class="inline-block bg-coral text-white no-underline
-                 px-10 py-4 font-extrabold text-[1.1rem]
-                 hover:opacity-90 transition-opacity duration-150"
-        >
-          Discutons-en&nbsp;!
+        <a href="/contact"
+           class="flex md:inline-flex items-center justify-center gap-1.5 rounded-full bg-coral text-white no-underline
+                  py-3.5 md:py-[15px] px-[18px] md:px-7 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                  hover:opacity-90 transition-opacity">
+          Discutons-en &rarr;
         </a>
       </section>
 
     </main>
 
-    <Footer />
+    <Footer activePage="expertises" />
   </div>
 </Layout>

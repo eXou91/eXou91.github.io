@@ -1,0 +1,34 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode-go/kimi-k2.7-code",
+  "enabled_providers": [
+    "opencode-go"
+  ],
+  "provider": {
+    "opencode-go": {
+      "whitelist": [
+        "kimi-k2.7-code",
+        "qwen3.7-plus",
+        "glm-5.3"
+      ]
+    }
+  },
+  "mcp": {
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "git": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ]
+    }
+  },
+  "compaction": {
+    "auto": true,
+    "prune": true
+  }
+}

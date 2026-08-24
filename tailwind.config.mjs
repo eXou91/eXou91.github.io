@@ -4,13 +4,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy:  '#26387F',
-        royal: '#001F98',
+        navy:  '#293682',
         coral: '#E51D41',
         paper: '#FFF5ED',
         cream: '#FFFFFF',
         blush: '#F7C4A8',
-        rose:  '#F0858C',
+        rose:  '#FF878C',
+        grey:  '#5A5F75',
+        slate: '#6B6F80',
+        mute:  '#9296A8',
       },
       fontFamily: {
         sans:    ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],

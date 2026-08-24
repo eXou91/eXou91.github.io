@@ -2,69 +2,75 @@
 import { Image } from 'astro:assets';
 import logoBleu from '../../assets/images/logo/logo_bleu.webp';
 
+interface Props {
+  activePage?: 'expertises' | 'realisations' | 'studio' | 'carnet' | 'contact';
+}
+const { activePage } = Astro.props;
+
 const navLinks = [
-  { label: 'Expertises',     href: '/expertises'     },
-  { label: 'Réalisations',   href: '/realisations'   },
-  { label: 'Le studio',      href: '/le-studio'      },
-  { label: 'Carnet de bord', href: '/carnet-de-bord' },
-  { label: 'Contact',        href: '/contact'        },
+  { label: 'Expertises',     href: '/expertises',     key: 'expertises'   },
+  { label: 'Réalisations',   href: '/realisations',   key: 'realisations' },
+  { label: 'Le studio',      href: '/le-studio',      key: 'studio'       },
+  { label: 'Carnet de bord', href: '/carnet-de-bord', key: 'carnet'       },
+  { label: 'Contact',        href: '/contact',        key: 'contact'      },
 ];
 ---
 
 <!-- ── Desktop footer ──────────────────────────────────── -->
-<footer class="hidden md:block px-10 pb-5">
-  <div class="border-t border-gray-200 mb-4"></div>
-  <div class="text-center text-[11px] text-navy leading-[1.8]">
-    <p class="m-0">© 2026 A VOUS LA VILLE</p>
-    <p class="m-0">Conseil &amp; design éditorial pour les acteurs de la fabrique de la ville</p>
-    <p class="m-0">Pensé &amp; designé en Bretagne</p>
+<footer class="hidden md:flex justify-between items-start px-14 pt-[34px] pb-10 border-t border-navy/15">
+  <div>
+    <Image src={logoBleu} alt="À vous la ville" class="h-[26px] w-auto mb-2.5" loading="lazy" />
+    <p class="text-[12.5px] text-grey leading-relaxed m-0 max-w-[300px]">
+      Conseil, concours, design éditorial et optimisation des méthodes de travail pour ceux qui font la ville
+    </p>
+  </div>
+
+  <nav class="flex gap-[34px] text-[13px] font-semibold" aria-label="Navigation du pied de page">
+    {navLinks.map(({ label, href, key }) => (
+      <a href={href} class={`no-underline ${activePage === key ? 'text-coral' : 'text-navy'}`}>
+        {label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="flex flex-col items-end gap-3.5">
+    <a href="#" aria-label="LinkedIn"
+       class="w-[26px] h-[26px] bg-navy rounded-md flex items-center justify-center no-underline">
+      <span class="text-white text-[11.5px] font-extrabold">in</span>
+    </a>
+    <p class="text-[11.5px] text-mute text-right leading-relaxed m-0">
+      © À vous la ville, tous droits réservés · <a href="#" class="text-mute">Mentions légales</a><br>
+      <a href="#" class="text-mute">Politique de confidentialité</a>
+    </p>
   </div>
 </footer>
 
 <!-- ── Mobile footer ──────────────────────────────────── -->
-<footer class="md:hidden">
-  <div class="border-t border-navy mx-6 mb-6"></div>
-
-  <div class="px-6 pb-5 flex justify-between gap-6">
-    <!-- Logo + tagline -->
-    <div class="shrink-0">
-      <a href="/" class="no-underline block mb-3 shrink-0">
-        <Image src={logoBleu} alt="À vous la ville" class="h-9 w-auto" loading="lazy" />
-      </a>
-      <p class="text-[11px] text-navy leading-[1.45] m-0 max-w-[145px]">
-        Conseil, conception éditoriale et graphique pour ceux qui font la ville
+<footer class="md:hidden mt-5 px-[18px] pt-5 pb-[26px] border-t border-navy/15">
+  <div class="flex justify-between gap-2.5 mb-[18px]">
+    <div>
+      <Image src={logoBleu} alt="À vous la ville" class="h-[26px] w-auto mb-2" loading="lazy" />
+      <p class="text-[11.5px] text-grey leading-[1.4] mt-0.5 mb-0 max-w-[160px]">
+        Conseil, concours, design éditorial et optimisation des méthodes de travail pour ceux qui font la ville
       </p>
     </div>
 
-    <!-- Nav + social -->
-    <div>
-      <ul class="list-none m-0 p-0 space-y-[6px] mb-4">
-        {navLinks.map(({ label, href }) => (
-          <li>
-            <a href={href} class="text-[13px] font-semibold text-navy no-underline hover:opacity-60">
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <!-- Social placeholders -->
-      <div class="flex gap-2 mt-3">
-        <a href="#" aria-label="LinkedIn"
-           class="w-7 h-7 bg-navy rounded flex items-center justify-center no-underline">
-          <span class="text-white text-[10px] font-extrabold">in</span>
+    <nav class="text-right shrink-0 text-[12.5px] font-semibold" aria-label="Navigation du pied de page">
+      {navLinks.map(({ label, href, key }) => (
+        <a href={href} class={`block no-underline leading-[2.1] ${activePage === key ? 'text-coral' : 'text-navy'}`}>
+          {label}
         </a>
-        <a href="#" aria-label="Instagram"
-           class="w-7 h-7 border border-navy rounded flex items-center justify-center no-underline">
-          <span class="text-navy text-[10px] font-bold">◎</span>
-        </a>
-      </div>
-    </div>
+      ))}
+    </nav>
   </div>
 
-  <!-- Bottom bar -->
-  <div class="border-t border-gray-200 px-6 py-3 flex flex-wrap gap-x-4 gap-y-1">
-    <span class="text-[10px] text-navy/50">© À vous la ville - Tous droits réservés</span>
-    <a href="#" class="text-[10px] text-navy/50 no-underline hover:underline">Mentions légales</a>
-    <a href="#" class="text-[10px] text-navy/50 no-underline hover:underline">Politiques de confidentialité</a>
-  </div>
+  <a href="#" aria-label="LinkedIn"
+     class="w-6 h-6 bg-navy rounded-[5px] flex items-center justify-center no-underline mt-3">
+    <span class="text-white text-[11px] font-extrabold">in</span>
+  </a>
+
+  <p class="text-[10.5px] text-mute leading-[1.6] mt-3.5 mb-0">
+    © À vous la ville, tous droits réservés · <a href="#" class="text-mute">Mentions légales</a><br>
+    <a href="#" class="text-mute">Politique de confidentialité</a>
+  </p>
 </footer>
