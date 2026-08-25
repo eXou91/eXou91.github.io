@@ -1,0 +1,80 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('carnet-de-bord');
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { title, tag, date } = article.data;
+const { Content } = await render(article);
+
+const formattedDate = date.toLocaleDateString('fr-FR', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+---
+
+<Layout title={`${title} — A vous la ville`} description={article.data.excerpt} type="article">
+  <div class="min-h-screen flex flex-col text-navy bg-white">
+
+    <Header activePage="carnet" />
+
+    <main class="flex-1 px-[18px] md:px-0 pt-5 md:pt-8 pb-14">
+      <div class="max-w-[720px] mx-auto">
+        <a
+          href="/carnet-de-bord"
+          class="inline-flex items-center gap-1.5 text-[12px] md:text-[12.5px] font-bold text-navy no-underline opacity-75 mb-[18px] md:mb-8"
+        >
+          &larr; Carnet de bord
+        </a>
+
+        <span class="inline-flex bg-blush text-navy text-[9.5px] md:text-[10.5px] font-extrabold tracking-[0.05em] uppercase px-2 md:px-2.5 py-[3px] md:py-1 rounded-[5px] mb-3.5 md:mb-5">
+          {tag}
+        </span>
+
+        <h1 class="font-extrabold leading-[1.1] md:leading-[1.05] m-0 mb-3.5 md:mb-5 tracking-[-0.01em]"
+            style="font-size: clamp(1.75rem, 7.2vw, 2.75rem);">
+          {title}
+        </h1>
+
+        <p class="text-[12px] md:text-[13px] text-mute font-semibold mb-6 md:mb-10">{formattedDate}</p>
+
+        <div class="article-body text-grey text-[14.5px] md:text-[16.5px] leading-[1.65] md:leading-[1.75] space-y-[18px] md:space-y-6 [&_a]:text-navy [&_a]:underline [&_em]:text-navy [&_em]:italic">
+          <Content />
+        </div>
+      </div>
+
+      <div class="max-w-[720px] mx-auto mt-2.5 md:mt-9 mb-2 md:mb-10 px-5 py-[22px] md:py-9 md:px-11 bg-white border-[1.5px] border-navy/15 rounded-[14px] flex flex-col items-start gap-3.5 md:gap-[18px]">
+        <p class="font-extrabold text-navy m-0" style="font-size: clamp(1.1875rem, 4.9vw, 1.4rem);">
+          Un concours à préparer&nbsp;?
+        </p>
+        <div class="flex flex-col sm:flex-row gap-2.5 md:gap-3.5 w-full sm:w-auto">
+          <a href="/contact"
+             class="flex justify-center items-center gap-1.5 rounded-full bg-coral text-white no-underline
+                    py-3.5 px-[18px] md:px-6 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                    hover:opacity-90 transition-opacity">
+            Parler de votre projet &rarr;
+          </a>
+          <a href="/realisations"
+             class="flex justify-center items-center rounded-full border-[1.5px] border-navy text-navy no-underline
+                    py-3.5 px-[18px] md:px-6 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                    hover:bg-navy hover:text-white transition-colors">
+            Voir les réalisations
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <Footer activePage="carnet" />
+  </div>
+</Layout>

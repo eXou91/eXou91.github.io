@@ -5,72 +5,76 @@
 /* ── Inter (variable) ──────────────────────────────────── */
 @font-face {
   font-family: 'Inter';
-  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  src: url('/fonts/Inter-Variable.woff2') format('woff2'),
+       url('/fonts/Inter-Variable.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: 'Inter';
-  src: url('/fonts/Inter-Italic-Variable.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
+/* Pas de fichier italique pour Inter : il pesait 387 Ko pour quelques mots en
+   italique dans les articles. Le navigateur incline lui-même le romain. */
 
 /* ── Neue Haas Grotesk Display Pro ─────────────────────── */
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-Roman.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Roman.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-Roman.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-RomanItalic.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-RomanItalic.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-RomanItalic.ttf') format('truetype');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-Medium.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Medium.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-Medium.ttf') format('truetype');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-MediumItalic.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-MediumItalic.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-MediumItalic.ttf') format('truetype');
   font-weight: 500;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-Bold.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Bold.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-Bold.ttf') format('truetype');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-BoldItalic.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-BoldItalic.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-BoldItalic.ttf') format('truetype');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-Black.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-Black.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-Black.ttf') format('truetype');
   font-weight: 800 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Neue Haas Display';
-  src: url('/fonts/neue-haas/NeueHaasDisplay-BlackItalic.ttf') format('truetype');
+  src: url('/fonts/neue-haas/NeueHaasDisplay-BlackItalic.woff2') format('woff2'),
+       url('/fonts/neue-haas/NeueHaasDisplay-BlackItalic.ttf') format('truetype');
   font-weight: 800 900;
   font-style: italic;
   font-display: swap;
@@ -83,5 +87,22 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Neue Haas Display', ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+/* ── Composants ────────────────────────────────────────── */
+@layer components {
+  /* Titre de page, uniformisé sur toutes les pages intérieures
+     (Expertises, Réalisations, Le studio, Carnet de bord, Contact). */
+  .page-title {
+    font-size: clamp(2.4rem, 11.3vw, 3.2rem);
+    line-height: 0.92;
+    letter-spacing: -0.015em;
+  }
+  @media (min-width: 768px) {
+    .page-title {
+      font-size: clamp(3rem, 5.5vw, 4.875rem);
+      line-height: 0.9;
+    }
   }
 }

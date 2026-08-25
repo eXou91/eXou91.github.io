@@ -1,0 +1,46 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+---
+
+<Layout
+  title="Page introuvable — A vous la ville"
+  description="Cette page n'existe pas ou a été déplacée."
+>
+  <div class="min-h-screen flex flex-col text-navy bg-white">
+
+    <Header />
+
+    <main class="flex-1 flex flex-col items-center justify-center text-center px-[18px] md:px-14 py-20">
+      <p class="font-extrabold text-coral m-0 mb-4 leading-none" style="font-size: clamp(3rem, 12vw, 5rem);">404</p>
+
+      <h1 class="page-title font-extrabold m-0 mb-4 md:mb-5">Page introuvable.</h1>
+
+      <p class="font-bold text-[16px] md:text-[1.15rem] leading-[1.4] md:leading-snug m-0 mb-3 md:mb-4 max-w-[520px]">
+        Cette page n'existe pas, ou elle a changé d'adresse.
+      </p>
+      <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed text-grey m-0 mb-7 max-w-[520px]">
+        Vous pouvez revenir à l'accueil, parcourir les réalisations ou m'écrire directement
+        si vous cherchiez quelque chose de précis.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-2.5 md:gap-3.5 w-full sm:w-auto">
+        <a href="/"
+           class="flex items-center justify-center gap-1.5 rounded-full bg-coral text-white no-underline
+                  py-3.5 px-6 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                  hover:opacity-90 transition-opacity">
+          Retour à l'accueil
+        </a>
+        <a href="/realisations"
+           class="flex items-center justify-center rounded-full border-[1.5px] border-navy text-navy no-underline
+                  py-3.5 px-6 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                  hover:bg-navy hover:text-white transition-colors">
+          Voir les réalisations
+        </a>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

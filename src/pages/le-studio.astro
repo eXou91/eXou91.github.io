@@ -8,70 +8,69 @@ import studioImg from '../../assets/images/studio/studio.webp';
 
 <Layout
   title="Le studio — A vous la ville"
-  description="À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, architectes, collectivités et urbanistes."
+  description="À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, bailleurs, architectes et élus dans la production de leurs dossiers."
 >
-  <div class="min-h-screen flex flex-col text-navy bg-paper md:bg-white">
+  <div class="min-h-screen flex flex-col text-navy bg-white">
 
     <Header activePage="studio" />
 
-    <main class="flex-1 px-6 md:px-10 pt-8 md:pt-12 pb-14">
+    <main class="flex-1 px-[18px] md:px-14 pt-1.5 md:pt-8 pb-2">
 
       <!-- ── Desktop: two-column ──────────────────────────────── -->
-      <div class="hidden md:grid gap-16 items-start" style="grid-template-columns: 52fr 48fr;">
+      <div class="hidden md:grid gap-16 items-start mb-9" style="grid-template-columns: 53fr 47fr;">
 
         <!-- Left: all text -->
-        <div>
-          <h1
-            class="font-extrabold m-0 mb-10 leading-none"
-            style="font-size: clamp(3rem, 6vw, 6rem);"
-          >
+        <div class="max-w-[520px]">
+          <h1 class="page-title font-extrabold m-0 mb-7">
             Le studio.
           </h1>
 
-          <p class="font-bold text-[1.05rem] leading-snug m-0 mb-8">
-            À mi-chemin entre le conseil, l'édition et le design graphique,
-            j'accompagne promoteurs, architectes, collectivités, et urbanistes
-            dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
+          <p class="font-bold text-[1.15rem] leading-snug m-0 mb-5">
+            À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, bailleurs,
+            architectes et élus dans la production de leurs dossiers&nbsp;: réponses à concours, rapports,
+            publications ou accompagnement process.
           </p>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
+          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-5">
             Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
             aux usages et à la manière dont on les raconte.
           </p>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
-            Mon approche est transversale : une solide culture urbaine,
-            une vraie autonomie dans l'analyse et la rédaction,
-            et une exigence graphique affirmée.
+          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-5">
+            Mon approche est transversale&nbsp;: une solide culture urbaine, une vraie autonomie dans
+            l'analyse et la rédaction et une exigence graphique affirmée.
           </p>
 
-          <div class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
-            <p class="m-0 mb-2">J'interviens à toutes les étapes :</p>
-            <p class="m-0">→ de la stratégie éditoriale</p>
-            <p class="m-0">→ à la mise en page finale,</p>
-            <p class="m-0">→ en passant par la coordination</p>
-            <p class="m-0">→ et le storytelling du projet.</p>
-          </div>
+          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-2.5">J'interviens à toutes les étapes&nbsp;:</p>
+          <ul class="list-none m-0 p-0 mb-5 text-[0.97rem] leading-loose text-grey">
+            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>de la stratégie éditoriale</li>
+            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>à la mise en page finale</li>
+            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>en passant par la coordination</li>
+            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>et le storytelling du projet</li>
+          </ul>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 mb-6 text-navy">
-            Formée en architecture et urbanisme (<strong>ENSAPLV</strong>),
-            puis en sciences politiques à <strong>Sciences Po Paris</strong>,
-            j'ai développé mon expertise pendant six ans comme responsable développement grands projets
-            chez <strong>Legendre</strong> et <strong>SECIB</strong>.
+          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-5">
+            Formée en architecture et urbanisme à l'<b class="text-navy">ENSAPLV</b>, puis en sciences politiques
+            à <b class="text-navy">Sciences Po Paris</b>, j'ai passé <b class="text-navy">6&nbsp;ans</b> à répondre
+            à des concours et à piloter l'innovation et le marketing produit chez <b class="text-navy">Legendre Immobilier</b>
+            puis <b class="text-navy">SECIB Immobilier</b>.
           </p>
 
-          <p class="text-[0.85rem] leading-relaxed m-0 text-navy">
-            Ce parcours m'a donné une compréhension fine des enjeux urbains,
-            des dynamiques d'acteurs et des contraintes de production.
+          <p class="text-[0.97rem] leading-relaxed text-grey m-0">
+            Ce parcours m'a donné une compréhension fine des enjeux urbains, des dynamiques d'acteurs et
+            des contraintes de production, avec le réflexe d'intégrer l'IA quand elle fait vraiment gagner
+            du temps.
           </p>
         </div>
 
         <!-- Right: portrait -->
-        <div class="w-full overflow-hidden" style="aspect-ratio: 3/4; min-height: 500px;">
+        <div class="w-full overflow-hidden rounded-md" style="aspect-ratio: 460/600;">
           <Image
             src={studioImg}
             alt="Portrait — À vous la ville"
-            class="w-full h-full object-cover object-center"
+            width={1040}
+            class="w-full h-full object-cover"
+            style="object-position: center 30%;"
             loading="eager"
           />
         </div>
@@ -80,63 +79,83 @@ import studioImg from '../../assets/images/studio/studio.webp';
 
       <!-- ── Mobile: stacked ──────────────────────────────────── -->
       <div class="md:hidden">
-        <h1
-          class="font-extrabold m-0 mb-6 leading-none"
-          style="font-size: clamp(2.5rem, 10vw, 3.5rem);"
-        >
-          Le studio
+        <h1 class="page-title font-extrabold mt-1.5 mb-[18px]">
+          Le studio.
         </h1>
 
-        <!-- Portrait -->
-        <div class="w-full aspect-[3/4] mb-8 overflow-hidden">
+        <!-- Portrait (la maquette mobile le place juste après le titre) -->
+        <div class="w-full h-[320px] mb-[22px] overflow-hidden rounded-[10px]">
           <Image
             src={studioImg}
             alt="Portrait — À vous la ville"
-            class="w-full h-full object-cover object-center"
+            width={1040}
+            class="w-full h-full object-cover"
+            style="object-position: center 30%;"
             loading="eager"
           />
         </div>
 
-        <p class="font-bold text-[0.95rem] leading-snug m-0 mb-5">
-          À mi-chemin entre le conseil, l'édition et le design graphique,
-          j'accompagne promoteurs, architectes, collectivités, et urbanistes
-          dans la production de dossiers, réponses à concours, rapports, publications ou expositions.
+        <p class="font-bold text-[16px] leading-[1.45] text-navy m-0 mb-4">
+          À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, bailleurs,
+          architectes et élus dans la production de leurs dossiers&nbsp;: réponses à concours, rapports,
+          publications ou accompagnement process.
         </p>
 
-        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
+        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-4">
           Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
           aux usages et à la manière dont on les raconte.
         </p>
 
-        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
-          Mon approche est transversale : une solide culture urbaine,
-          une vraie autonomie dans l'analyse et la rédaction,
-          et une exigence graphique affirmée.
+        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-4">
+          Mon approche est transversale&nbsp;: une solide culture urbaine, une vraie autonomie dans
+          l'analyse et la rédaction et une exigence graphique affirmée.
         </p>
 
-        <div class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
-          <p class="m-0 mb-1">J'interviens à toutes les étapes :</p>
-          <p class="m-0">→ de la stratégie éditoriale</p>
-          <p class="m-0">→ à la mise en page finale,</p>
-          <p class="m-0">→ en passant par la coordination</p>
-          <p class="m-0">→ et le storytelling du projet.</p>
+        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-2">J'interviens à toutes les étapes&nbsp;:</p>
+        <ul class="list-none m-0 p-0 mb-[18px] text-[14px] leading-[1.85] text-grey">
+          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>de la stratégie éditoriale</li>
+          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>à la mise en page finale</li>
+          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>en passant par la coordination</li>
+          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>et le storytelling du projet</li>
+        </ul>
+
+        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-4">
+          Formée en architecture et urbanisme à l'<b class="text-navy">ENSAPLV</b>, puis en sciences politiques
+          à <b class="text-navy">Sciences Po Paris</b>, j'ai passé <b class="text-navy">6&nbsp;ans</b> à répondre
+          à des concours et à piloter l'innovation et le marketing produit chez <b class="text-navy">Legendre Immobilier</b>
+          puis <b class="text-navy">SECIB Immobilier</b>.
+        </p>
+
+        <p class="text-[14px] leading-[1.6] text-grey m-0">
+          Ce parcours m'a donné une compréhension fine des enjeux urbains, des dynamiques d'acteurs et
+          des contraintes de production, avec le réflexe d'intégrer l'IA quand elle fait vraiment gagner
+          du temps.
+        </p>
+      </div>
+
+      <!-- ── CTA band ───────────────────────────────────────────── -->
+      <div class="mt-6 md:mt-2.5 mb-2 md:mb-10 bg-paper rounded-[14px] px-5 py-[22px] md:py-9 md:px-11 shadow-[0_2px_10px_rgba(41,54,130,0.10)] md:shadow-none flex flex-col md:flex-row md:items-center md:justify-between gap-3.5 md:gap-6">
+        <p class="font-extrabold text-navy m-0" style="font-size: clamp(1.25rem, 5.1vw, 1.625rem);">
+          Envie d'en discuter&nbsp;?
+        </p>
+        <div class="flex flex-col sm:flex-row gap-2.5 md:gap-3.5">
+          <a href="/contact"
+             class="flex items-center justify-center gap-1.5 rounded-full bg-coral text-white no-underline
+                    py-3.5 px-[18px] md:px-6 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                    hover:opacity-90 transition-opacity">
+            Parler de votre projet &rarr;
+          </a>
+          <a href="/realisations"
+             class="flex items-center justify-center rounded-full border-[1.5px] border-navy text-navy no-underline
+                    py-3.5 px-[18px] md:px-6 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                    hover:bg-navy hover:text-white transition-colors">
+            Voir les réalisations
+          </a>
         </div>
-
-        <p class="text-[0.82rem] leading-relaxed m-0 mb-4 text-navy">
-          Formée en architecture et urbanisme (<strong>ENSAPLV</strong>),
-          puis en sciences politiques à <strong>Sciences Po Paris</strong>,
-          j'ai développé mon expertise pendant six ans comme responsable développement grands projets
-          chez <strong>Legendre</strong> et <strong>SECIB</strong>.
-        </p>
-
-        <p class="text-[0.82rem] leading-relaxed m-0 text-navy">
-          Ce parcours m'a donné une compréhension fine des enjeux urbains,
-          des dynamiques d'acteurs et des contraintes de production.
-        </p>
       </div>
 
     </main>
 
-    <Footer />
+    <Footer activePage="studio" />
   </div>
 </Layout>

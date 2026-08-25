@@ -4,13 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy:  '#26387F',
-        royal: '#001F98',
+        navy:  '#293682',
         coral: '#E51D41',
         paper: '#FFF5ED',
         cream: '#FFFFFF',
         blush: '#F7C4A8',
-        rose:  '#F0858C',
+        rose:  '#FF878C',
+        grey:  '#5A5F75',
+        slate: '#6B6F80',
+        // Maquettes : #9296A8, mais contraste 2,94 sur blanc (< 4,5 requis en WCAG AA).
+        // Assombri au strict nécessaire pour atteindre 4,70 en gardant la teinte.
+        mute:  '#6E7387',
       },
       fontFamily: {
         sans:    ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],

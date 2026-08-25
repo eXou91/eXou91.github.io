@@ -14,48 +14,48 @@ const projects = [
   {
     category: 'Vers le nouveau bois habité',
     type: 'Réponse à concours',
-    desc: "Conception éditoriale et graphique d'une réponse à concours en deux tours, sur un nouveau territoire pour le client.",
-    tags: ['Structuration du propos', 'design éditorial', 'composition', 'harmonisation visuelle'],
+    desc: 'Concevoir la réponse à un concours en deux tours, sur un territoire nouveau pour le client, en donnant au dossier une écriture et une image qui lui sont propres.',
+    tags: "Structuration du propos · identité de dossier · composition · harmonisation visuelle",
     imageLeft: true,
     image: boisHabiteImg,
   },
   {
-    category: 'À l\'orée des champs',
+    category: "À l'orée des champs",
     type: 'Réponse à concours',
-    desc: "Conception éditoriale et graphique d'un dossier de candidature conçu pour faire émerger des idées fortes et une identité singulière, afin de distinguer la réponse dans un contexte sans projet architectural encore arrêté.",
-    tags: ['Éditorial', 'mise en page', 'hiérarchisation de contenu', 'direction graphique'],
+    desc: "Construire un dossier de candidature capable de porter des idées fortes avant même qu'un projet architectural ne soit arrêté. Lui donner une identité singulière, pour qu'il se distingue dès la première lecture.",
+    tags: 'Récit de candidature · hiérarchisation de contenu · mise en page · direction artistique',
     imageLeft: false,
     image: oreeDesChampsImg,
   },
   {
     category: 'Construire bio et géosourcé',
     type: 'Livret éditorial',
-    desc: "Réalisation d'un livret éditorial dédié aux enjeux du construire bio et géosourcé, mené avec l'appui de la directrice développement, grands projets et innovation. Ce travail a été prolongé par l'animation de temps de sensibilisation en interne.",
-    tags: ['Édition', 'vulgarisation', 'mise en page', 'structuration éditoriale'],
+    desc: 'Réaliser un livret consacré aux enjeux du construire bio et géosourcé, avec l\'appui de la directrice développement, grands projets et innovation, puis prolonger ce travail par des temps de sensibilisation animés en interne.',
+    tags: 'Vulgarisation · rédaction · structuration de contenu · sensibilisation interne',
     imageLeft: true,
     image: livretBiosourceImg,
   },
   {
-    category: 'Anti-coper demain',
+    category: 'Anticiper demain',
     type: 'Réponse à concours',
-    desc: "Conception éditoriale et graphique d'un dossier de candidature de 1er tour en co-promotion, pour une consultation combinant de fortes attentes techniques, des enjeux de durabilité affirmés et un programme mixte.",
-    tags: ['Dossier de candidature', 'narration visuelle', 'mise en page', 'valorisation de projet'],
+    desc: 'Mener la conception d\'un dossier de candidature de premier tour, en co-promotion, pour une consultation aux attentes techniques élevées. Composer avec un programme mixte et des enjeux de durabilité qui structurent l\'ensemble du projet.',
+    tags: 'Narration visuelle · valorisation de projet · co-promotion · programme mixte',
     imageLeft: false,
     image: anticiperDemainImg,
   },
   {
-    category: 'Rapport RSE 2025 — SECIB Immobilier',
+    category: 'Secib Immobilier · Rapport RSE 2025',
     type: 'Rapport institutionnel',
-    desc: "Réalisation complète du rapport RSE 2025 de SECIB Immobilier, de la conception éditoriale à la forme finale, en autonomie, incluant les entretiens avec les équipes, la définition de la trame, la mise en page et la création d'éléments graphiques.",
-    tags: ['Rapport RSE', 'stratégie éditoriale', 'rédaction', 'mise en page', 'éléments graphiques'],
+    desc: 'Piloter en autonomie le rapport RSE 2025 de SECIB Immobilier, de la première idée à la forme finale : entretiens avec les équipes, définition de la trame, rédaction et création des éléments graphiques.',
+    tags: 'Rapport RSE · entretiens de cadrage · rédaction · trame éditoriale',
     imageLeft: true,
     image: rapportRseImg,
   },
   {
     category: 'Où il fait bon vivre',
     type: 'Réponse à concours',
-    desc: "Conception éditoriale et graphique d'un dossier de réponse développé avec une équipe d'architectes, dans une logique de production fluide et réactive pendant le concours.",
-    tags: ['Couverture illustrée', 'trame éditoriale', 'rédaction', 'mise en cohérence', 'concours'],
+    desc: "Accompagner une équipe d'architectes sur l'ensemble du dossier de réponse, dans une logique de production fluide et réactive tout au long du concours.",
+    tags: 'Couverture illustrée · rédaction · réactivité · accompagnement d\'équipe',
     imageLeft: false,
     image: bonVivreImg,
   },
@@ -66,103 +66,80 @@ const projects = [
   title="Réalisations — A vous la ville"
   description="De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet."
 >
-  <div class="min-h-screen flex flex-col text-navy bg-paper md:bg-white">
+  <div class="min-h-screen flex flex-col text-navy bg-white">
 
     <Header activePage="realisations" />
 
-    <main class="flex-1 px-6 md:px-10 pt-8 md:pt-12 pb-14">
+    <main class="flex-1">
 
       <!-- ── Page intro ──────────────────────────────────────── -->
-      <div class="md:grid md:gap-16 mb-12 md:mb-20" style="grid-template-columns: 50fr 50fr;">
-        <div>
-          <h1 class="font-extrabold m-0 mb-5 leading-none" style="font-size: clamp(2.8rem, 7vw, 6rem);">
-            Réalisations
-          </h1>
-          <p class="font-bold text-[0.95rem] leading-snug m-0">
-            De la stratégie éditoriale à la mise en forme finale,
-            j'interviens à toutes les étapes d'un projet.
-          </p>
-        </div>
-        <div class="mt-4 md:mt-0 md:pt-2">
-          <p class="text-[0.82rem] leading-relaxed m-0 text-navy">
-            Réponses à concours, livrets, supports de communication ou documents de présentation :
-            chaque réalisation est pensée pour clarifier un propos, structurer l'information et
-            donner une forme qui fait au fond.
-          </p>
-        </div>
-      </div>
+      <section class="px-[18px] md:px-14 pt-1.5 md:pt-8 pb-1 md:pb-10">
+        <h1 class="page-title font-extrabold mt-1.5 md:mt-0 mb-3.5 md:mb-4">
+          Réalisations.
+        </h1>
+        <p class="font-bold text-[16px] md:text-[1.15rem] leading-[1.4] md:leading-snug text-navy m-0 mb-3 md:mb-4 max-w-[520px]">
+          De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet.
+        </p>
+        <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed mt-0 mb-[22px] md:mb-0 max-w-[520px] text-grey">
+          Réponses à concours, livrets, supports de communication ou documents de présentation&nbsp;: chaque
+          réalisation est pensée pour clarifier un propos, structurer l'information et donner une forme
+          qui fait au fond.
+        </p>
+      </section>
 
       <!-- ── Project list ────────────────────────────────────── -->
-      <div class="flex flex-col gap-12 md:gap-24">
-        {projects.map(({ category, type, desc, tags, imageLeft, image }, i) => (
-          <article>
-            <!-- Mobile: image left, text right -->
-            <div class="md:hidden flex overflow-hidden rounded-xl bg-cream">
-              <Image
-                src={image}
-                alt={category}
-                class="w-[38%] shrink-0 self-stretch h-auto object-cover"
-              />
-              <div class="min-w-0 p-4">
-                <p class="text-[9px] font-semibold tracking-[0.02em] text-royal m-0 mb-1 leading-tight">
-                  {category}
-                </p>
-                <h2 class="font-extrabold text-[1.05rem] leading-tight m-0 mb-2 text-royal">{type}</h2>
-                <p class="text-[0.72rem] leading-snug m-0 mb-2 text-royal">{desc}</p>
-                <p class="text-[0.68rem] font-bold text-coral m-0 leading-snug">
-                  {tags.join(' · ')}
-                </p>
-              </div>
-            </div>
+      <section class="px-[18px] md:px-14 pb-2 md:pb-14">
+        <h2 class="font-extrabold text-navy mt-[18px] md:mt-0 mb-3.5 md:mb-7" style="font-size: clamp(1.5rem, 6vw, 1.75rem);">
+          6 réalisations
+        </h2>
 
-            <!-- Desktop: alternating image/text -->
-            <div
-              class={`hidden md:grid gap-14 items-center ${
-                imageLeft ? 'grid-cols-[45fr_55fr]' : 'grid-cols-[55fr_45fr]'
-              }`}
-            >
-              {imageLeft ? (
-                <>
-                  <Image src={image} alt={category} class="w-full aspect-[4/3] object-cover" />
-                  <div>
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-coral m-0 mb-2">
-                      {category}
-                    </p>
-                    <h2 class="font-extrabold m-0 mb-4 leading-tight"
-                        style="font-size: clamp(1.4rem, 2.2vw, 2rem);">
-                      {type}
-                    </h2>
-                    <p class="text-[0.85rem] leading-relaxed m-0 mb-4 text-navy">{desc}</p>
-                    <p class="text-[0.75rem] font-bold text-coral m-0">
-                      {tags.join(' · ')}
-                    </p>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-coral m-0 mb-2">
-                      {category}
-                    </p>
-                    <h2 class="font-extrabold m-0 mb-4 leading-tight"
-                        style="font-size: clamp(1.4rem, 2.2vw, 2rem);">
-                      {type}
-                    </h2>
-                    <p class="text-[0.85rem] leading-relaxed m-0 mb-4 text-navy">{desc}</p>
-                    <p class="text-[0.75rem] font-bold text-coral m-0">
-                      {tags.join(' · ')}
-                    </p>
-                  </div>
-                  <Image src={image} alt={category} class="w-full aspect-[4/3] object-cover" />
-                </>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
+        <div class="flex flex-col gap-[34px] md:gap-[52px]">
+          {projects.map(({ category, type, desc, tags, imageLeft, image }) => (
+            <article>
+              <!-- Mobile: image on top, text below -->
+              <div class="md:hidden">
+                <div class="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-[0_8px_20px_rgba(41,54,130,0.16)] mb-3.5">
+                  <Image src={image} alt={category} width={780} class="w-full h-full object-cover" />
+                </div>
+                <h3 class="font-extrabold text-[17px] leading-[1.2] m-0 mb-[5px] tracking-[-0.005em]">{category}</h3>
+                <p class="text-[10.5px] font-bold tracking-[0.06em] uppercase text-mute m-0 mb-3">{type}</p>
+                <p class="text-[13.5px] leading-[1.58] text-grey m-0 mb-3">{desc}</p>
+                <p class="text-[10.5px] leading-[1.5] text-mute m-0">{tags}</p>
+              </div>
+
+              <!-- Desktop: alternating image/text -->
+              <div class={`hidden md:flex gap-12 items-center ${imageLeft ? '' : 'flex-row-reverse'}`}>
+                <div class="flex-1 aspect-[4/3] rounded-[14px] overflow-hidden shadow-[0_10px_28px_rgba(41,54,130,0.16)]">
+                  <Image src={image} alt={category} width={1280} class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-extrabold text-[1.3rem] leading-tight m-0 mb-1.5 tracking-[-0.005em]">{category}</h3>
+                  <p class="text-[11.5px] font-bold tracking-[0.07em] uppercase text-mute m-0 mb-4">{type}</p>
+                  <p class="text-[0.9rem] leading-relaxed text-grey m-0 mb-3.5 max-w-[460px]">{desc}</p>
+                  <p class="text-[11.5px] text-mute m-0">{tags}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- ── CTA bottom ───────────────────────────────────────── -->
+      <section class="px-[18px] md:px-14 pt-[30px] pb-2.5 md:py-14 text-center">
+        <p class="font-extrabold text-navy m-0 mb-[18px] md:mb-6 leading-[1.3] md:leading-[1.25] tracking-[-0.015em] max-w-[640px] mx-auto" style="font-size: clamp(1.25rem, 5.1vw, 1.625rem);">
+          Vous préparez un concours, un dossier stratégique ou vous cherchez un appui régulier
+          au sein de vos équipes&nbsp;?
+        </p>
+        <a href="/contact"
+           class="flex md:inline-flex items-center justify-center gap-1.5 rounded-full bg-coral text-white no-underline
+                  py-3.5 md:py-[15px] px-[18px] md:px-7 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                  hover:opacity-90 transition-opacity">
+          Discutons-en &rarr;
+        </a>
+      </section>
 
     </main>
 
-    <Footer />
+    <Footer activePage="realisations" />
   </div>
 </Layout>
