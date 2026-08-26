@@ -64,7 +64,7 @@ const projects = [
 ---
 
 <Layout
-  title="Réalisations — A vous la ville"
+  title="Réalisations · À vous la ville"
   description="De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet."
 >
   <div class="min-h-screen flex flex-col text-navy bg-white">
@@ -91,11 +91,7 @@ const projects = [
 
       <!-- ── Project list ────────────────────────────────────── -->
       <section class="px-[18px] md:px-14 pb-2 md:pb-14">
-        <h2 class="font-extrabold text-navy mt-[18px] md:mt-0 mb-3.5 md:mb-7" style="font-size: clamp(1.5rem, 6vw, 1.75rem);">
-          6 réalisations
-        </h2>
-
-        <div class="flex flex-col gap-[34px] md:gap-[52px]">
+        <div class="flex flex-col gap-[34px] md:gap-[52px] mt-[18px] md:mt-0">
           {projects.map(({ category, type, desc, tags, imageLeft, image }) => (
             <article class="reveal">
               <!-- Mobile: image on top, text below -->
