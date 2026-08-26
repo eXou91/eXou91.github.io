@@ -27,6 +27,13 @@ const imageUrl = new URL(image, Astro.site).href;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Préchargement des 2 polices critiques au-dessus de la ligne de flottaison
+         (corps Inter + gros titres Neue Haas Black) : réduit le flash et le décalage
+         de mise en page au chargement. `crossorigin` est requis même en same-origin. -->
+    <link rel="preload" href="/fonts/Inter-Variable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/neue-haas/NeueHaasDisplay-Black.woff2" as="font" type="font/woff2" crossorigin />
+
     <meta name="description" content={description} />
     <meta name="msvalidate.01" content="54C8B191E14B1DC97529A01DA049931D" />
     <link rel="icon" type="image/png" href="/favicon.png?v=2" />

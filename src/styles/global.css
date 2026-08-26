@@ -90,6 +90,25 @@
   }
 }
 
+/* ── Accessibilité ─────────────────────────────────────── */
+/* Anneau de focus clavier (le reset Tailwind masque l'outline par défaut).
+   Navy = fort contraste sur fond blanc et sur les boutons corail. */
+:focus-visible {
+  outline: 2px solid #293682;
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Respecte la préférence système « réduire les animations ». */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* ── Composants ────────────────────────────────────────── */
 @layer components {
   /* Titre de page, uniformisé sur toutes les pages intérieures
