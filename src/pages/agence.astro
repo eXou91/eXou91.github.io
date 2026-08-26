@@ -17,7 +17,7 @@ import studioImg from '../../assets/images/studio/studio.webp';
     <main class="flex-1 px-[18px] md:px-14 pt-1.5 md:pt-8 pb-2">
 
       <!-- ── Desktop: two-column ──────────────────────────────── -->
-      <div class="hidden md:grid gap-16 items-start mb-9" style="grid-template-columns: 53fr 47fr;">
+      <div class="hidden md:grid gap-16 items-start mb-9" style="grid-template-columns: 50fr 50fr;">
 
         <!-- Left: all text -->
         <div class="max-w-[520px]">
@@ -63,14 +63,15 @@ import studioImg from '../../assets/images/studio/studio.webp';
           </p>
         </div>
 
-        <!-- Right: portrait -->
-        <div class="w-full overflow-hidden rounded-md" style="aspect-ratio: 460/600;">
+        <!-- Right: portrait — crop plus vertical pour remplir la hauteur du texte,
+             recadré sur Diane (placée à gauche dans la photo). -->
+        <div class="w-full overflow-hidden rounded-md" style="aspect-ratio: 4/5;">
           <Image
             src={studioImg}
             alt="Portrait — À vous la ville"
             width={1800}
             class="w-full h-full object-cover"
-            style="object-position: center;"
+            style="object-position: 40% center;"
             loading="eager"
           />
         </div>
@@ -83,8 +84,8 @@ import studioImg from '../../assets/images/studio/studio.webp';
           L'agence.
         </h1>
 
-        <!-- Portrait (la maquette mobile le place juste après le titre) -->
-        <div class="w-full h-[320px] mb-[22px] overflow-hidden rounded-[10px]">
+        <!-- Portrait paysage plein cadre, juste après le titre -->
+        <div class="w-full aspect-[3/2] mb-[22px] overflow-hidden rounded-[10px]">
           <Image
             src={studioImg}
             alt="Portrait — À vous la ville"

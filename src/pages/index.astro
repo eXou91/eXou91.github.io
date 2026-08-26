@@ -5,9 +5,11 @@ import Footer from '@/components/Footer.astro';
 import { Image } from 'astro:assets';
 import introWebImg    from '../../assets/images/index/web/intro_index.webp';
 import introMobileImg from '../../assets/images/index/mobile/intro_index_mobile.webp';
-// Portrait de Diane : sert à la fois la signature du hero desktop et l'encart
-// « Le studio » du mobile (conforme aux maquettes).
-import portraitImg    from '../../assets/images/studio/studio.webp';
+// Accueil : ancienne photo (buffet + livres archi), volontairement distincte de la
+// nouvelle photo de la page agence. Sert le teaser mobile et la signature du hero desktop.
+import portraitImg    from '../../assets/images/studio/portrait_accueil.webp';
+// Crop serré du visage (depuis cette même ancienne photo) pour l'avatar rond de la signature.
+import avatarImg      from '../../assets/images/studio/avatar_accueil.webp';
 
 const services = [
   {
@@ -129,7 +131,7 @@ const services = [
           </a>
         </div>
         <div class="flex-1 rounded-[10px] overflow-hidden">
-          <Image src={portraitImg} alt="Diane Breton, fondatrice de À vous la ville" width={400} class="w-full h-full object-cover" loading="lazy" />
+          <Image src={portraitImg} alt="Diane Breton, fondatrice de À vous la ville" width={900} class="w-full h-full object-cover" loading="lazy" />
         </div>
       </section>
     </div>
@@ -198,7 +200,7 @@ const services = [
           </div>
 
           <div class="flex items-center gap-2.5 max-w-[420px]">
-            <Image src={portraitImg} alt="Diane Breton" width={96} class="w-[46px] h-[46px] rounded-full object-cover shrink-0" loading="lazy" />
+            <Image src={avatarImg} alt="Diane Breton" width={140} class="w-[46px] h-[46px] rounded-full object-cover shrink-0" loading="lazy" />
             <span class="text-[12.5px] leading-snug text-grey">
               <b class="text-navy">Diane Breton</b><br>Architecte de formation, fondatrice de À vous la ville
             </span>
