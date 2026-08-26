@@ -109,6 +109,39 @@
   }
 }
 
+/* ── Révélation au scroll ──────────────────────────────── */
+/* Gaté par `.js` : sans JavaScript (ou si le script échoue), les éléments
+   restent visibles — jamais de contenu bloqué en opacité 0. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  will-change: opacity, transform;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+/* Pour les personnes qui réduisent les animations : on affiche directement. */
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ── Soulignement animé des liens ──────────────────────── */
+/* Se dessine de gauche à droite au survol / focus clavier. Utilise un dégradé
+   de fond (pas text-decoration), donc compatible avec `no-underline`. */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 0.3s ease;
+}
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1.5px;
+}
+
 /* ── Composants ────────────────────────────────────────── */
 @layer components {
   /* Titre de page, uniformisé sur toutes les pages intérieures

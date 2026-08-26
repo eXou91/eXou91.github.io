@@ -1,0 +1,16 @@
+---
+/**
+ * Motif de marque : trois traits corail. Sert de repère (« eyebrow »)
+ * au-dessus des titres de page — fil visuel récurrent du site. Décoratif.
+ * Passer des marges via `class` (ex. <Eyebrow class="mb-4" />).
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+<div class={`flex gap-1 ${className}`} aria-hidden="true">
+  <span class="block w-5 md:w-6 h-[3px] bg-coral rounded-full"></span>
+  <span class="block w-5 md:w-6 h-[3px] bg-coral rounded-full"></span>
+  <span class="block w-5 md:w-6 h-[3px] bg-coral rounded-full"></span>
+</div>

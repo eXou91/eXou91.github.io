@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 
 // Les maquettes mobiles reprennent des versions abrégées des mêmes textes :
 // `desc`/`body`/`tags` = version desktop, `descS`/`bodyS`/`tagsS` = version mobile.
@@ -94,11 +95,12 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
 
       <!-- ── Page intro ──────────────────────────────────────── -->
       <section class="px-[18px] md:px-14 pt-1.5 md:pt-8 pb-1 md:pb-8">
-        <h1 class="page-title font-extrabold mt-1.5 md:mt-0 mb-3.5 md:mb-[18px]">
+        <Eyebrow class="mt-1.5 md:mt-0 mb-3 md:mb-4" />
+        <h1 class="page-title font-extrabold mb-3.5 md:mb-[18px]">
           Expertises.
         </h1>
         <p class="font-bold text-[16px] md:text-[1.15rem] leading-[1.4] md:leading-snug text-navy m-0 mb-3 md:mb-4 max-w-[520px]">
-          Un projet a toujours sa pépite.
+          Un projet a toujours sa <em class="italic text-coral">pépite</em>.
         </p>
         <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed mt-0 mb-[22px] md:mb-0 max-w-[520px] text-grey">
           Je la fais émerger, je la mets en récit et en forme,
@@ -131,7 +133,7 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
           {services.map(({ title, titleS, tagline, body, bodyS, tags, tagsS, icon, isNew, wide }) => {
             const badge = '<span class="inline-block bg-coral text-white text-[9.5px] font-extrabold tracking-[0.06em] uppercase rounded px-1.5 py-0.5 ml-1.5 align-middle">nouveau</span>';
             return (
-            <div class={`flex gap-3 md:gap-4 items-start bg-white border border-[#f0f0f3] shadow-[0_2px_10px_rgba(41,54,130,0.10)] rounded-[14px] p-4 md:p-6 ${wide ? 'md:col-span-2' : ''}`}>
+            <div class={`reveal flex gap-3 md:gap-4 items-start bg-white border border-[#f0f0f3] shadow-[0_2px_10px_rgba(41,54,130,0.10)] rounded-[14px] p-4 md:p-6 ${wide ? 'md:col-span-2' : ''}`}>
               <div class="w-[38px] h-[38px] md:w-11 md:h-11 shrink-0 bg-blush rounded-[9px] md:rounded-[10px] flex items-center justify-center" aria-hidden="true">
                 <svg class="w-[19px] h-[19px] md:w-[22px] md:h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#293682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
               </div>
@@ -192,7 +194,7 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
       </section>
 
       <!-- ── Méthode ──────────────────────────────────────────── -->
-      <section class="mt-6 md:mt-11 bg-navy text-white px-[18px] md:px-14 pt-[26px] pb-[30px] md:py-[52px]">
+      <section class="reveal mt-6 md:mt-11 bg-navy text-white px-[18px] md:px-14 pt-[26px] pb-[30px] md:py-[52px]">
         <div class="md:grid md:gap-16" style="grid-template-columns: 45fr 55fr;">
           <div>
             <h2 class="font-extrabold m-0 mb-2.5 md:mb-3.5 leading-[1.05]" style="font-size: clamp(1.5rem, 6vw, 2.125rem);">

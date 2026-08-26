@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 import { Image } from 'astro:assets';
 import studioImg from '../../assets/images/studio/studio.webp';
 ---
@@ -21,6 +22,7 @@ import studioImg from '../../assets/images/studio/studio.webp';
 
         <!-- Left: all text -->
         <div class="max-w-[520px]">
+          <Eyebrow class="mb-3.5" />
           <h1 class="page-title font-extrabold m-0 mb-7">
             L'agence.
           </h1>
@@ -69,7 +71,8 @@ import studioImg from '../../assets/images/studio/studio.webp';
           <Image
             src={studioImg}
             alt="Diane Breton, fondatrice de À vous la ville, tenant des ouvrages d'architecture"
-            width={1800}
+            width={3000}
+            quality={85}
             class="w-full h-full object-cover"
             style="object-position: 40% center;"
             loading="eager"
@@ -80,7 +83,8 @@ import studioImg from '../../assets/images/studio/studio.webp';
 
       <!-- ── Mobile: stacked ──────────────────────────────────── -->
       <div class="md:hidden">
-        <h1 class="page-title font-extrabold mt-1.5 mb-[18px]">
+        <Eyebrow class="mt-1.5 mb-3" />
+        <h1 class="page-title font-extrabold mb-[18px]">
           L'agence.
         </h1>
 

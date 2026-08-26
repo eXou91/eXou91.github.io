@@ -29,7 +29,7 @@ const linkedinUrl = 'https://www.linkedin.com/company/%C3%A0-vous-la-ville/about
 
   <nav class="flex gap-[34px] text-[13px] font-semibold" aria-label="Navigation du pied de page">
     {navLinks.map(({ label, href, key }) => (
-      <a href={href} class={`no-underline ${activePage === key ? 'text-coral' : 'text-navy'}`}>
+      <a href={href} class={`link-underline no-underline ${activePage === key ? 'text-coral' : 'text-navy'}`}>
         {label}
       </a>
     ))}
@@ -57,9 +57,9 @@ const linkedinUrl = 'https://www.linkedin.com/company/%C3%A0-vous-la-ville/about
       </p>
     </div>
 
-    <nav class="text-right shrink-0 text-[12.5px] font-semibold" aria-label="Navigation du pied de page">
+    <nav class="flex flex-col items-end shrink-0 text-[12.5px] font-semibold" aria-label="Navigation du pied de page">
       {navLinks.map(({ label, href, key }) => (
-        <a href={href} class={`block no-underline leading-[2.1] ${activePage === key ? 'text-coral' : 'text-navy'}`}>
+        <a href={href} class={`link-underline no-underline leading-[2.1] ${activePage === key ? 'text-coral' : 'text-navy'}`}>
           {label}
         </a>
       ))}

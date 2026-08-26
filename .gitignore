@@ -13,3 +13,7 @@ npm-debug.log*
 .env
 .env.*
 !.env.example
+
+# Photos sources haute-résolution du studio : conservées en local pour régénérer
+# les .webp, mais trop lourdes pour le repo. Seules les .webp optimisées sont suivies.
+assets/images/studio/*.jpg
