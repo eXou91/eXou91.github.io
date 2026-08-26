@@ -3,14 +3,14 @@ import { Image } from 'astro:assets';
 import logoBleu from '../../assets/images/logo/logo_bleu.webp';
 
 interface Props {
-  activePage?: 'expertises' | 'realisations' | 'studio' | 'carnet' | 'contact';
+  activePage?: 'expertises' | 'realisations' | 'agence' | 'carnet' | 'contact';
 }
 const { activePage } = Astro.props;
 
 const navItems = [
   { label: 'Expertises',     href: '/expertises',     key: 'expertises'   },
   { label: 'Réalisations',   href: '/realisations',   key: 'realisations' },
-  { label: 'Le studio',      href: '/le-studio',      key: 'studio'       },
+  { label: "L'agence",       href: '/agence',         key: 'agence'       },
   { label: 'Carnet de bord', href: '/carnet-de-bord', key: 'carnet'       },
   { label: 'Contact',        href: '/contact',        key: 'contact'      },
 ];

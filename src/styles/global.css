@@ -93,7 +93,7 @@
 /* ── Composants ────────────────────────────────────────── */
 @layer components {
   /* Titre de page, uniformisé sur toutes les pages intérieures
-     (Expertises, Réalisations, Le studio, Carnet de bord, Contact). */
+     (Expertises, Réalisations, L'agence, Carnet de bord, Contact). */
   .page-title {
     font-size: clamp(2.4rem, 11.3vw, 3.2rem);
     line-height: 0.92;
