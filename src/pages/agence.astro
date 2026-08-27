@@ -5,6 +5,33 @@ import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import { Image } from 'astro:assets';
 import studioImg from '../../assets/images/studio/studio.webp';
+
+// Le parcours (ex-paragraphe bio) → repères chiffrés.
+const reperes = [
+  { k: '6 ans', v: "côté maîtrise d'ouvrage" },
+  { k: 'ENSAPLV · Sciences Po Paris', v: 'Architecture, urbanisme et sciences politiques' },
+  { k: 'Legendre · SECIB Immobilier', v: 'Concours, innovation et marketing produit' },
+];
+
+// Trois convictions : le socle de la page agence (le « pourquoi »). Le détail des
+// prestations vit sur la page Expertises — ici on reste sur les principes.
+const convictions = [
+  {
+    cat: 'Stratégie',
+    title: 'Le récit fait gagner',
+    body: "À projet égal, c'est le dossier le mieux raconté qui l'emporte. Mon métier, c'est de construire ce récit.",
+  },
+  {
+    cat: 'Design',
+    title: 'La forme sert le fond',
+    body: "Le design n'habille pas, il clarifie : une information hiérarchisée rend un propos crédible et convaincant.",
+  },
+  {
+    cat: 'Méthode',
+    title: 'Optimiser la manière de travailler',
+    body: "J'accompagne les équipes au quotidien et j'intègre les nouveaux outils qui accélèrent, optimisent et facilitent les process.",
+  },
+];
 ---
 
 <Layout
@@ -15,131 +42,119 @@ import studioImg from '../../assets/images/studio/studio.webp';
 
     <Header activePage="agence" />
 
-    <main class="flex-1 px-[18px] md:px-14 pt-1.5 md:pt-8 pb-2">
+    <main class="flex-1">
 
-      <!-- ── Desktop: two-column ──────────────────────────────── -->
-      <div class="hidden md:grid gap-16 items-start mb-9" style="grid-template-columns: 50fr 50fr;">
+      <!-- ── Intro : positionnement + portrait ─────────────────── -->
+      <section class="px-[18px] md:px-14 pt-1.5 md:pt-8 pb-8 md:pb-12">
 
-        <!-- Left: all text -->
-        <div class="max-w-[520px]">
-          <Eyebrow class="mb-3.5" />
-          <h1 class="page-title font-extrabold m-0 mb-7">
-            L'agence.
-          </h1>
+        <!-- Desktop : texte / portrait -->
+        <div class="hidden md:grid gap-16 items-center" style="grid-template-columns: 50fr 50fr;">
+          <div class="max-w-[520px]">
+            <Eyebrow class="mb-3.5" />
+            <h1 class="page-title font-extrabold m-0 mb-6">L'agence.</h1>
+            <p class="font-bold text-[1.15rem] leading-snug m-0 mb-5">
+              À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, bailleurs,
+              architectes et élus dans la production de leurs dossiers&nbsp;: réponses à concours, rapports,
+              publications ou accompagnement process.
+            </p>
+            <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-5">
+              Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
+              aux usages et à la manière dont on les raconte.
+            </p>
+            <p class="text-[0.97rem] leading-relaxed text-grey m-0">
+              Mon approche est transversale, ancrée dans une solide culture urbaine et guidée par
+              quelques convictions simples.
+            </p>
+          </div>
+          <div class="reveal w-full overflow-hidden rounded-md" style="aspect-ratio: 3/2;">
+            <Image
+              src={studioImg}
+              alt="Diane Breton, fondatrice de À vous la ville, tenant des ouvrages d'architecture"
+              width={2000}
+              quality={85}
+              class="w-full h-full object-cover"
+              style="object-position: center;"
+              loading="eager"
+            />
+          </div>
+        </div>
 
-          <p class="font-bold text-[1.15rem] leading-snug m-0 mb-5">
+        <!-- Mobile : portrait / texte -->
+        <div class="md:hidden">
+          <Eyebrow class="mt-1.5 mb-3" />
+          <h1 class="page-title font-extrabold mb-[18px]">L'agence.</h1>
+          <div class="w-full aspect-[3/2] mb-[22px] overflow-hidden rounded-[10px]">
+            <Image
+              src={studioImg}
+              alt="Diane Breton, fondatrice de À vous la ville, tenant des ouvrages d'architecture"
+              width={1400}
+              class="w-full h-full object-cover"
+              style="object-position: center;"
+              loading="eager"
+            />
+          </div>
+          <p class="font-bold text-[16px] leading-[1.45] text-navy m-0 mb-4">
             À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, bailleurs,
             architectes et élus dans la production de leurs dossiers&nbsp;: réponses à concours, rapports,
             publications ou accompagnement process.
           </p>
-
-          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-5">
+          <p class="text-[14px] leading-[1.6] text-grey m-0 mb-4">
             Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
             aux usages et à la manière dont on les raconte.
           </p>
-
-          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-5">
-            Mon approche est transversale&nbsp;: une solide culture urbaine, une vraie autonomie dans
-            l'analyse et la rédaction et une exigence graphique affirmée.
-          </p>
-
-          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-2.5">J'interviens à toutes les étapes&nbsp;:</p>
-          <ul class="list-none m-0 p-0 mb-5 text-[0.97rem] leading-loose text-grey">
-            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>de la stratégie éditoriale</li>
-            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>à la mise en page finale</li>
-            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>en passant par la coordination</li>
-            <li><span class="text-navy font-bold mr-1.5">&rarr;</span>et le storytelling du projet</li>
-          </ul>
-
-          <p class="text-[0.97rem] leading-relaxed text-grey m-0 mb-5">
-            Formée en architecture et urbanisme à l'<b class="text-navy">ENSAPLV</b>, puis en sciences politiques
-            à <b class="text-navy">Sciences Po Paris</b>, j'ai passé <b class="text-navy">6&nbsp;ans</b> à répondre
-            à des concours et à piloter notamment l'innovation et le marketing produit chez <b class="text-navy">Legendre Immobilier</b>
-            puis <b class="text-navy">SECIB Immobilier</b>.
-          </p>
-
-          <p class="text-[0.97rem] leading-relaxed text-grey m-0">
-            Ce parcours m'a donné une compréhension fine des enjeux urbains, des dynamiques d'acteurs et
-            des contraintes de production, avec le réflexe d'intégrer l'IA quand elle fait vraiment gagner
-            du temps.
+          <p class="text-[14px] leading-[1.6] text-grey m-0">
+            Mon approche est transversale, ancrée dans une solide culture urbaine et guidée par
+            quelques convictions simples.
           </p>
         </div>
+      </section>
 
-        <!-- Right: portrait — crop plus vertical pour remplir la hauteur du texte,
-             recadré sur Diane (placée à gauche dans la photo). -->
-        <div class="w-full overflow-hidden rounded-md" style="aspect-ratio: 4/5;">
-          <Image
-            src={studioImg}
-            alt="Diane Breton, fondatrice de À vous la ville, tenant des ouvrages d'architecture"
-            width={3000}
-            quality={85}
-            class="w-full h-full object-cover"
-            style="object-position: 40% center;"
-            loading="eager"
-          />
+      <!-- ── Mes convictions : le « pourquoi » (le détail est sur Expertises) ── -->
+      <section class="reveal border-t border-navy/10 px-[18px] md:px-14 pt-8 md:pt-10 pb-8 md:pb-12">
+        <h2 class="font-extrabold text-navy m-0 mb-2.5 md:mb-3.5 leading-[1.05]" style="font-size: clamp(1.5rem, 6vw, 2.125rem);">
+          Mes convictions
+        </h2>
+        <p class="text-[14px] md:text-[0.97rem] leading-relaxed text-grey m-0 mb-7 md:mb-9 max-w-[560px]">
+          Stratégie, design, méthode&nbsp;: trois convictions qui guident mon travail et disent pourquoi À vous la ville existe.
+        </p>
+        <div class="grid md:grid-cols-3 gap-7 md:gap-10">
+          {convictions.map(({ cat, title, body }) => (
+            <div>
+              <p class="text-[11px] md:text-[11.5px] font-bold tracking-[0.09em] uppercase text-coral m-0 mb-2.5">{cat}</p>
+              <h3 class="font-extrabold text-navy text-[1.05rem] md:text-[1.15rem] leading-tight m-0 mb-2">{title}</h3>
+              <p class="text-[13.5px] md:text-[0.9rem] leading-relaxed text-grey m-0">{body}</p>
+            </div>
+          ))}
         </div>
+        <a href="/expertises" class="link-underline inline-block mt-8 md:mt-10 font-bold text-[13px] text-navy no-underline">
+          Le détail de mes expertises &rarr;
+        </a>
+      </section>
 
-      </div>
-
-      <!-- ── Mobile: stacked ──────────────────────────────────── -->
-      <div class="md:hidden">
-        <Eyebrow class="mt-1.5 mb-3" />
-        <h1 class="page-title font-extrabold mb-[18px]">
-          L'agence.
-        </h1>
-
-        <!-- Portrait paysage plein cadre, juste après le titre -->
-        <div class="w-full aspect-[3/2] mb-[22px] overflow-hidden rounded-[10px]">
-          <Image
-            src={studioImg}
-            alt="Diane Breton, fondatrice de À vous la ville, tenant des ouvrages d'architecture"
-            width={1400}
-            class="w-full h-full object-cover"
-            style="object-position: center;"
-            loading="eager"
-          />
+      <!-- ── Parcours : bande navy, même traitement que « Méthode » (expertises) ── -->
+      <section class="reveal bg-navy text-white px-[18px] md:px-14 pt-[26px] pb-[30px] md:py-[52px] mb-6 md:mb-10">
+        <h2 class="font-extrabold m-0 mb-2.5 md:mb-3.5 leading-[1.05]" style="font-size: clamp(1.5rem, 6vw, 2.125rem);">
+          Parcours
+        </h2>
+        <p class="text-[13px] md:text-[0.9rem] leading-[1.5] md:leading-relaxed text-white/75 m-0 mb-6 md:mb-9 max-w-[480px]">
+          Une double culture, architecture et fabrication concrète de la ville, au service de vos dossiers.
+        </p>
+        <div class="grid md:grid-cols-3 gap-6 md:gap-10 mb-7 md:mb-9">
+          {reperes.map(({ k, v }) => (
+            <div>
+              <p class="font-extrabold text-coral m-0 mb-1.5 leading-tight" style="font-size: clamp(1.25rem, 4vw, 1.6rem);">{k}</p>
+              <p class="text-[13.5px] md:text-[0.9rem] leading-[1.5] text-white/80 m-0">{v}</p>
+            </div>
+          ))}
         </div>
-
-        <p class="font-bold text-[16px] leading-[1.45] text-navy m-0 mb-4">
-          À mi-chemin entre le conseil, l'édition et le design graphique, j'accompagne promoteurs, bailleurs,
-          architectes et élus dans la production de leurs dossiers&nbsp;: réponses à concours, rapports,
-          publications ou accompagnement process.
-        </p>
-
-        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-4">
-          Installée en Bretagne, j'ancre mes missions dans une attention forte aux territoires,
-          aux usages et à la manière dont on les raconte.
-        </p>
-
-        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-4">
-          Mon approche est transversale&nbsp;: une solide culture urbaine, une vraie autonomie dans
-          l'analyse et la rédaction et une exigence graphique affirmée.
-        </p>
-
-        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-2">J'interviens à toutes les étapes&nbsp;:</p>
-        <ul class="list-none m-0 p-0 mb-[18px] text-[14px] leading-[1.85] text-grey">
-          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>de la stratégie éditoriale</li>
-          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>à la mise en page finale</li>
-          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>en passant par la coordination</li>
-          <li><span class="text-navy font-bold mr-1.5">&rarr;</span>et le storytelling du projet</li>
-        </ul>
-
-        <p class="text-[14px] leading-[1.6] text-grey m-0 mb-4">
-          Formée en architecture et urbanisme à l'<b class="text-navy">ENSAPLV</b>, puis en sciences politiques
-          à <b class="text-navy">Sciences Po Paris</b>, j'ai passé <b class="text-navy">6&nbsp;ans</b> à répondre
-          à des concours et à piloter notamment l'innovation et le marketing produit chez <b class="text-navy">Legendre Immobilier</b>
-          puis <b class="text-navy">SECIB Immobilier</b>.
-        </p>
-
-        <p class="text-[14px] leading-[1.6] text-grey m-0">
+        <p class="text-[13.5px] md:text-[0.95rem] leading-relaxed text-white/85 m-0 max-w-[680px]">
           Ce parcours m'a donné une compréhension fine des enjeux urbains, des dynamiques d'acteurs et
-          des contraintes de production, avec le réflexe d'intégrer l'IA quand elle fait vraiment gagner
-          du temps.
+          des contraintes de production.
         </p>
-      </div>
+      </section>
 
       <!-- ── CTA band ───────────────────────────────────────────── -->
-      <div class="mt-6 md:mt-2.5 mb-2 md:mb-10 bg-paper rounded-[14px] px-5 py-[22px] md:py-9 md:px-11 shadow-[0_2px_10px_rgba(41,54,130,0.10)] md:shadow-none flex flex-col md:flex-row md:items-center md:justify-between gap-3.5 md:gap-6">
+      <div class="mx-[18px] md:mx-14 mb-2 md:mb-10 bg-paper rounded-[14px] px-5 py-[22px] md:py-9 md:px-11 shadow-[0_2px_10px_rgba(41,54,130,0.10)] md:shadow-none flex flex-col md:flex-row md:items-center md:justify-between gap-3.5 md:gap-6">
         <p class="font-extrabold text-navy m-0" style="font-size: clamp(1.25rem, 5.1vw, 1.625rem);">
           Envie d'en discuter&nbsp;?
         </p>
