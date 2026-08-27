@@ -2,6 +2,7 @@
 import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
 
 // Clé publique Web3Forms (elle est visible dans le HTML par conception : c'est un
 // identifiant de boîte de réception, pas un secret). Si elle devait être révoquée,
@@ -30,7 +31,8 @@ const etiquette =
 
         <!-- Left: heading + intro -->
         <div>
-          <h1 class="page-title font-extrabold mt-1.5 md:mt-0 mb-4 md:mb-5">
+          <Eyebrow class="mt-1.5 md:mt-0 mb-3 md:mb-4" />
+          <h1 class="page-title font-extrabold mb-4 md:mb-5">
             Contact.
           </h1>
 

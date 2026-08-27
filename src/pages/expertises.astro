@@ -108,24 +108,6 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
         </p>
       </section>
 
-      <!-- ── Formats d'intervention ────────────────────────────── -->
-      <section class="mx-[18px] md:mx-14 mb-2 md:mb-8 bg-paper rounded-2xl md:rounded-[18px] px-[18px] py-5 md:p-10">
-        <h2 class="text-[12px] font-semibold tracking-[0.08em] uppercase text-slate m-0 mb-3.5 md:mb-[18px]">
-          Formats d'intervention
-        </h2>
-        <div class="flex flex-col md:flex-row gap-4 md:gap-0">
-          {formats.map(({ num, title, desc, descS }, i) => (
-            <div class={`flex-1 md:px-8 ${i > 0 ? 'md:border-l border-navy/15' : ''} ${i === 0 ? 'md:pl-0' : ''} ${i === formats.length - 1 ? 'md:pr-0' : ''}`}>
-              <p class="font-extrabold text-coral text-[16px] md:text-[1.25rem] m-0 mb-1 md:mb-2">{num}</p>
-              <h3 class="font-bold text-[14px] md:text-[0.95rem] text-navy m-0 mb-[3px] md:mb-1.5">{title}</h3>
-              <p class="text-[12.5px] md:text-[0.82rem] leading-[1.5] md:leading-relaxed text-grey m-0">
-                <span class="md:hidden">{descS ?? desc}</span><span class="hidden md:inline">{desc}</span>
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <!-- ── 5 expertises ──────────────────────────────────────── -->
       <section class="px-[18px] md:px-14 md:pt-5 pb-2">
         <h2 class="font-extrabold text-navy mt-[18px] md:mt-0 mb-3.5 md:mb-6" style="font-size: clamp(1.5rem, 6vw, 1.75rem);">5 expertises</h2>
@@ -133,7 +115,7 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
           {services.map(({ title, titleS, tagline, body, bodyS, tags, tagsS, icon, isNew, wide }) => {
             const badge = '<span class="inline-block bg-coral text-white text-[9.5px] font-extrabold tracking-[0.06em] uppercase rounded px-1.5 py-0.5 ml-1.5 align-middle">nouveau</span>';
             return (
-            <div class={`reveal flex gap-3 md:gap-4 items-start bg-white border border-[#f0f0f3] shadow-[0_2px_10px_rgba(41,54,130,0.10)] rounded-[14px] p-4 md:p-6 ${wide ? 'md:col-span-2' : ''}`}>
+            <div class={`flex gap-3 md:gap-4 items-start bg-white border border-[#f0f0f3] shadow-[0_2px_10px_rgba(41,54,130,0.10)] rounded-[14px] p-4 md:p-6 ${wide ? 'md:col-span-2' : ''}`}>
               <div class="w-[38px] h-[38px] md:w-11 md:h-11 shrink-0 bg-blush rounded-[9px] md:rounded-[10px] flex items-center justify-center" aria-hidden="true">
                 <svg class="w-[19px] h-[19px] md:w-[22px] md:h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#293682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
               </div>
@@ -155,39 +137,43 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
         </div>
       </section>
 
-      <!-- ── Permanence stratégique ────────────────────────────── -->
-      <section class="mx-[18px] md:mx-14 mt-[18px] md:mt-9 mb-2 bg-paper rounded-2xl md:rounded-[18px] px-[18px] py-5 md:p-10">
-        <p class="text-[12px] font-semibold tracking-[0.08em] uppercase text-slate m-0 mb-2">
-          <span class="md:hidden">Mais aussi</span>
-          <span class="hidden md:inline">Mais aussi une offre de présence régulière</span>
-        </p>
-        <h2 class="font-extrabold text-navy m-0 mb-2 md:mb-3" style="font-size: clamp(1.3125rem, 5.4vw, 1.625rem);">
-          Permanence stratégique
+      <!-- ── Ce que ça change pour vous : bénéfices (titre + encart crème) ── -->
+      <section class="reveal px-[18px] md:px-14 pt-4 md:pt-8 pb-2 md:pb-8">
+        <h2 class="font-extrabold text-navy mt-[18px] md:mt-0 mb-3.5 md:mb-6" style="font-size: clamp(1.5rem, 6vw, 1.75rem);">
+          Ce que ça change pour vous
         </h2>
-        <p class="text-[13px] md:text-[0.9rem] leading-[1.55] md:leading-relaxed text-grey m-0 mb-4 md:mb-6 max-w-[640px]">
-          <span class="md:hidden">
-            Un appui régulier au sein de vos équipes, pour sécuriser le fond, gagner du temps et renforcer
-            la cohérence des dossiers.
-          </span>
-          <span class="hidden md:inline">
-            Un appui régulier au sein de vos équipes, quelques jours par mois ou à un rythme plus soutenu selon
-            les besoins, pour sécuriser le fond, gagner du temps et renforcer la cohérence des dossiers :
-            préparation de concours, structuration de dossiers de candidature, coordination légère entre
-            partenaires ou montée en qualité éditoriale des productions internes.
-          </span>
-        </p>
-        <div class="grid md:grid-cols-3 gap-3.5 md:gap-5">
-          {benefits.map(({ title, desc, descS, icon }) => (
-            <div class="flex gap-2.5 md:gap-3 items-start">
-              <div class="w-[34px] h-[34px] md:w-11 md:h-11 shrink-0 bg-white rounded-[9px] md:rounded-[10px] flex items-center justify-center" aria-hidden="true">
-                <svg class="w-[17px] h-[17px] md:w-[22px] md:h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#293682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
+        <div class="bg-paper rounded-2xl md:rounded-[18px] px-[18px] py-5 md:p-10">
+          <div class="grid md:grid-cols-3 gap-3.5 md:gap-8">
+            {benefits.map(({ title, desc, descS, icon }) => (
+              <div class="flex gap-2.5 md:gap-3 items-start">
+                <div class="w-[34px] h-[34px] md:w-11 md:h-11 shrink-0 bg-white rounded-[9px] md:rounded-[10px] flex items-center justify-center" aria-hidden="true">
+                  <svg class="w-[17px] h-[17px] md:w-[22px] md:h-[22px]" viewBox="0 0 24 24" fill="none" stroke="#293682" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" set:html={icon} />
+                </div>
+                <div>
+                  <h3 class="font-bold text-[13px] md:text-[0.87rem] text-navy m-0 mb-[3px] md:mb-1">{title}</h3>
+                  <p class="text-[12px] md:text-[0.8rem] leading-[1.45] text-grey m-0">
+                    <span class="md:hidden">{descS ?? desc}</span><span class="hidden md:inline">{desc}</span>
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 class="font-bold text-[13px] md:text-[0.87rem] text-navy m-0 mb-[3px] md:mb-1">{title}</h3>
-                <p class="text-[12px] md:text-[0.78rem] leading-[1.45] md:leading-relaxed text-grey m-0">
-                  <span class="md:hidden">{descS ?? desc}</span><span class="hidden md:inline">{desc}</span>
-                </p>
-              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 3 formats d'intervention ──────────────────────────── -->
+      <section class="reveal px-[18px] md:px-14 pt-4 md:pt-10 pb-2">
+        <h2 class="font-extrabold text-navy mt-[18px] md:mt-0 mb-3.5 md:mb-6" style="font-size: clamp(1.5rem, 6vw, 1.75rem);">
+          3 formats d'intervention
+        </h2>
+        <div class="flex flex-col md:flex-row gap-5 md:gap-0">
+          {formats.map(({ num, title, desc, descS }, i) => (
+            <div class={`flex-1 md:px-8 ${i > 0 ? 'md:border-l border-navy/15' : ''} ${i === 0 ? 'md:pl-0' : ''} ${i === formats.length - 1 ? 'md:pr-0' : ''}`}>
+              <p class="font-extrabold text-coral text-[16px] md:text-[1.25rem] m-0 mb-1 md:mb-2">{num}</p>
+              <h3 class="font-bold text-[14px] md:text-[0.95rem] text-navy m-0 mb-[3px] md:mb-1.5">{title}</h3>
+              <p class="text-[12.5px] md:text-[0.82rem] leading-[1.5] md:leading-relaxed text-grey m-0">
+                <span class="md:hidden">{descS ?? desc}</span><span class="hidden md:inline">{desc}</span>
+              </p>
             </div>
           ))}
         </div>
