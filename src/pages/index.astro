@@ -10,6 +10,7 @@ import introMobileImg from '../../assets/images/index/mobile/intro_index_mobile.
 import portraitImg    from '../../assets/images/studio/portrait_accueil.webp';
 // Crop serré du visage (depuis cette même ancienne photo) pour l'avatar rond de la signature.
 import avatarImg      from '../../assets/images/studio/avatar_accueil.webp';
+import Ouverture from '@/components/Ouverture.astro';
 
 const services = [
   {
@@ -53,7 +54,9 @@ const services = [
          MOBILE  (hidden on md+)
     ═════════════════════════════════════════════════════════════ -->
     <div class="md:hidden px-[18px] pt-1.5 pb-2">
-      <h1 class="font-extrabold leading-[0.92] tracking-[-0.015em] mt-1.5 mb-4" style="font-size: clamp(2.1rem, 10vw, 2.6rem);">
+      <Ouverture class="mt-1.5 mb-3.5" />
+
+      <h1 class="font-extrabold leading-[0.92] tracking-[-0.015em] mb-4" style="font-size: clamp(2.1rem, 10vw, 2.6rem);">
         Concevoir le <em class="italic text-coral">récit</em> de vos projets urbains.
       </h1>
 
@@ -159,6 +162,8 @@ const services = [
 
         <!-- Right: text content, centré verticalement en face de la photo -->
         <div class="flex flex-col justify-center">
+          <Ouverture class="mb-5" />
+
           <h1 class="font-extrabold text-navy m-0 leading-[0.92] tracking-[-0.015em]"
               style="font-size: clamp(2.8rem, 4.4vw, 4rem);">
             Concevoir le <em class="italic text-coral">récit</em><br>
@@ -200,6 +205,33 @@ const services = [
         </div>
       </div>
     </main>
+
+    <script is:inline>
+      // Décompte jusqu'à l'ouverture. Un seul script pour les deux bandeaux
+      // (mobile + desktop), d'où le querySelectorAll.
+      (() => {
+        const bandeaux = document.querySelectorAll('[data-ouverture]');
+        const JOUR = 24 * 60 * 60 * 1000;
+
+        bandeaux.forEach((bandeau) => {
+          const texte = bandeau.querySelector('[data-ouverture-texte]');
+          if (!texte) return;
+          const restant = new Date(bandeau.dataset.ouverture).getTime() - Date.now();
+
+          // Une fois la date passée, le bandeau annonce l'ouverture au lieu de
+          // compter dans le négatif : il n'y a rien à changer dans le code ce jour-là.
+          if (restant <= 0) {
+            texte.textContent = 'À vous la ville est ouvert';
+            return;
+          }
+          const jours = Math.ceil(restant / JOUR);
+          texte.textContent =
+            jours === 1
+              ? 'Ouverture demain, le 30 septembre'
+              : 'Ouverture le 30 septembre · J\u2212' + jours;
+        });
+      })();
+    </script>
 
     <Footer />
   </div>
