@@ -5,6 +5,16 @@ import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import { Image } from 'astro:assets';
 import studioImg from '../../assets/images/studio/studio.webp';
+import { getCollection } from 'astro:content';
+import { slugifierCategorie } from '@/content.config';
+
+// Les convictions et les catégories du carnet partagent le même vocabulaire
+// (Stratégie / Design / Méthode) : chaque conviction peut donc pointer vers
+// ses propres articles. Une conviction sans article n'affiche pas de lien,
+// plutôt que d'envoyer sur une liste vide.
+const articlesCarnet = await getCollection('carnet-de-bord');
+const compteParCategorie = (categorie: string) =>
+  articlesCarnet.filter((a) => a.data.tag === categorie).length;
 
 // Le parcours (ex-paragraphe bio) → repères chiffrés.
 const reperes = [
@@ -118,13 +128,24 @@ const convictions = [
           Stratégie, design, méthode&nbsp;: trois convictions qui guident mon travail et disent pourquoi À vous la ville existe.
         </p>
         <div class="grid md:grid-cols-3 gap-7 md:gap-10">
-          {convictions.map(({ cat, title, body }) => (
-            <div>
-              <p class="text-[11px] md:text-[11.5px] font-bold tracking-[0.09em] uppercase text-coral m-0 mb-2.5">{cat}</p>
-              <h3 class="font-extrabold text-navy text-[1.05rem] md:text-[1.15rem] leading-tight m-0 mb-2">{title}</h3>
-              <p class="text-[13.5px] md:text-[0.9rem] leading-relaxed text-grey m-0">{body}</p>
-            </div>
-          ))}
+          {convictions.map(({ cat, title, body }) => {
+            const nb = compteParCategorie(cat);
+            return (
+              <div class="flex flex-col">
+                <p class="text-[11px] md:text-[11.5px] font-bold tracking-[0.09em] uppercase text-coral m-0 mb-2.5">{cat}</p>
+                <h3 class="font-extrabold text-navy text-[1.05rem] md:text-[1.15rem] leading-tight m-0 mb-2">{title}</h3>
+                <p class="text-[13.5px] md:text-[0.9rem] leading-relaxed text-grey m-0">{body}</p>
+                {nb > 0 && (
+                  <a
+                    href={`/carnet-de-bord?categorie=${slugifierCategorie(cat)}`}
+                    class="link-underline self-start mt-3.5 md:mt-4 font-bold text-[12.5px] text-navy no-underline"
+                  >
+                    {nb} article{nb > 1 ? 's' : ''} sur ce sujet &rarr;
+                  </a>
+                )}
+              </div>
+            );
+          })}
         </div>
         <a href="/expertises" class="link-underline inline-block mt-8 md:mt-10 font-bold text-[13px] text-navy no-underline">
           Le détail de mes expertises &rarr;
@@ -150,6 +171,12 @@ const convictions = [
         <p class="text-[13.5px] md:text-[0.95rem] leading-relaxed text-white/85 m-0">
           Ce parcours m'a donné une compréhension fine des enjeux urbains, des dynamiques d'acteurs et des contraintes de production.
         </p>
+        <a
+          href="/carnet-de-bord/pourquoi-je-me-suis-lancee-dans-la-fabrique-urbaine"
+          class="link-underline inline-block mt-6 md:mt-8 font-bold text-[13px] text-white no-underline"
+        >
+          Pourquoi je me suis lancée dans la fabrique urbaine &rarr;
+        </a>
       </section>
 
       <!-- ── CTA band ───────────────────────────────────────────── -->

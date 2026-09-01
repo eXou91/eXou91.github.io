@@ -4,6 +4,7 @@ import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
 import { getCollection } from 'astro:content';
+import { CATEGORIES, slugifierCategorie as slugifier } from '@/content.config';
 
 // Un article = un fichier .md dans src/content/carnet-de-bord/.
 // Le nom du fichier devient l'URL (ex. mon-article.md -> /carnet-de-bord/mon-article).
@@ -11,6 +12,31 @@ import { getCollection } from 'astro:content';
 const articles = (await getCollection('carnet-de-bord')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf() || a.id.localeCompare(b.id),
 );
+
+// Nombre d'articles par page. Filtrage et pagination sont tous les deux gérés
+// côté client (cf. le script en bas) : une pagination statique découperait la
+// liste avant le filtre, et filtrer la page 1 masquerait les articles des pages
+// suivantes au lieu de les remonter.
+const PAR_PAGE = 12;
+
+// Seules les catégories qui ont au moins un article deviennent un filtre :
+// pas de bouton qui ouvre sur une liste vide.
+const categories = CATEGORIES.filter((c) => articles.some((a) => a.data.tag === c)).map((nom) => ({
+  nom,
+  slug: slugifier(nom),
+}));
+
+const classeFiltre =
+  'rounded-full border-[1.5px] border-navy/20 bg-white text-navy no-underline px-3.5 md:px-4 py-1.5 md:py-2 ' +
+  'text-[11px] md:text-[11.5px] font-bold tracking-[0.05em] uppercase ' +
+  'transition-colors duration-150 hover:border-navy ' +
+  'aria-[current=page]:bg-navy aria-[current=page]:text-white aria-[current=page]:border-navy';
+
+const classePage =
+  'inline-flex items-center justify-center w-9 h-9 md:w-10 md:h-10 rounded-full border-[1.5px] border-navy/20 ' +
+  'bg-white text-navy no-underline text-[12px] md:text-[12.5px] font-bold ' +
+  'transition-colors duration-150 hover:border-navy ' +
+  'aria-[current=page]:bg-navy aria-[current=page]:text-white aria-[current=page]:border-navy';
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
@@ -42,32 +68,65 @@ const formatDate = (d: Date) =>
         </p>
       </div>
 
-      <!-- Liste des articles -->
+      <!-- Filtres : de vrais liens, donc copiables et partageables même sans JS. -->
+      {categories.length > 1 && (
+        <nav class="flex flex-wrap items-center gap-2 md:gap-2.5 mb-5 md:mb-8" aria-label="Filtrer par catégorie">
+          <a href="/carnet-de-bord" data-filtre="tous" aria-current="page" class={classeFiltre}>Tout</a>
+          {categories.map(({ nom, slug }) => (
+            <a href={`/carnet-de-bord?categorie=${slug}`} data-filtre={slug} aria-current="false" class={classeFiltre}>
+              {nom}
+            </a>
+          ))}
+        </nav>
+      )}
+
+      <!-- Liste des articles : le plus récent est mis à la une (double largeur). -->
       {articles.length > 0 && (
-        <div class="mb-[26px] md:mb-16 md:pt-2.5 flex flex-col gap-4 md:gap-5">
-          {articles.map((article) => (
-            <div class="border border-navy/[0.12] rounded-[14px] md:rounded-2xl bg-white shadow-[0_4px_16px_rgba(41,54,130,0.08)] md:shadow-[0_4px_20px_rgba(41,54,130,0.08)] px-5 py-[22px] md:p-9 flex flex-col gap-2 md:gap-3 max-w-[640px]">
+        <div
+          data-liste
+          data-par-page={PAR_PAGE}
+          class="scroll-mt-[70px] md:scroll-mt-[100px] mb-7 md:mb-10 flex flex-col gap-4 md:grid md:grid-cols-2 md:gap-6"
+        >
+          {articles.map((article, i) => (
+            <article
+              data-categorie={slugifier(article.data.tag)}
+              data-une={i === 0 ? '' : undefined}
+              class={`border border-navy/[0.12] rounded-[14px] md:rounded-2xl bg-white shadow-[0_4px_16px_rgba(41,54,130,0.08)] md:shadow-[0_4px_20px_rgba(41,54,130,0.08)] px-5 py-[22px] md:p-9 flex flex-col gap-2 md:gap-3 max-w-[640px] md:max-w-none md:h-full ${i === 0 ? 'md:col-span-2' : ''}`}
+            >
               <span class="inline-flex self-start bg-blush text-navy text-[9.5px] md:text-[10.5px] font-extrabold tracking-[0.05em] uppercase px-2 md:px-2.5 py-[3px] md:py-1 rounded-[5px]">
                 {article.data.tag}
               </span>
-              <h2 class="font-extrabold text-navy m-0 leading-[1.2] md:leading-[1.15]" style="font-size: clamp(1.125rem, 4.6vw, 1.625rem);">
+              <h2
+                class="font-extrabold text-navy m-0 leading-[1.2] md:leading-[1.15]"
+                style={i === 0
+                  ? 'font-size: clamp(1.25rem, 5vw, 2rem);'
+                  : 'font-size: clamp(1.125rem, 4.6vw, 1.625rem);'}
+              >
                 {article.data.title}
               </h2>
-              <p class="text-[13.5px] md:text-[0.95rem] leading-[1.5] md:leading-relaxed text-grey m-0">
+              <p class="text-[13.5px] md:text-[0.95rem] leading-[1.5] md:leading-relaxed text-grey m-0 md:max-w-[62ch]">
                 <span class="md:hidden">{article.data.excerptShort ?? article.data.excerpt}</span><span class="hidden md:inline">{article.data.excerpt}</span>
               </p>
-              <div class="flex items-center justify-between mt-1 md:mt-2">
+              <div class="flex items-center justify-between mt-1 md:mt-auto md:pt-4">
                 <span class="text-[11px] md:text-[12px] font-semibold text-mute">{formatDate(article.data.date)}</span>
                 <a href={`/carnet-de-bord/${article.id}`} class="link-underline text-[12.5px] md:text-[13px] font-bold text-navy no-underline shrink-0">
                   Lire l'article &rarr;
                 </a>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       )}
 
-      <!-- État vide -->
+      <!-- Pagination : construite par le script, masquée tant qu'il n'y a qu'une page. -->
+      <nav
+        data-pagination
+        data-classe-page={classePage}
+        class="!hidden flex-wrap items-center gap-2 mb-[26px] md:mb-16"
+        aria-label="Pagination des articles"
+      ></nav>
+
+      <!-- Appel à contact -->
       <div class="border-t border-navy/[0.12] pt-8 md:pt-10 flex flex-col items-center text-center gap-4 md:gap-5">
         <div class="flex gap-1.5 md:gap-2 mb-1" aria-hidden="true">
           {Array.from({ length: 3 }).map(() => (
@@ -76,11 +135,11 @@ const formatDate = (d: Date) =>
         </div>
 
         <p class="font-extrabold text-navy m-0" style="font-size: clamp(1.3125rem, 5.4vw, 1.75rem);">
-          Les prochains articles arrivent bientôt.
+          Une question sur ma manière de travailler&nbsp;?
         </p>
         <p class="text-[14px] md:text-[0.9rem] leading-[1.55] md:leading-relaxed text-grey m-0 max-w-[520px]">
-          En attendant, n'hésitez pas à me contacter si vous avez une question sur ma manière
-          de travailler ou sur un projet en particulier.
+          Sur un point abordé dans ces articles ou sur un projet en particulier,
+          n'hésitez pas à me contacter.
         </p>
         <a
           href="/contact"
@@ -93,6 +152,108 @@ const formatDate = (d: Date) =>
       </div>
 
     </main>
+
+    <script is:inline>
+      // Filtre + pagination, tous les deux côté client et reflétés dans l'URL
+      // (?categorie=methode&page=2), donc partageables et compatibles précédent/suivant.
+      // Tous les articles sont dans le HTML : les moteurs de recherche les voient,
+      // le script ne fait que masquer ce qui n'est pas dans la vue courante.
+      (() => {
+        const liste = document.querySelector('[data-liste]');
+        if (!liste) return;
+
+        const parPage = Number(liste.dataset.parPage) || 12;
+        const cartes = Array.from(liste.querySelectorAll('[data-categorie]'));
+        const filtres = Array.from(document.querySelectorAll('[data-filtre]'));
+        const une = liste.querySelector('[data-une]');
+        const pagination = document.querySelector('[data-pagination]');
+        const classePage = pagination ? pagination.dataset.classePage : '';
+        const slugsConnus = filtres.map((f) => f.dataset.filtre);
+
+        const lienVers = (categorie, page) => {
+          const params = new URLSearchParams();
+          if (categorie !== 'tous') params.set('categorie', categorie);
+          if (page > 1) params.set('page', String(page));
+          const q = params.toString();
+          return location.pathname + (q ? '?' + q : '');
+        };
+
+        // Une catégorie inconnue (URL bricolée à la main, ancienne catégorie
+        // supprimée) retombe sur « tous » plutôt que sur une liste vide.
+        const lireUrl = () => {
+          const params = new URLSearchParams(location.search);
+          const categorie = params.get('categorie') || 'tous';
+          return {
+            categorie: slugsConnus.includes(categorie) ? categorie : 'tous',
+            page: Math.max(1, Number(params.get('page')) || 1),
+          };
+        };
+
+        const construirePagination = (nbPages, courante, categorie) => {
+          if (!pagination) return;
+          pagination.innerHTML = '';
+          pagination.classList.toggle('!hidden', nbPages <= 1);
+          pagination.classList.toggle('flex', nbPages > 1);
+          if (nbPages <= 1) return;
+
+          for (let i = 1; i <= nbPages; i++) {
+            const lien = document.createElement('a');
+            lien.href = lienVers(categorie, i);
+            lien.textContent = String(i);
+            lien.className = classePage;
+            lien.setAttribute('aria-current', i === courante ? 'page' : 'false');
+            lien.setAttribute('aria-label', 'Page ' + i);
+            lien.addEventListener('click', (e) => {
+              e.preventDefault();
+              appliquer({ categorie, page: i });
+              liste.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+            pagination.appendChild(lien);
+          }
+        };
+
+        const rendre = ({ categorie, page }) => {
+          const visibles = cartes.filter(
+            (c) => categorie === 'tous' || c.dataset.categorie === categorie,
+          );
+          const nbPages = Math.max(1, Math.ceil(visibles.length / parPage));
+          // Une page hors bornes (?page=9 sur 3 pages) est ramenée à la dernière.
+          const courante = Math.min(page, nbPages);
+          const debut = (courante - 1) * parPage;
+
+          cartes.forEach((c) => c.classList.add('!hidden'));
+          visibles.slice(debut, debut + parPage).forEach((c) => c.classList.remove('!hidden'));
+
+          // La mise à la une ne vaut que pour la vue complète, première page.
+          if (une) une.classList.toggle('md:col-span-2', categorie === 'tous' && courante === 1);
+
+          filtres.forEach((f) =>
+            f.setAttribute('aria-current', f.dataset.filtre === categorie ? 'page' : 'false'),
+          );
+          construirePagination(nbPages, courante, categorie);
+          return courante;
+        };
+
+        const appliquer = (etat, remplacer) => {
+          const page = rendre(etat);
+          const url = lienVers(etat.categorie, page);
+          history[remplacer ? 'replaceState' : 'pushState']({}, '', url);
+        };
+
+        filtres.forEach((filtre) => {
+          filtre.addEventListener('click', (e) => {
+            e.preventDefault();
+            appliquer({ categorie: filtre.dataset.filtre, page: 1 });
+          });
+        });
+
+        // Boutons précédent/suivant du navigateur.
+        window.addEventListener('popstate', () => rendre(lireUrl()));
+
+        // État initial, normalisé dans l'URL (?page=1 ou catégorie inconnue nettoyés).
+        appliquer(lireUrl(), true);
+      })();
+    </script>
 
     <Footer activePage="carnet" />
   </div>
