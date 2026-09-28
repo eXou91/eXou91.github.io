@@ -12,6 +12,7 @@ import livretBiosourceImg from '../../assets/images/realisations/realisation_liv
 import anticiperDemainImg from '../../assets/images/realisations/realisation_anticiper_demain.webp';
 import rapportRseImg      from '../../assets/images/realisations/realisation_rapport_rse.webp';
 import bonVivreImg        from '../../assets/images/realisations/realisation_bon_vivre.webp';
+import bookCouvertureImg from '../../assets/images/book/book-couverture.webp';
 
 const projects = [
   {
@@ -85,19 +86,50 @@ const libelleRecos = (n: number) => (n > 1 ? 'Recommandations' : 'Recommandation
 
       <!-- ── Page intro ──────────────────────────────────────── -->
       <section class="px-[18px] md:px-14 pt-1.5 md:pt-8 pb-1 md:pb-10">
-        <Eyebrow class="mt-1.5 md:mt-0 mb-3 md:mb-4" />
-        <h1 class="page-title font-extrabold mb-3.5 md:mb-4">
-          Réalisations.
-        </h1>
-        <p class="font-bold text-[16px] md:text-[1.15rem] leading-[1.4] md:leading-snug text-navy m-0 mb-3 md:mb-4 max-w-[520px]">
-          De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet.
-        </p>
-        <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed mt-0 mb-3 md:mb-0 max-w-[520px] text-grey">
-          Réponses à concours, livrets, supports de communication ou documents de présentation&nbsp;: chaque
-          réalisation est pensée pour clarifier un propos, structurer l'information et donner une forme
-          qui fait au fond.
-        </p>
-        <p class="m-0 mb-[22px] md:mb-0 md:mt-4 font-bold text-[13px]"><a href="/book" class="link-underline box-decoration-clone text-navy no-underline">Mes références concours 2023-2026, réunies dans un&nbsp;book&nbsp;&rarr;</a></p>
+        <!-- Même grille que la liste de projets (2 colonnes, gap-12) : sur desktop, la carte
+             du book s'aligne sur la colonne texte des projets en dessous. -->
+        <div class="md:grid md:grid-cols-2 md:gap-12 md:items-end">
+          <div>
+            <Eyebrow class="mt-1.5 md:mt-0 mb-3 md:mb-4" />
+            <h1 class="page-title font-extrabold mb-3.5 md:mb-4">
+              Réalisations.
+            </h1>
+            <p class="font-bold text-[16px] md:text-[1.15rem] leading-[1.4] md:leading-snug text-navy m-0 mb-3 md:mb-4 max-w-[520px]">
+              De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet.
+            </p>
+            <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed mt-0 mb-6 md:mb-0 max-w-[520px] text-grey">
+              Réponses à concours, livrets, supports de communication ou documents de présentation&nbsp;: chaque
+              réalisation est pensée pour clarifier un propos, structurer l'information et donner une forme
+              qui fait au fond.
+            </p>
+          </div>
+
+          <!-- Accès au book (visible au chargement : pas de .reveal). La couverture, inclinée
+               et ombrée, est posée sur l'encart comme un objet ; toute la carte est cliquable
+               (lien étiré via ::after), mais le nom accessible reste « Accéder au book ».
+               Étiquette en navy et non en coral : le coral sur fond paper passe sous le seuil AA. -->
+          <div data-book-carte class="group relative flex items-center gap-4 md:gap-5 lg:gap-6 max-w-[460px] bg-paper rounded-xl md:rounded-[14px] p-4 md:px-6 md:py-6 lg:px-7 mb-[22px] md:mb-0">
+            <div class="shrink-0 md:-my-10 lg:-translate-y-7">
+              <Image
+                src={bookCouvertureImg} width={240} widths={[144, 240]}
+                sizes="(min-width: 1024px) 104px, (min-width: 768px) 80px, 64px" loading="eager"
+                alt="Couverture du book « Références concours 2023-2026 »"
+                class="block w-[64px] md:w-[80px] lg:w-[104px] h-auto rounded-[2px] -rotate-[4deg] ring-1 ring-navy/[0.06]
+                       shadow-[0_8px_18px_rgba(41,54,130,0.22)] transition-transform duration-300 ease-out
+                       group-hover:-rotate-[1.5deg] group-hover:-translate-y-1"
+              />
+            </div>
+            <div class="min-w-0">
+              <p class="text-[10.5px] md:text-[11px] font-bold tracking-[0.08em] uppercase text-navy m-0 mb-1 md:mb-1.5">Le book concours</p>
+              <p class="font-bold text-[13.5px] md:text-[0.9rem] lg:text-[0.97rem] leading-[1.35] text-navy text-pretty m-0 mb-2 md:mb-3">
+                Deux projets lauréats, trois finalistes&nbsp;: mes réponses à concours en un&nbsp;PDF.
+              </p>
+              <a href="/book" class="link-underline group-hover:[background-size:100%_1.5px] font-bold text-[13px] text-navy no-underline after:absolute after:inset-0 after:rounded-xl md:after:rounded-[14px]">
+                Accéder au book&nbsp;&rarr;
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- ── Project list ────────────────────────────────────── -->
