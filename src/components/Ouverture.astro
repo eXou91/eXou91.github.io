@@ -1,0 +1,30 @@
+---
+/**
+ * Bandeau d'annonce de l'ouverture, affiché sur l'accueil (mobile + desktop).
+ *
+ * Le décompte est calculé côté client, jamais au build : le site n'étant
+ * reconstruit qu'à chaque push, un calcul au build figerait le nombre de jours
+ * et il serait faux dès le lendemain.
+ *
+ * Le texte rendu ici (la date seule) est ce que voient les moteurs de recherche
+ * et un visiteur sans JS ; le script de `index.astro` y ajoute le décompte, et
+ * bascule sur un message d'ouverture une fois la date passée.
+ */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+
+// Minuit à Paris (UTC+2, heure d'été) le 30 septembre 2026.
+const OUVERTURE = '2026-09-30T00:00:00+02:00';
+---
+
+<p
+  data-ouverture={OUVERTURE}
+  class={`inline-flex items-center gap-2 self-start rounded-full bg-blush text-navy
+          px-3 py-1.5 text-[10.5px] md:text-[11px] font-extrabold tracking-[0.05em]
+          uppercase m-0 ${className}`}
+>
+  <span class="w-1.5 h-1.5 rounded-full bg-coral shrink-0" aria-hidden="true"></span>
+  <span data-ouverture-texte>Ouverture le 30 septembre 2026</span>
+</p>

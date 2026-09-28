@@ -14,7 +14,15 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { title, tag, date } = article.data;
+
+// Accroche du bloc CTA, personnalisable par article ; espace insécable avant
+// la ponctuation double, comme partout ailleurs sur le site.
+const ctaTitle = (article.data.ctaTitle ?? "Envie d'en discuter ?").replace(/ ([?!:;»])/g, '\u00A0$1');
 const { Content } = await render(article);
+
+// Temps de lecture estimé (~200 mots/minute), affiché à côté de la date.
+const wordCount = article.body?.trim().split(/\s+/).filter(Boolean).length ?? 0;
+const readingTime = Math.max(1, Math.round(wordCount / 200));
 
 const formattedDate = date.toLocaleDateString('fr-FR', {
   day: '2-digit',
@@ -30,13 +38,18 @@ const formattedDate = date.toLocaleDateString('fr-FR', {
     <Header activePage="carnet" />
 
     <main class="flex-1 px-[18px] md:px-0 pt-5 md:pt-8 pb-14">
-      <div class="max-w-[720px] mx-auto">
-        <a
-          href="/carnet-de-bord"
-          class="inline-flex items-center gap-1.5 text-[12px] md:text-[12.5px] font-bold text-navy no-underline opacity-75 mb-[18px] md:mb-8"
+      <div class="max-w-[640px] mx-auto">
+        <div
+          class="sticky top-[58px] md:top-[82px] z-30 bg-white border-b border-navy/10
+                 -mx-[18px] px-[18px] md:mx-0 md:px-0 py-2.5 md:py-3 mb-3.5 md:mb-7"
         >
-          &larr; Carnet de bord
-        </a>
+          <a
+            href="/carnet-de-bord"
+            class="inline-flex items-center gap-1.5 text-[12px] md:text-[12.5px] font-bold text-navy no-underline opacity-75 hover:opacity-100 transition-opacity"
+          >
+            &larr; Carnet de bord
+          </a>
+        </div>
 
         <span class="inline-flex bg-blush text-navy text-[9.5px] md:text-[10.5px] font-extrabold tracking-[0.05em] uppercase px-2 md:px-2.5 py-[3px] md:py-1 rounded-[5px] mb-3.5 md:mb-5">
           {tag}
@@ -47,16 +60,16 @@ const formattedDate = date.toLocaleDateString('fr-FR', {
           {title}
         </h1>
 
-        <p class="text-[12px] md:text-[13px] text-mute font-semibold mb-6 md:mb-10">{formattedDate}</p>
+        <p class="text-[12px] md:text-[13px] text-mute font-semibold mb-6 md:mb-10">{formattedDate} &middot; {readingTime} min de lecture</p>
 
-        <div class="article-body text-grey text-[14.5px] md:text-[16.5px] leading-[1.65] md:leading-[1.75] space-y-[18px] md:space-y-6 [&_a]:text-navy [&_a]:underline [&_em]:text-navy [&_em]:italic">
+        <div class="article-body text-grey text-[15px] md:text-[17px] leading-[1.65] md:leading-[1.75] space-y-[18px] md:space-y-6 [&_a]:text-navy [&_a]:underline [&_em]:text-navy [&_em]:italic">
           <Content />
         </div>
       </div>
 
-      <div class="max-w-[720px] mx-auto mt-2.5 md:mt-9 mb-2 md:mb-10 px-5 py-[22px] md:py-9 md:px-11 bg-white border-[1.5px] border-navy/15 rounded-[14px] flex flex-col items-start gap-3.5 md:gap-[18px]">
+      <div class="max-w-[640px] mx-auto mt-2.5 md:mt-9 mb-2 md:mb-10 px-5 py-[22px] md:py-9 md:px-11 bg-white border-[1.5px] border-navy/15 rounded-[14px] flex flex-col items-start gap-3.5 md:gap-[18px]">
         <p class="font-extrabold text-navy m-0" style="font-size: clamp(1.1875rem, 4.9vw, 1.4rem);">
-          Un concours à préparer&nbsp;?
+          {ctaTitle}
         </p>
         <div class="flex flex-col sm:flex-row gap-2.5 md:gap-3.5 w-full sm:w-auto">
           <a href="/contact"
