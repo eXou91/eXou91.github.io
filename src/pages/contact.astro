@@ -3,13 +3,10 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
+// Clé Web3Forms et adresse de contact : partagées avec le formulaire du book (src/consts.ts).
+import { WEB3FORMS_KEY, WEB3FORMS_ENDPOINT, CONTACT_EMAIL } from '@/consts';
 
-// Clé publique Web3Forms (elle est visible dans le HTML par conception : c'est un
-// identifiant de boîte de réception, pas un secret). Si elle devait être révoquée,
-// il suffit d'en régénérer une sur https://web3forms.com — le formulaire retombe
-// automatiquement sur l'ouverture du logiciel de messagerie en cas de valeur absente.
-const WEB3FORMS_KEY = '79a90915-b326-4592-9a3f-7f9e1dc356e4';
-const contactEmail = 'contact@avouslaville.fr';
+const contactEmail = CONTACT_EMAIL;
 
 const champ =
   'w-full h-[44px] md:h-[46px] rounded-[7px] border border-[#dcdce2] focus:border-navy outline-none px-4 text-[0.85rem] transition-colors';
@@ -71,7 +68,7 @@ const etiquette =
           <form
             id="contact-form"
             method="POST"
-            action="https://api.web3forms.com/submit"
+            action={WEB3FORMS_ENDPOINT}
             data-key={WEB3FORMS_KEY}
             data-email={contactEmail}
             class="flex flex-col gap-5 md:gap-[26px]"

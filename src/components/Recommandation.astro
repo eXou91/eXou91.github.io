@@ -1,0 +1,66 @@
+---
+/**
+ * Recommandation : citation d'une dirigeante avec qui Diane a travaillé (Legendre
+ * Immobilier, SECIB Immobilier). Ce ne sont PAS des clientes : ne jamais les
+ * étiqueter comme telles. Textes : src/data/recommandations.ts.
+ *
+ * `quote` s'écrit SANS guillemets : le composant pose « » (décoratifs, masqués
+ * aux lecteurs d'écran, le <blockquote> suffit) et les espaces insécables.
+ * Variantes :
+ *  - exergue : accueil, citation courte en grand corps, guillemets corail,
+ *              guillemet ouvrant suspendu dans la marge à partir de md ;
+ *  - colonne : accueil, deux citations côte à côte, filet au-dessus,
+ *              légendes alignées en bas (figure en flex-col) ;
+ *  - note    : Réalisations, petit corps ; filet et intitulé « Recommandation(s) »
+ *              sont portés par le bloc parent.
+ */
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+  org: string;
+  variant?: 'exergue' | 'colonne' | 'note';
+  class?: string;
+}
+const { quote, name, role, org, variant = 'note', class: className = '' } = Astro.props;
+
+// Garde-fou : un guillemet ou une apostrophe courbe collés depuis LinkedIn/Word
+// font échouer le build au lieu de partir en ligne.
+if (/[«»‹›"“”„‘’]/.test(quote)) {
+  throw new Error(`Recommandation (${name}) : retirer les guillemets du texte et remplacer ’ ou ‘ par '.`);
+}
+// Typographie française : espace insécable avant ! ? : ; puis entre les deux derniers
+// mots, pour qu'aucune citation ne finisse sur un mot seul en fin de ligne.
+const texte = quote.trim().replace(/\s+([!?:;])/g, '\u00A0$1').replace(/ ([^ ]+)$/, '\u00A0$1');
+
+// Classes écrites en entier (détection Tailwind), jamais construites par concaténation.
+const s = {
+  exergue: {
+    figure: '',
+    p: 'text-[1.5rem] md:text-[clamp(1.75rem,2.9vw,2.5rem)] leading-[1.15] tracking-[-0.01em] text-balance md:-indent-[0.55em]',
+    guillemet: 'text-coral',
+    legende: 'mt-4 md:mt-6 text-[13px] md:text-[13.5px]',
+  },
+  colonne: {
+    figure: 'flex flex-col border-t border-navy/15 pt-5 md:pt-6',
+    p: 'text-[16px] md:text-[1.125rem] leading-[1.5] text-pretty max-w-[540px] md:-indent-[0.55em]',
+    guillemet: '',
+    legende: 'mt-3.5 md:mt-4 text-[12.5px] md:text-[13px]',
+  },
+  note: {
+    figure: '',
+    p: 'text-[14.5px] md:text-[0.975rem] leading-[1.5] text-pretty',
+    guillemet: '',
+    legende: 'mt-2 text-[12px] md:text-[12.5px]',
+  },
+}[variant];
+---
+<figure class={`m-0 ${s.figure} ${className}`}>
+  <blockquote class="m-0 p-0 grow">
+    <p class={`m-0 font-display italic text-navy ${s.p}`}><span class={s.guillemet || undefined} aria-hidden="true">«&nbsp;</span>{texte}<span class={s.guillemet || undefined} aria-hidden="true">&nbsp;»</span></p>
+  </blockquote>
+  <figcaption class={`leading-snug ${s.legende}`}>
+    <span class="block font-bold text-navy">{name}</span>
+    <span class="block text-grey">{role}, <span class="whitespace-nowrap">{org}</span></span>
+  </figcaption>
+</figure>

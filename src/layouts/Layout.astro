@@ -93,7 +93,10 @@ const imageUrl = new URL(image, Astro.site).href;
           entries.forEach(function (e) {
             if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
           });
-        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
+        // Déclenchement dès que le haut de l'élément dépasse le bas de l'écran de 40 px.
+        // Pas de seuil en pourcentage : sur une section haute (ex. « Au sommaire » de /book),
+        // 12 % de sa hauteur pouvaient dépasser 100 px et laisser un grand blanc à l'écran.
+        }, { rootMargin: '0px 0px -40px 0px', threshold: 0 });
         els.forEach(function (el) { io.observe(el); });
       })();
     </script>

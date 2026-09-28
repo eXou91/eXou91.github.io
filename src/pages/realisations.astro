@@ -3,6 +3,8 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import Eyebrow from '@/components/Eyebrow.astro';
+import Recommandation from '@/components/Recommandation.astro';
+import { RECOS_PROJETS } from '@/data/recommandations';
 import { Image } from 'astro:assets';
 import boisHabiteImg      from '../../assets/images/realisations/realisation_bois_habité.webp';
 import oreeDesChampsImg   from '../../assets/images/realisations/realisation_orée_des_champs.webp';
@@ -35,6 +37,7 @@ const projects = [
     tags: 'Vulgarisation · rédaction · structuration de contenu · sensibilisation interne',
     imageLeft: true,
     image: livretBiosourceImg,
+    recos: RECOS_PROJETS.livretBiosource,
   },
   {
     category: 'Anticiper demain',
@@ -45,12 +48,15 @@ const projects = [
     image: anticiperDemainImg,
   },
   {
-    category: 'Secib Immobilier · Rapport RSE 2025',
+    category: 'SECIB Immobilier · Rapport RSE\u00a02025',
     type: 'Rapport institutionnel',
-    desc: 'Piloter en autonomie le rapport RSE 2025 de SECIB Immobilier, de la première idée à la forme finale : entretiens avec les équipes, définition de la trame, rédaction et création des éléments graphiques.',
+    // Réalisé en 2025 sur l'exercice 2024 : la mention évite que la citation
+    // (« rapport d'activité RSE 2024 ») paraisse contredire le titre.
+    desc: 'Piloter en autonomie le rapport RSE 2025 de SECIB Immobilier (exercice 2024), de la première idée à la forme finale\u00a0: entretiens avec les équipes, définition de la trame, rédaction et création des éléments graphiques.',
     tags: 'Rapport RSE · entretiens de cadrage · rédaction · trame éditoriale',
     imageLeft: true,
     image: rapportRseImg,
+    recos: RECOS_PROJETS.rapportRse,
   },
   {
     category: 'Où il fait bon vivre',
@@ -61,6 +67,10 @@ const projects = [
     image: bonVivreImg,
   },
 ];
+
+// Intitulé des recommandations d'un projet (jamais « client » : ce sont des dirigeantes
+// avec qui Diane a travaillé, pas des clientes d'À vous la ville).
+const libelleRecos = (n: number) => (n > 1 ? 'Recommandations' : 'Recommandation');
 ---
 
 <Layout
@@ -82,17 +92,18 @@ const projects = [
         <p class="font-bold text-[16px] md:text-[1.15rem] leading-[1.4] md:leading-snug text-navy m-0 mb-3 md:mb-4 max-w-[520px]">
           De la stratégie éditoriale à la mise en forme finale, j'interviens à toutes les étapes d'un projet.
         </p>
-        <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed mt-0 mb-[22px] md:mb-0 max-w-[520px] text-grey">
+        <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed mt-0 mb-3 md:mb-0 max-w-[520px] text-grey">
           Réponses à concours, livrets, supports de communication ou documents de présentation&nbsp;: chaque
           réalisation est pensée pour clarifier un propos, structurer l'information et donner une forme
           qui fait au fond.
         </p>
+        <p class="m-0 mb-[22px] md:mb-0 md:mt-4 font-bold text-[13px]"><a href="/book" class="link-underline box-decoration-clone text-navy no-underline">Mes références concours 2023-2026, réunies dans un&nbsp;book&nbsp;&rarr;</a></p>
       </section>
 
       <!-- ── Project list ────────────────────────────────────── -->
       <section class="px-[18px] md:px-14 pb-2 md:pb-14">
         <div class="flex flex-col gap-[34px] md:gap-[52px] mt-[18px] md:mt-0">
-          {projects.map(({ category, type, desc, tags, imageLeft, image }) => (
+          {projects.map(({ category, type, desc, tags, imageLeft, image, recos }) => (
             <article class="reveal">
               <!-- Mobile: image on top, text below -->
               <div class="md:hidden">
@@ -103,11 +114,22 @@ const projects = [
                 <p class="text-[10.5px] font-bold tracking-[0.06em] uppercase text-mute m-0 mb-3">{type}</p>
                 <p class="text-[13.5px] leading-[1.58] text-grey m-0 mb-3">{desc}</p>
                 <p class="text-[10.5px] leading-[1.5] text-mute m-0">{tags}</p>
+                {recos && (
+                  <div class="mt-5 pt-4 border-t border-navy/15">
+                    <p class="text-[10.5px] font-bold tracking-[0.08em] uppercase text-coral m-0 mb-3">{libelleRecos(recos.length)}</p>
+                    <div class="flex flex-col gap-4">
+                      {recos.map((r) => <Recommandation variant="note" {...r} />)}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <!-- Desktop: alternating image/text -->
               <div class={`hidden md:flex gap-12 items-center ${imageLeft ? '' : 'flex-row-reverse'}`}>
-                <div class="group flex-1 aspect-[4/3] rounded-[14px] overflow-hidden shadow-[0_10px_28px_rgba(41,54,130,0.16)]">
+                {/* Projet avec recommandations : la colonne texte peut être plus haute que l'image
+                    (projet bio : jusqu'à ~1650 px de large) ; l'image se cale alors sur le titre
+                    au lieu de flotter. Sans effet quand l'image est la plus haute. */}
+                <div class={`group flex-1 aspect-[4/3] rounded-[14px] overflow-hidden shadow-[0_10px_28px_rgba(41,54,130,0.16)] ${recos ? 'md:self-start' : ''}`}>
                   <Image src={image} alt={category} width={1280} class="w-full h-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.05]" />
                 </div>
                 <div class="flex-1">
@@ -115,6 +137,14 @@ const projects = [
                   <p class="text-[11.5px] font-bold tracking-[0.07em] uppercase text-mute m-0 mb-4">{type}</p>
                   <p class="text-[0.9rem] leading-relaxed text-grey m-0 mb-3.5 max-w-[460px]">{desc}</p>
                   <p class="text-[11.5px] text-mute m-0">{tags}</p>
+                  {recos && (
+                    <div class="mt-6 pt-5 border-t border-navy/15 max-w-[460px]">
+                      <p class="text-[11px] font-bold tracking-[0.08em] uppercase text-coral m-0 mb-3.5">{libelleRecos(recos.length)}</p>
+                      <div class="flex flex-col gap-5">
+                        {recos.map((r) => <Recommandation variant="note" {...r} />)}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </article>

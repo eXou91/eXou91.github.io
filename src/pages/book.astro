@@ -1,0 +1,165 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Eyebrow from '@/components/Eyebrow.astro';
+import BookTelechargement from '@/components/BookTelechargement.astro';
+import { Image } from 'astro:assets';
+import miseEnSituationImg from '../../assets/images/book/book-mise-en-situation.jpg';
+import pageBoisImg   from '../../assets/images/book/book-page-04.webp';
+import pageOreeImg   from '../../assets/images/book/book-page-10.webp';
+
+// Sommaire repris des pages du PDF (titres, lieux, dates, badges « Projet lauréat / finaliste »).
+const sommaire = [
+  { titre: 'Racines', infos: 'Douarnenez · 2023', statut: 'Lauréat' },
+  { titre: 'Vers le nouveau bois habité', infos: 'Lorient · 2023', statut: 'Lauréat' },
+  { titre: 'Kabanes', infos: 'Chantepie · 2023', statut: 'Finaliste' },
+  { titre: 'Quartier Bodélio', infos: 'Lorient · 2024', statut: 'Finaliste' },
+  { titre: "L'îlot du Renard", infos: 'Brest · 2024', statut: 'Finaliste' },
+  { titre: 'Habiter ensemble + Le bois habité', infos: 'Rennes et Vern-sur-Seiche · 2 concours' },
+  { titre: 'Où il fait bon vivre', infos: 'La Richardais · 2023' },
+  { titre: "À l'orée des champs", infos: 'Vern-sur-Seiche · 2023' },
+];
+const badge = 'shrink-0 mt-0.5 inline-block text-[9.5px] md:text-[10px] font-extrabold tracking-[0.06em] uppercase rounded px-1.5 py-0.5';
+const badgeLaureat = `${badge} bg-coral text-white`;
+const badgeFinaliste = `${badge} bg-blush text-navy`;
+// Hero : fondu des bords de la photo de mise en situation dans le plateau gris (#E9E9E9),
+// pour qu'aucune arête ne trahisse le rectangle. Le bas, où l'ombre du book est coupée,
+// est fondu plus largement ; le book lui-même reste hors des zones de fondu.
+const fonduBords = [
+  'linear-gradient(to right, transparent, #000 5%, #000 95%, transparent)',
+  'linear-gradient(to bottom, transparent, #000 8%, #000 92%, transparent)',
+].join(', ');
+const fonduBordsStyle = `-webkit-mask-image: ${fonduBords}; mask-image: ${fonduBords}; -webkit-mask-composite: source-in; mask-composite: intersect;`;
+---
+
+<Layout
+  title="Book concours · À vous la ville"
+  description="Mes réponses à concours 2023-2026 pour promoteurs et bailleurs : l'enjeu, l'angle défendu et mon rôle, dossier par dossier. Le book PDF en accès immédiat."
+  image="/og-book.jpg"
+>
+  <div class="min-h-screen flex flex-col text-navy bg-white">
+
+    <Header />
+
+    <main class="flex-1">
+
+      <!-- ── Intro + accès au book (visible au chargement : pas de .reveal) ── -->
+      <section class="px-[18px] md:px-14 pt-1.5 md:pt-8 pb-10 md:pb-16">
+        <div class="md:grid md:grid-cols-2 lg:grid-cols-[460px_minmax(0,1fr)] md:gap-x-10 lg:gap-x-[100px] md:items-center">
+
+          <div>
+            <Eyebrow class="mt-1.5 md:mt-0 mb-3 md:mb-4" />
+            <h1 class="page-title font-extrabold mb-4 md:mb-5">
+              Book concours.
+            </h1>
+            <p class="font-bold text-[16px] md:text-[1.15rem] leading-[1.4] md:leading-snug text-navy m-0 mb-3 md:mb-4">
+              Plus qu'un dossier bien mis en page&nbsp;: un rendu <em class="italic text-coral">sécurisé</em>.
+            </p>
+            <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed text-grey m-0 mb-6 md:mb-7 max-w-[460px]">
+              J'ai réuni dans ce book mes réponses à concours de 2023 à 2026, menées pour des promoteurs
+              et des bailleurs. Pour chaque dossier&nbsp;: le programme, l'enjeu, l'angle que j'ai défendu
+              et ce que j'ai pris en charge, selon les dossiers, de la stratégie de réponse jusqu'au dépôt.
+            </p>
+            <div id="acces-book" class="scroll-mt-24">
+              <BookTelechargement source="/book" />
+            </div>
+          </div>
+
+          <!-- Mise en situation du book (photo de Diane), ouvert sur la page « Racines ».
+               Le plateau reprend le gris de fond mesuré sur la photo (#E9E9E9) : la photo se fond
+               dans son décor de studio au lieu de faire un rectangle collé. Fichier source de 640 px :
+               jamais affiché au-delà de 580 px de large.
+               Version haute définition (≥ 1600 px) : remplacer book-mise-en-situation.jpg,
+               passer width/widths à la nouvelle largeur, puis revérifier le gris de fond
+               et les marges négatives (-mt) qui centrent le book dans le plateau. -->
+          <figure class="relative m-0 w-full max-w-[520px] mx-auto mt-10 md:mt-0 md:max-w-[640px] md:mr-0 aspect-[5/4] xl:aspect-[4/3] flex flex-col items-center justify-center rounded-xl md:rounded-[14px] bg-[#e9e9e9] overflow-hidden">
+            <Image
+              src={miseEnSituationImg} width={640} widths={[480, 640]} quality={90}
+              sizes="(min-width: 1280px) 580px, (min-width: 768px) calc(50vw - 76px), calc(100vw - 36px)" loading="eager"
+              alt="Le book « Références concours 2023-2026 » d'À vous la ville, ouvert sur la réponse à concours Racines, projet lauréat, à côté de sa couverture"
+              class="block w-full xl:w-[90.6%] h-auto -mt-[9%] xl:-mt-[6%]"
+              style={fonduBordsStyle}
+            />
+            <figcaption class="absolute inset-x-4 bottom-3.5 xl:inset-x-7 xl:bottom-4 flex items-baseline gap-2 xl:gap-2.5 text-[11.5px] xl:text-[12.5px] leading-snug text-grey">
+              <span class={badgeLaureat}>Lauréat</span>
+              <span>Ouvert sur <b class="text-navy">Racines</b> · Douarnenez · 2023</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </section>
+
+      <!-- ── Au sommaire ─────────────────────────────────────── -->
+      <section class="reveal px-[18px] md:px-14 pb-10 md:pb-14">
+        <div class="border-t border-navy/10 pt-8 md:pt-12 md:grid md:grid-cols-2 lg:grid-cols-[460px_minmax(0,1fr)] md:gap-x-10 lg:gap-x-[100px]">
+          <div>
+            <p class="text-[11px] md:text-[11.5px] font-bold tracking-[0.08em] uppercase text-coral m-0 mb-2.5">Au sommaire</p>
+            <h2 class="font-extrabold text-navy m-0 mb-2.5 md:mb-3.5 leading-[1.05]" style="font-size: clamp(1.5rem, 6vw, 2.125rem);">
+              Deux projets lauréats, trois finalistes.
+            </h2>
+            <p class="text-[14px] md:text-[0.97rem] leading-[1.55] md:leading-relaxed text-grey m-0 max-w-[460px]">
+              Ma spécialité&nbsp;: les consultations où il n'y a pas encore d'image d'architecte pour convaincre.
+              Premier tour, prix de sortie serrés, programme encore ouvert&nbsp;: c'est là que le récit,
+              la stratégie et la direction artistique font la différence.
+            </p>
+          </div>
+          <div class="mt-6 md:mt-1">
+            <ul role="list" class="list-none m-0 p-0 border-t border-navy/10">
+              {sommaire.map(({ titre, infos, statut }) => (
+                <li class="flex items-start justify-between gap-3 py-3 md:py-3.5 border-b border-navy/10">
+                  <div class="min-w-0">
+                    <p class="font-bold text-navy text-[14.5px] md:text-[1rem] leading-snug m-0">{titre}</p>
+                    <p class="text-[11.5px] text-mute m-0 mt-0.5">{infos}</p>
+                  </div>
+                  {statut && <span class={statut === 'Lauréat' ? badgeLaureat : badgeFinaliste}>{statut}</span>}
+                </li>
+              ))}
+            </ul>
+            <p class="text-[12.5px] text-grey m-0 mt-3">Et aussi&nbsp;: des livrets R&amp;D et un rapport RSE.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Extraits ─────────────────────────────────────────── -->
+      <section class="reveal px-[18px] md:px-14 pb-12 md:pb-16">
+        <h2 class="font-sans text-[11px] md:text-[11.5px] font-bold tracking-[0.08em] uppercase text-coral m-0 mb-3.5 md:mb-5">Extraits</h2>
+        <div class="grid gap-6 md:grid-cols-2 md:gap-8">
+          <figure class="m-0">
+            <Image src={pageBoisImg} width={1200} widths={[640, 960, 1200]}
+              sizes="(min-width: 768px) calc(50vw - 72px), calc(100vw - 36px)"
+              alt="Double page du book : Vers le nouveau bois habité, à Lorient, projet lauréat"
+              class="w-full h-auto rounded-[4px] ring-1 ring-navy/[0.06] shadow-[0_10px_28px_rgba(41,54,130,0.16)]" />
+            <figcaption class="mt-2.5 text-[12.5px] text-grey"><b class="text-navy">Vers le nouveau bois habité</b> · Lorient · 2023</figcaption>
+          </figure>
+          <figure class="m-0">
+            <Image src={pageOreeImg} width={1200} widths={[640, 960, 1200]}
+              sizes="(min-width: 768px) calc(50vw - 72px), calc(100vw - 36px)"
+              alt="Double page du book : À l'orée des champs, à Vern-sur-Seiche"
+              class="w-full h-auto rounded-[4px] ring-1 ring-navy/[0.06] shadow-[0_10px_28px_rgba(41,54,130,0.16)]" />
+            <figcaption class="mt-2.5 text-[12.5px] text-grey"><b class="text-navy">À l'orée des champs</b> · Vern-sur-Seiche · 2023</figcaption>
+          </figure>
+        </div>
+        <a href="#acces-book" class="link-underline inline-block mt-6 md:mt-8 font-bold text-[13px] text-navy no-underline">
+          Accéder au book &uarr;
+        </a>
+      </section>
+
+      <!-- ── CTA bottom — bande navy pleine largeur ───────────── -->
+      <section class="reveal bg-navy text-center px-[18px] md:px-14 py-12 md:py-[72px]">
+        <p class="font-extrabold text-white m-0 mb-[18px] md:mb-6 leading-[1.3] md:leading-[1.25] tracking-[-0.015em] max-w-[640px] mx-auto" style="font-size: clamp(1.25rem, 5.1vw, 1.625rem);">
+          Vous préparez un concours&nbsp;? Parlons de votre prochaine réponse.
+        </p>
+        <a href="/contact"
+           class="flex md:inline-flex items-center justify-center gap-1.5 rounded-full bg-coral text-white no-underline
+                  py-3.5 md:py-[15px] px-[18px] md:px-7 font-bold text-[12.5px] tracking-[0.06em] uppercase
+                  hover:opacity-90 transition-opacity focus-visible:outline-white">
+          Discutons-en &rarr;
+        </a>
+      </section>
+
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

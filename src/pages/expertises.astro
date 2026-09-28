@@ -33,6 +33,7 @@ const services = [
     tags: "Analyse de consultation · positionnement de candidature · argumentaire · pilotage de rendu",
     tagsS: "Analyse de consultation · positionnement · argumentaire · pilotage de rendu",
     icon: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"/><path d="M17 5h3a2 2 0 0 1-2 4M7 5H4a2 2 0 0 0 2 4"/>',
+    lien: { href: '/book', libelle: 'Voir mes références concours dans le\u00a0book' },
   },
   {
     title: 'Stratégie éditoriale',
@@ -112,7 +113,7 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
       <section class="px-[18px] md:px-14 md:pt-5 pb-2">
         <h2 class="font-extrabold text-navy mt-[18px] md:mt-0 mb-3.5 md:mb-6" style="font-size: clamp(1.5rem, 6vw, 1.75rem);">5 expertises</h2>
         <div class="grid md:grid-cols-2 gap-3 md:gap-[18px]">
-          {services.map(({ title, titleS, tagline, body, bodyS, tags, tagsS, icon, isNew, wide }) => {
+          {services.map(({ title, titleS, tagline, body, bodyS, tags, tagsS, icon, isNew, wide, lien }) => {
             const badge = '<span class="inline-block bg-coral text-white text-[9.5px] font-extrabold tracking-[0.06em] uppercase rounded px-1.5 py-0.5 ml-1.5 align-middle">nouveau</span>';
             return (
             <div class={`flex gap-3 md:gap-4 items-start bg-white border border-[#f0f0f3] shadow-[0_2px_10px_rgba(41,54,130,0.10)] rounded-[14px] p-4 md:p-6 ${wide ? 'md:col-span-2' : ''}`}>
@@ -130,6 +131,7 @@ const audiences = ['Promoteurs', 'Aménageurs', "Architectes et agences d'urbani
                 <p class="text-[11px] md:text-[11.5px] leading-[1.5] text-mute m-0">
                   <span class="md:hidden" set:html={tagsS ?? tags} /><span class="hidden md:inline" set:html={tags} />
                 </p>
+                {lien && <p class="m-0 mt-2.5 md:mt-3 font-bold text-[12.5px] md:text-[13px]"><a href={lien.href} class="link-underline box-decoration-clone text-navy no-underline">{lien.libelle}&nbsp;&rarr;</a></p>}
               </div>
             </div>
             );

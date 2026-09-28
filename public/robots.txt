@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+# Le PDF du book s'obtient via la page /book : on évite qu'il remonte seul dans les moteurs.
+# Ne jamais écrire « Disallow: /book/ » : cela bloquerait aussi la page.
+Disallow: /book/*.pdf
 
 Sitemap: https://avouslaville.fr/sitemap-index.xml

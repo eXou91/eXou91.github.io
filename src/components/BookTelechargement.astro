@@ -1,0 +1,241 @@
+---
+/**
+ * Accès au book concours : un champ e-mail, puis le bouton de téléchargement.
+ * L'adresse est transmise à Web3Forms, qui me prévient par e-mail (rien n'est envoyé
+ * au visiteur). Le téléchargement s'affiche dans tous les cas, même si l'envoi échoue
+ * (bloqueur, réseau, quota, délai) : on ne bloque jamais le visiteur.
+ * Pensé pour un fond blanc. Une seule instance par page, et jamais dans un couple de
+ * blocs md:hidden / hidden md:block (id en double, label for cassés).
+ * `source` : page d'origine, transmise dans la notification (ex. '/book').
+ */
+import { WEB3FORMS_KEY, WEB3FORMS_ENDPOINT, CONTACT_EMAIL, BOOK } from '@/consts';
+
+interface Props {
+  source: string;
+  class?: string;
+}
+const { source, class: className = '' } = Astro.props;
+
+// id propres à chaque instance (label for, aria-describedby).
+const id = `book-${source.replace(/[^a-z0-9]+/gi, '') || 'site'}`;
+const mailtoRepli = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Book concours')}`;
+---
+<div data-book data-pdf={BOOK.url} data-edition={BOOK.edition} class={className}>
+
+  {/* Attention : aucune classe d'affichage (flex, block…) sur un élément basculé par
+      l'attribut hidden (form, panneau, note) : en Tailwind 3.4 elle l'emporte sur [hidden]. */}
+  <form data-book-form method="POST" action={WEB3FORMS_ENDPOINT}>
+    <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
+    <input type="hidden" name="subject" value="Book concours : nouveau téléchargement" />
+    <input type="hidden" name="from_name" value="Site À vous la ville" />
+    <input type="hidden" name="Document" value={`Book réponses à concours ${BOOK.edition}`} />
+    <input type="hidden" name="Page" value={source} />
+    {/* Piège à robots : invisible pour un humain, rempli par les spambots. */}
+    <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+    <label for={`${id}-email`} class="block text-[11px] md:text-[11.5px] font-bold tracking-[0.05em] md:tracking-[0.06em] uppercase text-navy mb-2 md:mb-2.5">
+      Votre e-mail professionnel
+    </label>
+    <div class="flex flex-col lg:flex-row gap-2.5 max-w-[480px]">
+      <input
+        id={`${id}-email`} name="email" type="email" required autocomplete="email"
+        autocapitalize="off" spellcheck="false" placeholder="prenom.nom@structure.fr"
+        class="w-full lg:flex-1 min-w-0 h-[46px] rounded-[7px] border border-navy/60 focus:border-navy bg-white px-4 text-[16px] md:text-[0.9rem] text-navy placeholder:text-mute transition-colors"
+      />
+      <button
+        type="submit"
+        class="shrink-0 lg:min-w-[13rem] h-[46px] inline-flex items-center justify-center gap-1.5 rounded-lg bg-coral text-white font-bold text-[12.5px] md:text-[13px] tracking-[0.06em] uppercase px-5 md:px-6 hover:opacity-90 transition-opacity aria-disabled:opacity-60 aria-disabled:cursor-wait"
+      >
+        <span data-book-libelle>Accéder au book</span><span aria-hidden="true">&rarr;</span>
+      </button>
+    </div>
+    <noscript>
+      <p class="text-[12.5px] leading-[1.55] text-grey m-0 mt-2.5 max-w-[480px]">
+        JavaScript est désactivé sur votre navigateur&nbsp;: vous pouvez
+        <a href={BOOK.url} download={BOOK.nomFichier} rel="nofollow" class="text-navy font-bold underline">télécharger directement le book (PDF, {BOOK.poids})</a>.
+      </p>
+    </noscript>
+  </form>
+
+  <div data-book-panneau hidden>
+    <div class="border-l-2 border-coral pl-4 md:pl-5 max-w-[480px]">
+      <p data-book-titre tabindex="-1" class="font-display font-extrabold text-navy text-[19px] md:text-[1.35rem] leading-tight m-0 mb-3.5 scroll-mt-28 focus:outline-none">
+        Le book est à vous.
+      </p>
+      <div class="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 sm:gap-x-5">
+        <a data-book-telecharger download={BOOK.nomFichier} rel="nofollow"
+           class="order-1 flex sm:inline-flex whitespace-nowrap items-center justify-center gap-2 rounded-full bg-coral text-white no-underline py-3.5 md:py-[15px] px-[18px] md:px-7 font-bold text-[12.5px] tracking-[0.06em] uppercase hover:opacity-90 transition-opacity">
+          <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 11l6 6 6-6M5 20h14"/></svg>
+          Télécharger le book<span class="sr-only">, PDF, {BOOK.pages} pages, {BOOK.poids}</span>
+        </a>
+        {/* Sur mobile, la ligne PDF · pages · poids suit directement le bouton de téléchargement ;
+            à partir de sm, elle passe sous le bouton et le lien, sur une ligne à part. */}
+        <p class="order-2 sm:order-3 sm:basis-full text-[11.5px] text-mute m-0" aria-hidden="true">PDF · {BOOK.pages} pages · {BOOK.poids}</p>
+        <a data-book-ouvrir target="_blank" rel="noopener nofollow"
+           class="order-3 sm:order-2 link-underline self-start sm:self-auto inline-block whitespace-nowrap font-bold text-[13px] text-navy no-underline">
+          Le feuilleter en ligne<span class="sr-only"> (PDF, nouvel onglet)</span> <span aria-hidden="true">&nearr;</span>
+        </a>
+      </div>
+      <p data-book-note-repli hidden class="text-[12.5px] leading-[1.55] text-grey m-0 mt-3.5">
+        Petit souci technique&nbsp;: votre adresse ne m'est peut-être pas parvenue. Si vous le souhaitez,
+        dites-moi simplement que vous l'avez consulté en m'écrivant à
+        <a href={mailtoRepli} class="text-navy font-bold underline">{CONTACT_EMAIL}</a>.
+      </p>
+      <a href="/contact" class="link-underline inline-block mt-4 md:mt-5 font-bold text-[13px] text-navy no-underline">
+        Un concours en vue&nbsp;? Parlons-en &rarr;
+      </a>
+    </div>
+  </div>
+
+  <p data-book-statut role="status" aria-live="polite" class="sr-only"></p>
+</div>
+
+<script is:inline>
+  // Book concours : l'adresse saisie me parvient par Web3Forms, puis le téléchargement
+  // s'affiche. Il s'affiche AUSSI quand l'envoi échoue (bloqueur, réseau, quota, délai) :
+  // on ne bloque jamais le visiteur. Astro ne déduplique pas les scripts is:inline :
+  // chaque bloc [data-book] n'est initialisé qu'une fois (marqueur data-book-pret).
+  (function () {
+    var DELAI_MAX = 8000;             // ms : au-delà, on débloque sans attendre la réponse
+    var DUREE_MEMOIRE = 395 * 864e5;  // 13 mois
+    var TITRES = {
+      ok: 'Merci ! Le book est à vous.',
+      repli: 'Le book est à vous.',
+      retour: 'Ravie de vous revoir : le book est toujours là.'
+    };
+
+    // Mémoire « book déjà débloqué » : une date seulement, jamais l'adresse.
+    function lireMemoire(cle) {
+      try {
+        var t = parseInt(window.localStorage.getItem(cle), 10);
+        return !isNaN(t) && Date.now() - t < DUREE_MEMOIRE;
+      } catch (e) { return false; }
+    }
+    function ecrireMemoire(cle) {
+      try { window.localStorage.setItem(cle, String(Date.now())); } catch (e) {}
+    }
+    // GoatCounter n'est chargé qu'en production, et peut être bloqué : on vérifie avant d'appeler.
+    function compter(chemin, titre) {
+      try {
+        if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+          window.goatcounter.count({ path: chemin, title: titre, event: true });
+        }
+      } catch (e) {}
+    }
+    // D'où vient le visiteur : ?ref= ou ?utm_source=, sinon la page précédente.
+    function provenance() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var ref = params.get('ref') || params.get('utm_source');
+        if (ref) return ref.slice(0, 60);
+        if (document.referrer) {
+          var precedente = new URL(document.referrer);
+          return precedente.hostname === window.location.hostname
+            ? 'site, depuis ' + precedente.pathname
+            : precedente.hostname;
+        }
+      } catch (e) {}
+      return 'accès direct (lien partagé, favori…)';
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-book]:not([data-book-pret])'), function (bloc) {
+      bloc.setAttribute('data-book-pret', '');
+      var form = bloc.querySelector('[data-book-form]');
+      var champ = form.elements.email;
+      var bouton = form.querySelector('button[type="submit"]');
+      var libelle = bouton.querySelector('[data-book-libelle]');
+      var panneau = bloc.querySelector('[data-book-panneau]');
+      var titre = bloc.querySelector('[data-book-titre]');
+      var telecharger = bloc.querySelector('[data-book-telecharger]');
+      var enLigne = bloc.querySelector('[data-book-ouvrir]');
+      var noteRepli = bloc.querySelector('[data-book-note-repli]');
+      var statut = bloc.querySelector('[data-book-statut]');
+      var pdf = bloc.getAttribute('data-pdf');
+      var memoire = 'avlv-book-' + bloc.getAttribute('data-edition');
+      var enCours = false;
+
+      // Remplace le formulaire par l'accès au book. `focus` : uniquement après une
+      // action du visiteur, jamais au chargement.
+      function debloquer(mode, focus) {
+        telecharger.href = pdf;   // aucun href vers le PDF dans le HTML statique
+        enLigne.href = pdf;
+        titre.textContent = TITRES[mode];
+        noteRepli.hidden = mode !== 'repli';
+        form.hidden = true;
+        panneau.hidden = false;
+        bloc.setAttribute('data-etat', mode);
+        if (focus) {
+          titre.focus();
+          // Header collant : focus() ne fait pas défiler quand le titre est encore en partie visible (scroll-mt-28 ignoré) : on le ramène sous le header.
+          var entete = document.querySelector('header');
+          if (entete && titre.getBoundingClientRect().top < entete.getBoundingClientRect().bottom) titre.scrollIntoView({ block: 'start' });
+        }
+      }
+
+      // Visite de retour : book déjà débloqué dans ce navigateur (même édition).
+      if (lireMemoire(memoire)) debloquer('retour', false);
+
+      telecharger.addEventListener('click', function () { compter('book-telechargement', 'Book concours : téléchargement'); });
+      enLigne.addEventListener('click', function () { compter('book-lecture-en-ligne', 'Book concours : lecture en ligne'); });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (enCours) return;   // pas de double envoi (quota partagé avec /contact)
+        if (typeof form.reportValidity === 'function' && !form.reportValidity()) return;
+
+        // Pot de miel coché = robot : on n'envoie rien.
+        if (form.elements.botcheck && form.elements.botcheck.checked) { debloquer('ok', true); return; }
+
+        enCours = true;
+        bouton.setAttribute('aria-disabled', 'true');
+        form.setAttribute('aria-busy', 'true');
+        var libelleInitial = libelle.textContent;
+        libelle.textContent = 'Envoi…';
+        statut.textContent = 'Envoi en cours…';
+
+        var fini = false;
+        var minuteur = setTimeout(function () { terminer(false); }, DELAI_MAX);
+
+        function terminer(reussi) {
+          // Un succès arrivé après le délai est quand même mémorisé.
+          if (reussi) ecrireMemoire(memoire);
+          if (fini) return;
+          fini = true;
+          clearTimeout(minuteur);
+          enCours = false;
+          bouton.removeAttribute('aria-disabled');
+          form.removeAttribute('aria-busy');
+          libelle.textContent = libelleInitial;
+          statut.textContent = '';
+          compter(reussi ? 'book-acces' : 'book-acces-repli', 'Book concours débloqué');
+          debloquer(reussi ? 'ok' : 'repli', true);
+        }
+
+        try {
+          var cle = form.elements.access_key && form.elements.access_key.value;
+          if (!cle || typeof window.fetch !== 'function') { terminer(false); return; }
+
+          var donnees = Object.fromEntries(new FormData(form));
+          donnees.subject = 'Book concours : téléchargé par ' + champ.value;
+          donnees.Provenance = provenance();
+
+          fetch(form.action, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(donnees)   // jamais de champ redirect : il provoquerait une erreur CORS
+          })
+            .then(function (r) {
+              // Seul critère fiable : HTTP ok ET success === true. Le message du serveur n'est jamais affiché.
+              return r.json().then(
+                function (data) { return r.ok && !!data && data.success === true; },
+                function () { return false; }
+              );
+            })
+            .then(terminer, function () { terminer(false); });
+        } catch (err) {
+          terminer(false);
+        }
+      });
+    });
+  })();
+</script>
