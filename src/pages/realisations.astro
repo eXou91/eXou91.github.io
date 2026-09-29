@@ -7,7 +7,7 @@ import Recommandation from '@/components/Recommandation.astro';
 import { RECOS_PROJETS } from '@/data/recommandations';
 import { Image } from 'astro:assets';
 import boisHabiteImg      from '../../assets/images/realisations/realisation_bois_habité.webp';
-import oreeDesChampsImg   from '../../assets/images/realisations/realisation_orée_des_champs.webp';
+import korrigansImg       from '../../assets/images/realisations/realisation_korrigans.jpeg';
 import livretBiosourceImg from '../../assets/images/realisations/realisation_livret_biosource.webp';
 import anticiperDemainImg from '../../assets/images/realisations/realisation_anticiper_demain.webp';
 import rapportRseImg      from '../../assets/images/realisations/realisation_rapport_rse.webp';
@@ -16,20 +16,21 @@ import bookCouvertureImg from '../../assets/images/book/book-couverture.webp';
 
 const projects = [
   {
+    category: 'La cachette des Korrigans',
+    type: 'Réponse à concours',
+    desc: "Une direction artistique au service du projet architectural, qui fait de la clairière et de l'univers des korrigans le cœur du récit. En appui du responsable développement\u00a0: direction artistique, intégration des retours des équipes et mises à jour jusqu'à l'heure du rendu.",
+    tags: 'Direction artistique · hiérarchisation de contenu · mise en page · suivi du rendu',
+    imageLeft: true,
+    image: korrigansImg,
+    recos: RECOS_PROJETS.korrigans,
+  },
+  {
     category: 'Vers le nouveau bois habité',
     type: 'Réponse à concours',
     desc: 'Concevoir la réponse à un concours en deux tours, sur un territoire nouveau pour le client, en donnant au dossier une écriture et une image qui lui sont propres.',
     tags: "Structuration du propos · identité de dossier · composition · harmonisation visuelle",
-    imageLeft: true,
-    image: boisHabiteImg,
-  },
-  {
-    category: "À l'orée des champs",
-    type: 'Réponse à concours',
-    desc: "Construire un dossier de candidature capable de porter des idées fortes avant même qu'un projet architectural ne soit arrêté. Lui donner une identité singulière, pour qu'il se distingue dès la première lecture.",
-    tags: 'Récit de candidature · hiérarchisation de contenu · mise en page · direction artistique',
     imageLeft: false,
-    image: oreeDesChampsImg,
+    image: boisHabiteImg,
   },
   {
     category: 'Construire bio et géosourcé',

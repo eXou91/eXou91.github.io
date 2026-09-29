@@ -17,3 +17,8 @@ npm-debug.log*
 # Photos sources haute-résolution du studio : conservées en local pour régénérer
 # les .webp, mais trop lourdes pour le repo. Seules les .webp optimisées sont suivies.
 assets/images/studio/*.jpg
+
+# PDF sources du book (exports InDesign de 11 à 15 Mo) : conservés en local pour
+# régénérer la version optimisée. Seul public/book/*.pdf (version web) est suivi.
+assets/*.pdf
+assets/images/book/*.pdf

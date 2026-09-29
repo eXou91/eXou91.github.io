@@ -16,7 +16,7 @@ export const CONTACT_EMAIL = 'contact@avouslaville.fr';
 export const BOOK = {
   url: '/book/a-vous-la-ville-book-reponses-a-concours.pdf',
   nomFichier: 'A-vous-la-ville_Book-concours-2023-2026.pdf',
-  pages: 13,
-  poids: '6 Mo', // 5 936 709 octets (version du 28/09/2026)
+  pages: 14,
+  poids: '7 Mo', // 7 308 225 octets (version du 29/09/2026)
   edition: '2023-2026',
 };

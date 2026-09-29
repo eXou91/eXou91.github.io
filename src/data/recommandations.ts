@@ -22,6 +22,8 @@ export interface Reco {
 const MURIEL    = { name: 'Muriel Berthois',       role: 'Directrice développement grands projets', org: 'SECIB Immobilier' };
 const GRAZIELLA = { name: 'Graziella Inisan',      role: 'Directrice générale',                     org: 'SECIB Immobilier' };
 const ALEXANDRA = { name: 'Alexandra Tugot Doris', role: 'Direction marketing & communication',     org: 'Legendre Immobilier' };
+// Projet « La cachette des Korrigans » (2026).
+const PIERRE_YVES = { name: 'Pierre-Yves Laurent', role: 'Directeur du développement',              org: 'Legendre Immobilier' };
 
 // Accueil : la plus courte en exergue…
 export const RECO_EXERGUE: Reco = {
@@ -58,6 +60,12 @@ export const RECOS_PROJETS = {
     {
       ...GRAZIELLA,
       quote: "Une compétence remarquée dans la réalisation de notre rapport d'activité RSE 2024.",
+    },
+  ],
+  korrigans: [
+    {
+      ...PIERRE_YVES,
+      quote: "Diane fait preuve d'une grande créativité et sait identifier et valoriser avec pertinence les éléments différenciants d'un projet. Sa réactivité, associée à un excellent sens des priorités, lui permet de structurer efficacement le travail d'édition et de garantir une remise des offres dans les délais et en toute sérénité.",
     },
   ],
 } satisfies Record<string, Reco[]>;
